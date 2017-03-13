@@ -218,4 +218,43 @@ public class ProductDoa {
         return flag;
     }
 
+    
+     public ArrayList<Product> selectProductsByFlower(int id)  {
+        productList = new ArrayList<>();
+        Connection con = new ConnectionManager().getConnection();
+        try  {
+            PreparedStatement ps = con.prepareStatement("select * from PRODUCT where PRODUCT.ID in (select P_ID from BOQUET_FLOWERS where BOQUET_FLOWERS.F_ID = ?)");
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Product product = new Product();
+                product.setId(rs.getInt(1));
+                product.setName(rs.getString(2));
+                product.setPrice(rs.getFloat(3));
+                product.setQuantity(rs.getInt(4));
+                product.setDescription(rs.getString(5));
+                product.setRating(rs.getInt(6));
+                product.setImages(iDao.selectProductImagesByProductId(product.getId()));
+                product.setFlowers(fDao.selectFlowerByProductId(product.getId()));
+                productList.add(product);
+                System.out.println(product.toString());
+            }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+
+        }
+        finally
+        {
+            try {
+                con.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(ProductDoa.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+        return productList;
+    }
+
 }
