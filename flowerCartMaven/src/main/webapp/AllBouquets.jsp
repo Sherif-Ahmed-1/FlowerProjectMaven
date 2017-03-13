@@ -201,7 +201,7 @@ _________________________________________________________ -->
                                 <p class="price">${product.price}</p>
                                 <p class="buttons">
                                     <a href="ShowDetails?b=${product.id}" class="btn btn-default">View detail</a>
-                                    <a href="basket.html" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                    <a class="btn btn-primary" onclick="addToCart(${product.id})" ><i class="fa fa-shopping-cart"></i>Add to cart</a>
                                 </p>
                             </div>
                             <!-- /.text -->
