@@ -27,7 +27,7 @@ import org.apache.commons.beanutils.BeanUtils;
  *
  * @author Moamenovic
  */
-@WebServlet(name = "AddProductServlet", urlPatterns = {"/AddProductServlet"})
+@WebServlet(name = "AddClientServlet", urlPatterns = {"/AddClientServlet"})
 public class AddClientServlet extends HttpServlet {
 
     @Override
@@ -63,11 +63,11 @@ public class AddClientServlet extends HttpServlet {
             if (clientService.addClient(client)) {
                 PrintWriter out = response.getWriter();
                 out.println("Client has been added");
-                response.sendRedirect("/FlowersCart1/AdminView//userView/CleintAddition.jsp");
+                response.sendRedirect("/FlowersCart1/AdminView/ClientAddition.jsp");
             } else {
                 PrintWriter out = response.getWriter();
                 out.println("Client has not been saved");
-                response.sendRedirect("/FlowersCart1/AdminView/CleintAddition.jsp");
+                response.sendRedirect("/FlowersCart1/AdminView/ClientAddition.jsp");
             }
             //************** EndMoamen **************/
         } catch (IllegalAccessException ex) {

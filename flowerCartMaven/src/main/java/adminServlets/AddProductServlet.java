@@ -57,10 +57,8 @@ public class AddProductServlet extends HttpServlet {
                 PrintWriter out = response.getWriter();
                 out.println("Data has been saved");
                 response.sendRedirect("/FlowersCart1/AdminView/ProductAddition.jsp");
-            }
-            else
-            {
-                 PrintWriter out = response.getWriter();
+            } else {
+                PrintWriter out = response.getWriter();
                 out.println("Data has not been saved");
                 response.sendRedirect("/FlowersCart1/AdminView/ProductAddition.jsp");
             }
