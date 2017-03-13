@@ -22,60 +22,36 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "LoginServlet", urlPatterns = {"/LoginServlet"})
 public class LoginServlet extends HttpServlet {
 
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        
-        //************* startAllaa **************/
-       
-        
-        //************** EndAllaa **************/
-
-        //************* startAdel ************
-        
-        //************** EndAdel **************/
-        //************* startSherif **************/
-        
-        //************** EndSherif **************/
-        //************* startMoamen **************/
-        
-        //************** EndMoamen **************/
-       
-    }
+    
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         //************* startAllaa **************/
-         response.setContentType("text/html");
+        //************* startAllaa **************/
+        response.setContentType("text/html");
         PrintWriter out = response.getWriter();
-         
+
         String email = request.getParameter("inputEmail");
         String password = request.getParameter("inputPassword");
         // check against database
-        ClientService clientService=new ClientService();
-        if (clientService.Login(email, password) ){
+        ClientService clientService = new ClientService();
+        if (clientService.Login(email, password)) {
             HttpSession session = request.getSession(true);
             session.setAttribute("LoggedIn", new Boolean("true"));
             response.sendRedirect("index.jsp");
-        }else {
+        } else {
             HttpSession session = request.getSession(true);
             session.setAttribute("LoggedIn", new Boolean("false"));
             response.sendRedirect("index.jsp");
         }
-        
-        
+
         //************** EndAllaa **************/
-          //************* startAdel ************
-        
+        //************* startAdel ************
         //************** EndAdel **************/
         //************* startSherif **************/
-        
         //************** EndSherif **************/
         //************* startMoamen **************/
-        
         //************** EndMoamen **************/
-       
     }
 
 }

@@ -42,7 +42,7 @@ public class HomeServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         HttpSession session = request.getSession(true);
         Boolean userLogged = (Boolean) session.getAttribute("LoggedIn");
-        if (userLogged != null && userLogged.booleanValue()) {
+        if (userLogged != null ) {
             categories = service.getCategories();
             flowers = service.getFlowers();
             products = service.getProducts();
