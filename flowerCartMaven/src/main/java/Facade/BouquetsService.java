@@ -25,4 +25,9 @@ public class BouquetsService {
         ProductDoa pDao = new ProductDoa();
         return pDao.selectProductsByCategory(id);
     }  
+
+    public Product getBouquetById(int id) {
+        ProductDoa pDao = new ProductDoa();
+        return pDao.selectOneProduct(id);
+    }
 }

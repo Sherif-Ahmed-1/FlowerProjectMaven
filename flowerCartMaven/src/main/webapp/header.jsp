@@ -25,6 +25,7 @@
         <!-- your stylesheet with modifications -->
         <link href="css/custom.css" rel="stylesheet">
         <script src="js/respond.min.js"></script>
+        <script src="js/bootstrap-rating-input.js" type="text/javascript"></script>
         <link rel="shortcut icon" href="favicon.png">
     </head>
 

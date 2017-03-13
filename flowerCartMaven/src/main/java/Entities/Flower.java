@@ -6,7 +6,7 @@ package Entities;
  */
 public class Flower {
 
-    private int ID;
+    private int id;
     private String country;
     private String name;
     
@@ -20,14 +20,15 @@ public class Flower {
         this.image = image;
     }
 
-    public int getID() {
-        return ID;
+    public int getId() {
+        return id;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setId(int id) {
+        this.id = id;
     }
 
+   
     public String getCountry() {
         return country;
     }
@@ -46,7 +47,7 @@ public class Flower {
 
     @Override
     public String toString() {
-        return "Flower{" + "ID=" + ID + ", country=" + country + ", name=" + name + '}';
+        return "Flower{" + "ID=" + id + ", country=" + country + ", name=" + name + '}';
     }
     
 

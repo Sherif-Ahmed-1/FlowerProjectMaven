@@ -144,22 +144,22 @@ _________________________________________________________ -->
                                 <div class="flip-container">
                                     <div class="flipper">
                                         <div class="front">
-                                            <a href="flowerBouquests?f=${flower.ID}">
+                                            <a href="flowerBouquests?f=${flower.id}">
                                                <img src="${flower.image.url}" alt="" class="img-responsive" >
                                             </a>
                                         </div>
                                         <div class="back">
-                                            <a href="flowerBouquests?f=${flower.ID}">
+                                            <a href="flowerBouquests?f=${flower.id}">
                                                 <img src="${flower.image.url}" alt="" class="img-responsive">
                                             </a>
                                         </div>
                                     </div>
                                 </div>
-                                <a href="flowerBouquests?f=${flower.ID}"class="invisible">
+                                <a href="flowerBouquests?f=${flower.id}"class="invisible">
                                     <img src="${flower.image.url}" alt="" class="img-responsive">
                                 </a>
                                 <div class="text">
-                                    <h3><a href="flowerBouquests?f=${flower.ID}">${flower.name}</a></h3>
+                                    <h3><a href="flowerBouquests?f=${flower.id}">${flower.name}</a></h3>
                                     <p class="price">${flower.country}</p>
                                 </div>
                                 <!-- /.text -->
