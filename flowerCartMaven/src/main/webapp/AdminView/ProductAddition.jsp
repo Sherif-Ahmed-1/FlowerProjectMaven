@@ -1,7 +1,7 @@
+<!-- Our main JS file -->
 
-<%--<%@page contentType="text/html" pageEncoding="UTF-8"%>--%>
+
 <jsp:include page="../includes/header.jsp" />
-
 
 <!-- page content -->
 <div class="right_col" role="main">
@@ -21,12 +21,18 @@
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_panel">
+
                         <br />
-                        <form class="form-horizontal form-label-left input_mask" method="post" action="${pageContext.request.contextPath}/AddProductServlet">
+                        <form enctype="MULTIPART/FORM-DATA" class="form-horizontal form-label-left input_mask" method="post" action="${pageContext.request.contextPath}/AddProductServlet">
 
                             <div class="col-md-10 col-sm-6 col-xs-12 form-group has-feedback">
                                 <input type="text" class="form-control has-feedback-left" name="name" placeholder="Flower Name" required="true">
                                 <span class="fa fa-gift form-control-feedback left" aria-hidden="true"></span>
+                            </div>
+                            <div class="col-md-2 col-sm-12 col-xs-12 form-group has-feedback" style="position: relative; float: right; cursor: pointer;">
+
+                                <img id="pro_img" src="#" width="150" height="140" alt="Your photo" >
+                                <input type="file" name="file" id="upload_img" onchange="viewImage(this)">
                             </div>
                             <div class="col-md-3 col-sm-12 col-xs-12 form-group has-feedback">
                                 <input type="number" class="form-control" name="price" placeholder="Price" required="true">
@@ -43,6 +49,7 @@
                             <div class="col-md-10 col-sm-10 col-xs-12">
                                 <textarea class="form-control" placeholder="Write The discription of your product here" name="description"></textarea>
                             </div>
+
                             <br>
                             <br>
                             <br>
@@ -50,6 +57,9 @@
                             <br>
                             <br>
                             <br>
+                            <br>
+                            <br>
+
                             <div class="ln_solid"></div>
                             <div class="form-group">
                                 <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
@@ -70,4 +80,6 @@
 </div>
 <!-- /page content -->
 
+
+<script src="../assets/js/adminJS.js"></script>
 <jsp:include page="../includes/footer.jsp" />
