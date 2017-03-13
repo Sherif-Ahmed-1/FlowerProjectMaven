@@ -58,4 +58,32 @@ public class ProductImageDao {
     
     //************************* end allaa ************************
     
+    //************************* Start Adel ************************
+    public boolean insertProductImage(ImageEntity imageEntity)  {
+        Connection con = new ConnectionManager().getConnection();
+        boolean flag=false;
+        try  {
+            PreparedStatement ps = con.prepareStatement("INSERT INTO PRODUCT_IMAGES (URL, PRODUCTSID) VALUES ( ?, ?)");
+            ps.setString(1, imageEntity.getUrl());
+           
+            ps.setInt(2, imageEntity.getProductID());
+            ps.executeUpdate();
+
+            flag= true;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+
+        }
+        finally
+        {
+            try {
+                con.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(ProductDoa.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return flag;
+    }
+    //************************* end Adel ************************
+    
 }

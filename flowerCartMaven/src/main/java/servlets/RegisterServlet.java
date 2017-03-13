@@ -25,6 +25,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import Entities.Client;
 import Entities.Interests;
+import javax.servlet.RequestDispatcher;
 import org.apache.commons.beanutils.BeanUtils;
 
 /**
@@ -72,7 +73,15 @@ public class RegisterServlet extends HttpServlet {
 //************** EndAdel **************/
 //************* startSherif **************/
         ClientService clientService = new ClientService();
-        clientService.signUp(client);
+        if(clientService.signUp(client))
+        {
+        response.sendRedirect("register.jsp");
+        }
+//        RequestDispatcher dispatcher=request.getRequestDispatcher("LoginServlet");
+//        request.setAttribute("inputEmail", client.getMail() );
+//        request.setAttribute("inputPassword", client.getPassword());
+//        dispatcher.include(request, response);
+         response.sendRedirect("index.jsp");
 //************** EndSherif **************/
 //************* startMoamen **************/
 //************** EndMoamen **************/

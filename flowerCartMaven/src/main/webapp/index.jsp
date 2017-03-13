@@ -109,8 +109,9 @@ _________________________________________________________ -->
                                 </a>
                                 <div class="text">
                                     <h3><a href="detail.html">${product.name}</a></h3>
-                                    <p class="price">${product.price}</p>
+                                    <strong><a class="item_add" href="cartServlet?id=${product.id}" style="text-decoration: none;"> <i class="fa fa-shopping-cart"></i>${product.price} </a> </strong>
                                 </div>
+                               
                                 <!-- /.text -->
                             </div>
                             <!-- /.product -->

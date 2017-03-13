@@ -125,6 +125,7 @@ public class ProductDoa {
 
     public Product selectOneProduct(int id) {
         Connection con = new ConnectionManager().getConnection();
+
         Product product = new Product();
         try {
             PreparedStatement ps = con.prepareStatement("select * from PRODUCT where ID = ?");
@@ -154,6 +155,33 @@ public class ProductDoa {
         }
         return product;
     }
+
+    public int selectProductId(String name) {
+        int num = -1;
+        Connection con = new ConnectionManager().getConnection();
+        try {
+
+            PreparedStatement ps = con.prepareStatement("select * from PRODUCT where NAME = ?");
+            ps.setString(1, name);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                num = rs.getInt("ID");
+            }
+            rs.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(ProductDoa.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+        return num;
+    }
+
 
     public boolean updateProduct(Product product) {
         Connection con = new ConnectionManager().getConnection();
