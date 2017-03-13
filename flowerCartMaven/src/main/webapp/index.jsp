@@ -13,16 +13,16 @@
             <div class="col-md-12">
                 <div id="main-slider">
                     <div class="item">
-                        <img src="assets/img/11.jpg" alt="" class="img-responsive">
+                        <img src="img/11.jpg" alt="" class="img-responsive">
                     </div>
                     <div class="item">
-                        <img class="img-responsive" src="assets/img/12.jpg" alt="">
+                        <img class="img-responsive" src="img/12.jpg" alt="">
                     </div>
                     <div class="item">
-                        <img class="img-responsive" src="assets/img/13.jpg" alt="">
+                        <img class="img-responsive" src="img/13.jpg" alt="">
                     </div>
                     <div class="item">
-                        <img class="img-responsive" src="assets/img/14.jpg" alt="">
+                        <img class="img-responsive" src="img/14.jpg" alt="">
                     </div>
                 </div>
                 <!-- /#main-slider -->
