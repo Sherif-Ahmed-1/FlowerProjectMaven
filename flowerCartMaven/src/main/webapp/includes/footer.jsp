@@ -41,6 +41,17 @@
 <!-- DateJS -->
 <script src="../assets/js/date.js"></script>
 
+
+<!-- Table -->
+<script src="../assets/js/jquery.dataTables.min.js"></script>
+<script src="../assets/js/dataTables.bootstrap.min.js"></script>
+<script src="../assets/js/dataTables.buttons.min.js"></script>
+<script src="../assets/js/buttons.bootstrap.min.js"></script>
+<script src="../assets/js/buttons.flash.min.js"></script>
+<script src="../assets/js/buttons.html5.min.js"></script>
+<script src="../assets/js/buttons.print.min.js"></script>
+
+
 <!-- bootstrap-daterangepicker -->
 <script src="../assets/js/moment.min.js"></script>
 <script src="../assets/js/daterangepicker.js"></script>

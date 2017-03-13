@@ -26,10 +26,10 @@ public class ProductDoa {
     ProductImageDao iDao = new ProductImageDao();
     FlowerDao fDao = new FlowerDao();
 
-    public boolean insertProduct(Product product)  {
+    public boolean insertProduct(Product product) {
         Connection con = new ConnectionManager().getConnection();
-        boolean flag=false;
-        try  {
+        boolean flag = false;
+        try {
             PreparedStatement ps = con.prepareStatement("INSERT INTO PRODUCT (NAME, PRICE, QUANTITY, DESCRIPTION, RATING) VALUES (?, ?, ?, ?, ?)");
             ps.setString(1, product.getName());
             ps.setFloat(2, product.getPrice());
@@ -38,13 +38,11 @@ public class ProductDoa {
             ps.setInt(5, product.getRating());
             ps.executeUpdate();
 
-            flag= true;
+            flag = true;
         } catch (SQLException ex) {
             ex.printStackTrace();
 
-        }
-        finally
-        {
+        } finally {
             try {
                 con.close();
             } catch (SQLException ex) {
@@ -57,7 +55,7 @@ public class ProductDoa {
     public ArrayList<Product> selectAllProducts() {
         productList = new ArrayList<>();
         Connection con = new ConnectionManager().getConnection();
-        try  {
+        try {
             PreparedStatement ps = con.prepareStatement("select * from PRODUCT");
             ResultSet rs = ps.executeQuery();
 
@@ -78,9 +76,7 @@ public class ProductDoa {
         } catch (SQLException ex) {
             ex.printStackTrace();
 
-        }
-        finally
-        {
+        } finally {
             try {
                 con.close();
             } catch (SQLException ex) {
@@ -91,10 +87,10 @@ public class ProductDoa {
         return productList;
     }
 
-    public ArrayList<Product> selectProductsByCategory(int id)  {
+    public ArrayList<Product> selectProductsByCategory(int id) {
         productList = new ArrayList<>();
         Connection con = new ConnectionManager().getConnection();
-        try  {
+        try {
             PreparedStatement ps = con.prepareStatement("select * from PRODUCT where PRODUCT.id  in (select product_id from  cat_pro where cat_pro.category_id = ?)");
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
@@ -116,9 +112,7 @@ public class ProductDoa {
         } catch (SQLException ex) {
             ex.printStackTrace();
 
-        }
-        finally
-        {
+        } finally {
             try {
                 con.close();
             } catch (SQLException ex) {
@@ -131,7 +125,7 @@ public class ProductDoa {
 
     public Product selectOneProduct(int id) {
         Connection con = new ConnectionManager().getConnection();
-        try  {
+        try {
 
             PreparedStatement ps = con.prepareStatement("select * from PRODUCT where id = ?");
             ps.setInt(1, id);
@@ -151,9 +145,7 @@ public class ProductDoa {
         } catch (SQLException ex) {
             ex.printStackTrace();
 
-        }
-        finally
-        {
+        } finally {
             try {
                 con.close();
             } catch (SQLException ex) {
@@ -164,10 +156,36 @@ public class ProductDoa {
         return oneProduct;
     }
 
-    public boolean updateProduct(Product product)  {
+    public int selectProductId(String name) {
+        int num = -1;
         Connection con = new ConnectionManager().getConnection();
-        boolean flag=false;
-        try  {
+        try {
+
+            PreparedStatement ps = con.prepareStatement("select * from PRODUCT where NAME = ?");
+            ps.setString(1, name);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                num = rs.getInt("ID");
+            }
+            rs.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(ProductDoa.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+        return num;
+    }
+
+    public boolean updateProduct(Product product) {
+        Connection con = new ConnectionManager().getConnection();
+        boolean flag = false;
+        try {
             PreparedStatement ps = con.prepareStatement("update PRODUCT set (NAME, PRICE, QUANTITY, DESCRIPTION, RATING) VALUES (?, ?, ?, ?, ?) where id = ?");
             ps.setString(1, product.getName());
             ps.setFloat(2, product.getPrice());
@@ -177,52 +195,47 @@ public class ProductDoa {
             ps.setInt(6, product.getId());
             ps.executeUpdate();
 
-            flag= true;
+            flag = true;
         } catch (SQLException ex) {
             ex.printStackTrace();
 
-        }
-        finally
-        {
+        } finally {
             try {
                 con.close();
             } catch (SQLException ex) {
                 Logger.getLogger(ProductDoa.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        return  flag;
+        return flag;
     }
 
-    public boolean deleteProduct(int id)  {
-       Connection con = new ConnectionManager().getConnection();
-       boolean flag=false;
-        try  {
+    public boolean deleteProduct(int id) {
+        Connection con = new ConnectionManager().getConnection();
+        boolean flag = false;
+        try {
             PreparedStatement ps = con.prepareStatement("DELETE FROM PRODUCT WHERE  id = ?");
             ps.setInt(1, id);
 
             ps.executeUpdate();
 
-            flag= true;
+            flag = true;
         } catch (SQLException ex) {
             ex.printStackTrace();
 
-        }
-        finally
-        {
-           try {
-               con.close();
-           } catch (SQLException ex) {
-               Logger.getLogger(ProductDoa.class.getName()).log(Level.SEVERE, null, ex);
-           }
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(ProductDoa.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         return flag;
     }
 
-    
-     public ArrayList<Product> selectProductsByFlower(int id)  {
+    public ArrayList<Product> selectProductsByFlower(int id) {
         productList = new ArrayList<>();
         Connection con = new ConnectionManager().getConnection();
-        try  {
+        try {
             PreparedStatement ps = con.prepareStatement("select * from PRODUCT where PRODUCT.ID in (select P_ID from BOQUET_FLOWERS where BOQUET_FLOWERS.F_ID = ?)");
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
@@ -244,9 +257,7 @@ public class ProductDoa {
         } catch (SQLException ex) {
             ex.printStackTrace();
 
-        }
-        finally
-        {
+        } finally {
             try {
                 con.close();
             } catch (SQLException ex) {

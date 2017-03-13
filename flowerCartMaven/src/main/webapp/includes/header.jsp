@@ -1,15 +1,10 @@
-<%-- 
-    Document   : userAddition
-    Created on : Mar 11, 2017, 6:32:11 PM
-    Author     : Moamenovic
---%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Administrator</title>
 
         <!-- Bootstrap -->
         <link href="../assets/css/bootstrap/bootstrapCSS/bootstrap.min.css" rel="stylesheet">
@@ -27,7 +22,13 @@
         <link href="../assets/css/jqvmap.min.css" rel="stylesheet"/>
         <!-- bootstrap-daterangepicker -->
         <link href="../assets/css/daterangepicker.css" rel="stylesheet">
-
+        
+        <!-- Datatables -->
+        <link href="../assets/css/bootstrap/bootstrapCSS/dataTables.bootstrap.min.css" rel="stylesheet">
+        <link href="../assets/css/bootstrap/bootstrapCSS/buttons.bootstrap.min.css" rel="stylesheet">
+        
+          <!-- jQuery Knob -->
+          <script src="../assets/js/jquery.knob.min.js"></script>
         <!-- Custom Theme Style -->
         <link href="../assets/css/custom.min.css" rel="stylesheet">
 
@@ -65,8 +66,8 @@
                                     <li><a><i class="fa fa-thumbs-o-up"></i> Products <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
                                             <li><a href="ProductAddition.jsp">Add Product</a></li>
-                                            <li><a href="index2.html">Edit Product</a></li>
-                                            <li><a href="index3.html">Remove Product</a></li>
+                                            <li><a href="ProductDetails.jsp">Edit Product</a></li>
+                                            <li><a href="ProductDetails.jsp">Remove Product</a></li>
                                         </ul>
                                     </li>
                                     <li><a><i class="fa fa-users"></i> Clients <span class="fa fa-chevron-down"></span></a>
@@ -204,4 +205,3 @@
                     </div>
                 </div>
                 <!-- /top navigation -->
-
