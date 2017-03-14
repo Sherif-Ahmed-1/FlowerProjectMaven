@@ -57,23 +57,20 @@ public class AddProductServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        
-            //************* startAllaa **************/
-            //************** EndAllaa **************/
-            //************* startAdel ************
-            
-                uploadImage(request,response);
-               // insertProduct(request,response);
-               
-                //************** EndAdel **************/
-                //************* startSherif **************/
-                //************** EndSherif **************/
-                //************* startMoamen **************/
-                //************** EndMoamen **************/
-          
-        } 
+        //************* startAllaa **************/
+        //************** EndAllaa **************/
+        //************* startAdel ************
+        uploadImage(request, response);
+        // insertProduct(request,response);
 
-    private void uploadImage(HttpServletRequest request,HttpServletResponse response) {
+        //************** EndAdel **************/
+        //************* startSherif **************/
+        //************** EndSherif **************/
+        //************* startMoamen **************/
+        //************** EndMoamen **************/
+    }
+
+    private void uploadImage(HttpServletRequest request, HttpServletResponse response) {
         PrintWriter out = null;
         try {
             out = response.getWriter();
@@ -81,7 +78,7 @@ public class AddProductServlet extends HttpServlet {
             ServletFileUpload upload = new ServletFileUpload(factory);
             List<FileItem> items = upload.parseRequest(request);
             Iterator<FileItem> iter = items.iterator();
-           
+
             while (iter.hasNext()) {
 
                 FileItem item = (FileItem) iter.next();
@@ -90,14 +87,14 @@ public class AddProductServlet extends HttpServlet {
                     String name = item.getFieldName();
 
                     String value = item.getString();
-                    out.println(name +" : "+ value);
+                    out.println(name + " : " + value);
 
                 } else // processUploadedFile(item);
                 {
                     String itemName = item.getName();
                     Random generator = new Random();
                     int r = Math.abs(generator.nextInt());
-                    
+
                     String reg = "[.*]";
                     String replacingtext = "";
                     System.out.println("Text before replacing is:-"
@@ -105,29 +102,28 @@ public class AddProductServlet extends HttpServlet {
                     Pattern pattern = Pattern.compile(reg);
                     Matcher matcher = pattern.matcher(itemName);
                     StringBuffer buffer = new StringBuffer();
-                    
+
                     while (matcher.find()) {
                         matcher.appendReplacement(buffer, replacingtext);
                     }
                     int IndexOf = itemName.indexOf(".");
                     String domainName = itemName.substring(IndexOf);
                     System.out.println("domainName: " + domainName);
-                    
+
                     String finalimage = buffer.toString() + "_" + r + domainName;
                     System.out.println("Final Image===" + finalimage);
-                    
-                    File savedFile = new File("D:\\"+finalimage);
-                    
+
+                    File savedFile = new File("D:\\" + finalimage);
+
                     try {
                         item.write(savedFile);
                     } catch (Exception ex) {
                         Logger.getLogger(AddProductServlet.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                    
-                    
-                    
+
                 }
-            }   } catch (IOException ex) {
+            }
+        } catch (IOException ex) {
             Logger.getLogger(AddProductServlet.class.getName()).log(Level.SEVERE, null, ex);
         } catch (FileUploadException ex) {
             Logger.getLogger(AddProductServlet.class.getName()).log(Level.SEVERE, null, ex);
@@ -135,14 +131,15 @@ public class AddProductServlet extends HttpServlet {
             out.close();
         }
 
-}
-    private void insertProduct(HttpServletRequest request,HttpServletResponse response) {
-        
+    }
+
+    private void insertProduct(HttpServletRequest request, HttpServletResponse response) {
+
         try {
             Product product = new Product();
-            
+
             BeanUtils.populate(product, request.getParameterMap());
-            
+
             ProductService productService = new ProductService();
             if (productService.addProduct(product)) {
                 PrintWriter out1 = null;
@@ -167,9 +164,7 @@ public class AddProductServlet extends HttpServlet {
         } catch (InvocationTargetException ex) {
             Logger.getLogger(AddProductServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-                
-}
+
+    }
 
 }
-
-    

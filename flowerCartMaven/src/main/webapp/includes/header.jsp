@@ -73,7 +73,7 @@
                                         <ul class="nav child_menu">
                                             <!--<li><a href="form.html">View Client</a></li>-->
                                             <li><a href="ClientAddition.jsp">Add Client</a></li>
-                                            <li><a href="/FlowersCart1/AdminView/ListClient.jsp">List Users</a></li>
+                                            <li><a href="/FlowerCart/AdminView/ListClient.jsp">List Users</a></li>
                                         </ul>
                                     </li>
                                     <li><a><i class="fa fa-bars"></i>Category<span class="fa fa-chevron-down"></span></a>
