@@ -6,24 +6,16 @@
 package adminServlets;
 
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.logging.*;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.*;
 import Entities.Product;
 import adminFacade.ProductService;
 import java.io.File;
 import java.io.PrintWriter;
 import java.lang.reflect.InvocationTargetException;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.servlet.annotation.MultipartConfig;
@@ -71,7 +63,8 @@ public class AddProductServlet extends HttpServlet {
         //************* startMoamen **************/
         //************** EndMoamen **************/
     }
-    File savedFile = null;
+
+    List<String> imgPaths = new ArrayList<>();
     Map<String, String> paramaters = new HashMap<String, String>();
 
     private void uploadImage(HttpServletRequest request, HttpServletResponse response) {
@@ -83,7 +76,7 @@ public class AddProductServlet extends HttpServlet {
             ServletFileUpload upload = new ServletFileUpload(factory);
             List<FileItem> items = upload.parseRequest(request);
             Iterator<FileItem> iter = items.iterator();
-
+            
             while (iter.hasNext()) {
 
                 FileItem item = (FileItem) iter.next();
@@ -94,7 +87,7 @@ public class AddProductServlet extends HttpServlet {
                     paramaters.put(name, value);
 
                     out.println(name + " : " + value);
-                
+
                 } else // processUploadedFile(item);
                 {
                     String itemName = item.getName();
@@ -116,7 +109,9 @@ public class AddProductServlet extends HttpServlet {
 
                     String finalimage = buffer.toString() + "_" + r + domainName;
 
-                    savedFile = new File(getServletContext().getRealPath("/") + "assets\\img\\bouques\\" + finalimage);
+                    String path = "assets\\img\\bouques\\" + finalimage;
+                    imgPaths.add(path);
+                    File savedFile = new File(getServletContext().getRealPath("/") + path);
 
                     try {
                         item.write(savedFile);
@@ -140,20 +135,19 @@ public class AddProductServlet extends HttpServlet {
 
         try {
             Product product = new Product();
-            String name = request.getParameter("name");
             BeanUtils.populate(product, paramaters);
             ProductService productService = new ProductService();
-            if (productService.addProduct(product, savedFile.getAbsolutePath())) {
+            if (productService.addProduct(product, imgPaths)) {
 
                 try {
-                    response.sendRedirect("/FlowersCart1/AdminView/ProductAddition.jsp");
+                    response.sendRedirect(getServletContext().getRealPath("/")+"AdminView/ProductAddition.jsp");
                 } catch (IOException ex) {
                     Logger.getLogger(AddProductServlet.class.getName()).log(Level.SEVERE, null, ex);
                 } finally {
                 }
             } else {
                 try {
-                    response.sendRedirect("/FlowersCart1/AdminView/ProductAddition.jsp");
+                    response.sendRedirect(getServletContext().getRealPath("/")+"AdminView/ProductAddition.jsp");
                 } catch (IOException ex) {
                     Logger.getLogger(AddProductServlet.class.getName()).log(Level.SEVERE, null, ex);
                 }

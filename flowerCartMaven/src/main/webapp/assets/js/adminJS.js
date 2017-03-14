@@ -1,14 +1,29 @@
-function  viewImage(input){
- if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function (e) {
-                $('#pro_img')
+function  viewImage(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $('#pro_img')
                     .attr('src', e.target.result);
-            };
-            reader.readAsDataURL(input.files[0]);
-        }
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
 }
 
+function populateFlowers() {
+    var selectedValue = $("[name=flowerObtained]").find(":selected").val();
+    var flowersData= $("#flowers").val();
+    if(flowersData!=""){
+    $("#flowers").val(flowersData + "," + selectedValue);
+    $("[name=flowerObtained]").find(":selected").remove();
+    $("[name=flowerObtained]").val("first").selected = true;
+}
+else
+{
+    $("#flowers").val(selectedValue);
+    $("[name=flowerObtained]").find(":selected").remove();
+    $("[name=flowerObtained]").val("first").selected = true;
+}
+}
 function validatePassword() {
     var pass1 = document.getElementById("password").value;
     var pass2 = document.getElementById("confirmPassword").value;
