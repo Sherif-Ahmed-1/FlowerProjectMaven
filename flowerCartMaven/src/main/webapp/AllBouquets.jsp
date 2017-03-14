@@ -20,10 +20,10 @@
                     <li>All Bouquets</li>
                 </ul>
             </div>
-
+         
             <div class="col-md-3">
                 <!-- *** MENUS AND FILTERS ***
-                <jsp:include page="sideBar.jsp"></jsp:include>
+                <%--<jsp:include page="sideBar.jsp"></jsp:include>--%>
 _________________________________________________________ -->
                 <div class="panel panel-default sidebar-menu">
 

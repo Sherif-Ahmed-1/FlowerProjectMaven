@@ -7,6 +7,7 @@ package Facade;
 
 import Entities.Client;
 import dao.ClientDao;
+import java.util.ArrayList;
 
 /**
  *
@@ -14,7 +15,19 @@ import dao.ClientDao;
  */
 public class ClientService {
 
+    static ArrayList<String> loginEmails = new ArrayList<>();
+
+    private boolean isloggedIn(String email) {
+       for(String userMail:loginEmails)
+           if(userMail.equalsIgnoreCase(email))
+               return true;
+       loginEmails.add(email);
+       return false;
+    }
+
     public boolean Login(String email, String password) {
+        if(isloggedIn(email))
+            return false;
         Client client = new Client();
         client.setMail(email);
         client.setPassword(password);
