@@ -9,6 +9,7 @@ import Entities.Product;
 import Facade.BouquetsService;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -33,7 +34,11 @@ public class ShowDetailsServlet extends HttpServlet {
         System.out.println(id);
         BouquetsService bouquetsService = new BouquetsService();
         Product productDetail = bouquetsService.getBouquetById(id);
+        
+        ArrayList<Product> simaliarProducts = bouquetsService.getBouquetsByFlowers(productDetail.getFlowers());
+        
         request.setAttribute("productDetail", productDetail);
+        request.setAttribute("simaliarProducts", simaliarProducts);
         
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("detail.jsp");
         requestDispatcher.forward(request, response);
