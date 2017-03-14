@@ -27,11 +27,9 @@
         <script src="js/respond.min.js"></script>
         <script src="js/bootstrap-rating-input.js" type="text/javascript"></script>
         <link rel="shortcut icon" href="favicon.png">
-        <script src="js/jquery.min.js" type="text/javascript"></script>
-        <script src="js/Cart.js" type="text/javascript"></script>
     </head>
 
-    <body >
+    <body>
 
         <jsp:include  page="HomeServlet" />
 
@@ -90,17 +88,17 @@
                 </div>
 
             </div>
-</c:if>
+
             <!-- *** TOP BAR END *** -->
 
             <!-- *** NAVBAR ***
          _________________________________________________________ -->
 
-<!--            <div class="navbar navbar-default yamm" role="navigation" id="navbar">
+            <div class="navbar navbar-default yamm" role="navigation" id="navbar">
                 <div class="container">
                     <div class="navbar-header">
 
-                        <a class="navbar-brand home" href="index.jsp" data-animate-hover="bounce">
+                        <a class="navbar-brand home" href="index.html" data-animate-hover="bounce">
                             <img src="img/logo.png" alt="Obaju logo" class="hidden-xs">
                             <img src="img/logo-small.png" alt="Obaju logo" class="visible-xs"><span class="sr-only">Obaju - go to homepage</span>
                         </a>
@@ -113,12 +111,12 @@
                                 <span class="sr-only">Toggle search</span>
                                 <i class="fa fa-search"></i>
                             </button>
-                            <a class="btn btn-default navbar-toggle" href="basket.jsp">
-                                <i class="fa fa-shopping-cart"></i>  <span class="hidden-xs" id="myCart">10 items in cart</span>
+                            <a class="btn btn-default navbar-toggle" href="basket.html">
+                                <i class="fa fa-shopping-cart"></i>  <span class="hidden-xs">3 items in cart</span>
                             </a>
                         </div>
                     </div>
-                    /.navbar-header 
+                    <!--/.navbar-header -->
 
                     <div class="navbar-collapse collapse" id="navigation">
 
@@ -149,7 +147,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                         /.yamm-content 
+                                        <!-- /.yamm-content -->
                                     </li>
                                 </ul>
                             </li>
@@ -160,14 +158,14 @@
                         </ul>
 
                     </div>
-                    /.nav-collapse 
+                    <!--/.nav-collapse -->
 
                     <div class="navbar-buttons">
 
                         <div class="navbar-collapse collapse right" id="basket-overview">
-                            <a href="basket.jsp" class="btn btn-primary navbar-btn"><i class="fa fa-shopping-cart"></i><span class="hidden-sm" id="myCart">7 items in cart</span></a>
+                            <a href="basket.html" class="btn btn-primary navbar-btn"><i class="fa fa-shopping-cart"></i><span class="hidden-sm">3 items in cart</span></a>
                         </div>
-                        /.nav-collapse 
+                        <!--/.nav-collapse -->
 
                         <div class="navbar-collapse collapse right" id="search-not-mobile">
                             <button type="button" class="btn navbar-btn btn-primary" data-toggle="collapse" data-target="#search">
@@ -192,14 +190,14 @@
                         </form>
 
                     </div>
-                    /.nav-collapse 
+                    <!--/.nav-collapse -->
 
                 </div>
-                 /.container 
+                <!-- /.container -->
             </div>
-             /#navbar 
+            <!-- /#navbar -->
 
-        -->
+        </c:if>
 
 
         <!--  Not Logged In Header -->
@@ -227,7 +225,7 @@
 
 
             </div>
-        </c:if>
+
             <!-- *** TOP BAR END *** -->
 
             <!-- *** NAVBAR ***
@@ -237,7 +235,7 @@
                 <div class="container">
                     <div class="navbar-header">
 
-                        <a class="navbar-brand home" href="index.jsp" data-animate-hover="bounce">
+                        <a class="navbar-brand home" href="index.html" data-animate-hover="bounce">
                             <img src="img/logo.png" alt="Obaju logo" class="hidden-xs">
                             <img src="img/logo-small.png" alt="Obaju logo" class="visible-xs"><span class="sr-only">Obaju - go to homepage</span>
                         </a>
@@ -250,8 +248,8 @@
                                 <span class="sr-only">Toggle search</span>
                                 <i class="fa fa-search"></i>
                             </button>
-                            <a class="btn btn-default navbar-toggle" href="basket.jsp">
-                                <i class="fa fa-shopping-cart"></i>  <span class="hidden-xs"></span>
+                            <a class="btn btn-default navbar-toggle" href="basket.html">
+                                <i class="fa fa-shopping-cart"></i>  <span class="hidden-xs">3 items in cart</span>
                             </a>
                         </div>
                     </div>
@@ -298,7 +296,7 @@
                     <div class="navbar-buttons">
 
                         <div class="navbar-collapse collapse right" id="basket-overview">
-                            <a href="basket.jsp" class="btn btn-primary navbar-btn"><i class="fa fa-shopping-cart"></i><span class="hidden-sm" id="myCart"></span></a>
+                            <a href="basket.html" class="btn btn-primary navbar-btn"><i class="fa fa-shopping-cart"></i><span class="hidden-sm">3 items in cart</span></a>
                         </div>
                         <!--/.nav-collapse -->
 
@@ -332,3 +330,4 @@
             </div>
             <!-- /#navbar -->
 
+        </c:if>
