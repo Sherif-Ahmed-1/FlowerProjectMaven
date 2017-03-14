@@ -52,7 +52,7 @@ public class FlowerDao {
             PreparedStatement ps = con.prepareStatement("UPDATE FLOWERS SET NAME = ? , COUNTRY = ?  WHERE  id = ?");
             ps.setString(1, flower.getName());
             ps.setString(2, flower.getCountry());
-            ps.setInt(3, flower.getID());
+            ps.setInt(3, flower.getId());
             ps.executeUpdate();
 
             flag = true;
@@ -79,10 +79,10 @@ public class FlowerDao {
 
             while (rs.next()) {
                 Flower flower = new Flower();
-                flower.setID(rs.getInt(1));
+                flower.setId(rs.getInt(1));
                 flower.setName(rs.getString(2));
                 flower.setCountry(rs.getString(3));
-                flower.setImage(fiDao.selectFlowerImagesByFlowerId(flower.getID()));
+                flower.setImage(fiDao.selectFlowerImagesByFlowerId(flower.getId()));
                 flowertList.add(flower);
                 System.out.println(flower.toString());
             }
@@ -109,7 +109,7 @@ public class FlowerDao {
             ps.setInt(1, f);
             ResultSet rs = ps.executeQuery();
             rs.next();
-            flower.setID(rs.getInt(1));
+            flower.setId(rs.getInt(1));
             flower.setName(rs.getString(2));
             flower.setCountry(rs.getString(3));
             System.out.println(flower.toString());
@@ -161,10 +161,10 @@ public class FlowerDao {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Flower flower = new Flower();
-                flower.setID(rs.getInt(1));
+                flower.setId(rs.getInt(1));
                 flower.setName(rs.getString(2));
                 flower.setCountry(rs.getString(3));
-                flower.setImage(fiDao.selectFlowerImagesByFlowerId(flower.getID()));
+                flower.setImage(fiDao.selectFlowerImagesByFlowerId(flower.getId()));
                 flowers.add(flower);
                 System.out.println(flowers.toString());
                

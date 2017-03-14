@@ -13,6 +13,7 @@ import dto.CartProducts;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -42,14 +43,12 @@ public class HomeServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         HttpSession session = request.getSession(true);
         Boolean userLogged = (Boolean) session.getAttribute("LoggedIn");
-        if (userLogged != null && userLogged.booleanValue()) {
-            categories = service.getCategories();
-            flowers = service.getFlowers();
-            products = service.getProducts();
-            request.setAttribute("categories", categories);
-            request.setAttribute("flowers", flowers);
-            request.setAttribute("products", products);
-        }
+        categories = service.getCategories();
+        flowers = service.getFlowers();
+        products = service.getProducts();
+        request.setAttribute("categories", categories);
+        request.setAttribute("flowers", flowers);
+        request.setAttribute("products", products);
         System.out.println("no");
 //end alaa
 //start sherif
@@ -57,9 +56,9 @@ public class HomeServlet extends HttpServlet {
 // end sherif
     }
 
-    private  void sessionInit(HttpServletRequest request) {
+    private void sessionInit(HttpServletRequest request) {
         HttpSession session = request.getSession(true);
-        
+
         if (session.getAttribute("userCart") == null) {
             session.setAttribute("userCart", new CartProducts());
             System.out.println("new user");

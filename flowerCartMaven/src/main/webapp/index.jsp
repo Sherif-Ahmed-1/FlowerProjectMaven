@@ -13,16 +13,16 @@
             <div class="col-md-12">
                 <div id="main-slider">
                     <div class="item">
-                        <img src="assets/img/11.jpg" alt="" class="img-responsive">
+                        <img src="img/11.jpg" alt="" class="img-responsive">
                     </div>
                     <div class="item">
-                        <img class="img-responsive" src="assets/img/12.jpg" alt="">
+                        <img class="img-responsive" src="img/12.jpg" alt="">
                     </div>
                     <div class="item">
-                        <img class="img-responsive" src="assets/img/13.jpg" alt="">
+                        <img class="img-responsive" src="img/13.jpg" alt="">
                     </div>
                     <div class="item">
-                        <img class="img-responsive" src="assets/img/14.jpg" alt="">
+                        <img class="img-responsive" src="img/14.jpg" alt="">
                     </div>
                 </div>
                 <!-- /#main-slider -->
@@ -109,8 +109,9 @@ _________________________________________________________ -->
                                 </a>
                                 <div class="text">
                                     <h3><a href="detail.html">${product.name}</a></h3>
-                                    <p class="price">${product.price}</p>
+                                    <strong><a class="item_add" href="cartServlet?id=${product.id}" style="text-decoration: none;"> <i class="fa fa-shopping-cart"></i>${product.price} </a> </strong>
                                 </div>
+                               
                                 <!-- /.text -->
                             </div>
                             <!-- /.product -->
@@ -144,22 +145,22 @@ _________________________________________________________ -->
                                 <div class="flip-container">
                                     <div class="flipper">
                                         <div class="front">
-                                            <a href="flowerBouquests?f=${flower.ID}">
+                                            <a href="flowerBouquests?f=${flower.id}">
                                                <img src="${flower.image.url}" alt="" class="img-responsive" >
                                             </a>
                                         </div>
                                         <div class="back">
-                                            <a href="flowerBouquests?f=${flower.ID}">
+                                            <a href="flowerBouquests?f=${flower.id}">
                                                 <img src="${flower.image.url}" alt="" class="img-responsive">
                                             </a>
                                         </div>
                                     </div>
                                 </div>
-                                <a href="flowerBouquests?f=${flower.ID}"class="invisible">
+                                <a href="flowerBouquests?f=${flower.id}"class="invisible">
                                     <img src="${flower.image.url}" alt="" class="img-responsive">
                                 </a>
                                 <div class="text">
-                                    <h3><a href="flowerBouquests?f=${flower.ID}">${flower.name}</a></h3>
+                                    <h3><a href="flowerBouquests?f=${flower.id}">${flower.name}</a></h3>
                                     <p class="price">${flower.country}</p>
                                 </div>
                                 <!-- /.text -->

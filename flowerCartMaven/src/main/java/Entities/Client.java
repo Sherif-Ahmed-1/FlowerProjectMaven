@@ -6,6 +6,7 @@
 package Entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -13,7 +14,7 @@ import java.util.List;
  *
  * @author Adel Zaid
  */
-public class Client implements Serializable {
+public class Client {
 
     private int id;
 
@@ -34,6 +35,8 @@ public class Client implements Serializable {
     private int cridetlimit;
 
     private String address;
+    
+    private ArrayList<Interests> interests ;
 
     public int getId() {
         return id;

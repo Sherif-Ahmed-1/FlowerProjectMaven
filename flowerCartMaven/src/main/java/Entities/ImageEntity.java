@@ -13,7 +13,7 @@ public class ImageEntity {
 
     private int id;
     private String url;
-
+    private int productID;
     public ImageEntity() {
     }
 
@@ -31,6 +31,14 @@ public class ImageEntity {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public int getProductID() {
+        return productID;
+    }
+
+    public void setProductID(int productID) {
+        this.productID = productID;
     }
 
 }

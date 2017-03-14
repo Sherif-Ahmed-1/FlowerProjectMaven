@@ -5,6 +5,7 @@
  */
 package Facade;
 
+import Entities.Flower;
 import Entities.Product;
 import dao.ProductDoa;
 import java.util.ArrayList;
@@ -25,4 +26,21 @@ public class BouquetsService {
         ProductDoa pDao = new ProductDoa();
         return pDao.selectProductsByCategory(id);
     }  
+
+    public Product getBouquetById(int id) {
+        ProductDoa pDao = new ProductDoa();
+        return pDao.selectOneProduct(id);
+    }
+
+    public ArrayList<Product> getBouquetsByFlowers(ArrayList<Flower> flowers) {
+        ProductDoa pDao = new ProductDoa();
+        ArrayList<Product> simliarProducts   = new ArrayList<>();
+        ArrayList<Product> productOfOneFlower = new ArrayList<>();
+        for (int i = 0; i < flowers.size(); i++) {
+            Flower flower = flowers.get(i);
+            productOfOneFlower = pDao.selectProductsByFlower(flower.getId());
+        }
+        simliarProducts.addAll(productOfOneFlower);
+        return simliarProducts;
+    }
 }
