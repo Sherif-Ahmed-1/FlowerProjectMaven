@@ -43,7 +43,8 @@ function countProducts()
         }
         $("#myCart").html(products+" items in cart");
     }
-    
+
+//    console.log($("[name=myCart]"));
 }
 function removeFromCart(id)
 {
