@@ -194,11 +194,11 @@ _________________________________________________________ -->
                                 </div>
                             </div>
                             <a href="ShowDetails?b=${product.id}" class="invisible">
-                                <img src="${product.images.get(0).url}" alt="" class="img-responsive">
+                                <img src="assets/img/bouques/Alstroemeria-AnyThing For You.jpg" alt="" class="img-responsive">
                             </a>
                             <div class="text">
                                 <h3><a href="ShowDetails?b=${product.id}">${product.name}</a></h3>
-                                <p class="price">${product.price}</p>
+                                <p class="price">$ ${product.price}</p>
                                 <p class="buttons">
                                     <a href="ShowDetails?b=${product.id}" class="btn btn-default">View detail</a>
                                     <a href="basket.html" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a>
