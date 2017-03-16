@@ -67,7 +67,7 @@
                                         <ul class="nav child_menu">
                                             <li><a href="ProductAddition.jsp">Add Product</a></li>
                                             <li><a href="ProductDetails.jsp">Edit Product</a></li>
-                                            <li><a href="ProductDetails.jsp">Remove Product</a></li>
+                                            <li><a href="FlowerAddition.jsp">Add Flower</a></li>
                                         </ul>
                                     </li>
                                     <li><a><i class="fa fa-users"></i> Clients <span class="fa fa-chevron-down"></span></a>

@@ -187,7 +187,7 @@ public class ProductDoa {
         Connection con = new ConnectionManager().getConnection();
         boolean flag = false;
         try {
-            PreparedStatement ps = con.prepareStatement("update PRODUCT set (NAME, PRICE, QUANTITY, DESCRIPTION, RATING) VALUES (?, ?, ?, ?, ?) where id = ?");
+            PreparedStatement ps = con.prepareStatement("update PRODUCT set NAME=?, PRICE=?, QUANTITY=?, DESCRIPTION=?, RATING=? where id = ?");
             ps.setString(1, product.getName());
             ps.setFloat(2, product.getPrice());
             ps.setInt(3, product.getQuantity());
