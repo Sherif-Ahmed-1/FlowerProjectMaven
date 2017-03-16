@@ -93,25 +93,30 @@ _________________________________________________________ -->
                                 <div class="flip-container">
                                     <div class="flipper">
                                         <div class="front">
-                                            <a href="detail.html">
+                                            <a href="ShowDetails?b=${product.id}">
                                                 <img src="${product.images.get(0).url}" alt="" class="img-responsive">
                                             </a>
                                         </div>
                                         <div class="back">
-                                            <a href="detail.html">
+                                            <a href="ShowDetails?b=${product.id}">
                                                 <img src="${product.images.get(0).url}" alt="" class="img-responsive">
                                             </a>
                                         </div>
                                     </div>
                                 </div>
-                                <a href="detail.html" class="invisible">
-                                    <img src="${product.images.get(0).url}" alt="" class="img-responsive">
+                                <a href="ShowDetails?b=${product.id}" class="invisible">
+                                    <img src="assets/img/bouques/Alstroemeria-AnyThing For You.jpg" alt="" class="img-responsive">
                                 </a>
                                 <div class="text">
-                                    <h3><a href="detail.html">${product.name}</a></h3>
-                                    <strong><a class="item_add" href="cartServlet?id=${product.id}" style="text-decoration: none;"> <i class="fa fa-shopping-cart"></i>${product.price} </a> </strong>
+                                    <h3><a href="ShowDetails?b=${product.id}">${product.name}</a></h3>
+                                    <p class="price"> $ ${product.price}</p>
+<!--                                    <strong><a class="item_add" href="cartServlet?id=${product.id}"  </p>-->
+                                    <p class="buttons">
+                                        <a href="ShowDetails?b=${product.id}" class="btn btn-default">View detail</a>
+                                        <a class="btn btn-primary" onclick="addToCart(${product.id})" ><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                    </p>
                                 </div>
-                               
+
                                 <!-- /.text -->
                             </div>
                             <!-- /.product -->
@@ -132,7 +137,7 @@ _________________________________________________________ -->
             <div class="box">
                 <div class="container">
                     <div class="col-md-12">
-                        <h2>Flowers</h2>
+                        <h2><a href="AllFlowers.jsp" style="text-decoration: none;" >Flowers</a></h2>
                     </div>
                 </div>
             </div>
@@ -145,22 +150,22 @@ _________________________________________________________ -->
                                 <div class="flip-container">
                                     <div class="flipper">
                                         <div class="front">
-                                            <a href="flowerBouquests?f=${flower.id}">
-                                               <img src="${flower.image.url}" alt="" class="img-responsive" >
+                                            <a href="flowerBouquests?f=${flower.id}&n=${flower.name}">
+                                                <img src="${flower.image.url}" alt="" class="img-responsive" >
                                             </a>
                                         </div>
                                         <div class="back">
-                                            <a href="flowerBouquests?f=${flower.id}">
+                                            <a href="flowerBouquests?f=${flower.id}&n=${flower.name}">
                                                 <img src="${flower.image.url}" alt="" class="img-responsive">
                                             </a>
                                         </div>
                                     </div>
                                 </div>
-                                <a href="flowerBouquests?f=${flower.id}"class="invisible">
+                                <a href="flowerBouquests?f=${flower.id}&n=${flower.name}" class="invisible">
                                     <img src="${flower.image.url}" alt="" class="img-responsive">
                                 </a>
                                 <div class="text">
-                                    <h3><a href="flowerBouquests?f=${flower.id}">${flower.name}</a></h3>
+                                    <h3><a href="flowerBouquests?f=${flower.id}&n=${flower.name}">${flower.name}</a></h3>
                                     <p class="price">${flower.country}</p>
                                 </div>
                                 <!-- /.text -->

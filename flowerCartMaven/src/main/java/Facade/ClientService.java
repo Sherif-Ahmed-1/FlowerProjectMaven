@@ -43,4 +43,9 @@ public class ClientService {
         }
         return false;
     }
+    
+    public Client getUser(String mail){
+        ClientDao clientDao = new ClientDao();
+        return clientDao.selectByEmail(mail);
+    }
 }

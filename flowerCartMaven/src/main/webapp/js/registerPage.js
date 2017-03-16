@@ -18,6 +18,6 @@ function setConfirmPassword()
 }
 function viewpassword()
 {
-       console.log(document.getElementById("Confirmpassword").value);
+    console.log(document.getElementById("Confirmpassword").value);
     console.log(document.getElementById("Confirmpassword").pattern);
 }

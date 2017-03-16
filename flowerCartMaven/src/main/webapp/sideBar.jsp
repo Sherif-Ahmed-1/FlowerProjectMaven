@@ -21,7 +21,7 @@ _________________________________________________________ -->
                     <ul>
                         ${category.id}
                         <c:forEach items="${requestScope.categories}" var="category">
-                            <li><a href="categoryBouquets?c=${category.id}">${category.name}</a>
+                            <li><a href="categoryBouquets?c=${category.id}&n=${category.name}">${category.name}</a>
                             </li>
                         </c:forEach>
 
