@@ -303,4 +303,39 @@ public class ClientDao {
         return clientByMail;
     }
     // ******************** end allaa **************
+
+    public Client selectById(int id) {
+        Connection conn = new ConnectionManager().getConnection();
+        Client clientById = null;
+        try {
+            PreparedStatement ps = conn.prepareStatement("select * from client where id=?");
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                clientById = new Client();
+                clientById.setFname(rs.getString("fname"));
+                clientById.setLname(rs.getString("lname"));
+                clientById.setPassword(rs.getString("password"));
+                clientById.setMail(rs.getString("mail"));
+                clientById.setJob(rs.getString("job"));
+                clientById.setAddress(rs.getString("address"));
+                clientById.setPhone(rs.getString("phone"));
+                clientById.setCridetlimit(rs.getInt("cridetlimit"));
+                clientById.setBirthday(rs.getDate("birthday").toString());
+                clientById.setId(rs.getInt("id"));
+
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ClientDao.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                conn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(ClientDao.class.getName()).log(Level.SEVERE, null, ex);
+
+            }
+
+        }
+        return clientById;
+    }
 }

@@ -9,6 +9,7 @@ import Entities.ImageEntity;
 import Entities.Product;
 import dao.ProductDoa;
 import dao.ProductImageDao;
+import java.util.List;
 
 /**
  *
@@ -16,18 +17,21 @@ import dao.ProductImageDao;
  */
 public class ProductService {
 
-    public boolean addProduct(Product product, String imgPath) {
+    public boolean addProduct(Product product, List<String> imgPaths) {
         ProductDoa productDoa = new ProductDoa();
         ProductImageDao productImageDao = new ProductImageDao();
-        ImageEntity imageEntity = new ImageEntity();
+        ImageEntity imageEntity =null;
         if (productDoa.insertProduct(product)) {
-            imageEntity.setUrl(imgPath);
-            int s=productDoa.selectProductId(product.getName());
-            imageEntity.setProductID(s);
-            productImageDao.insertProductImage(imageEntity);
+            for (String imgPath : imgPaths) {
+                imageEntity=new ImageEntity();
+                imageEntity.setUrl(imgPath);
+                imageEntity.setProductID( productDoa.selectProductId(product.getName()));
+                productImageDao.insertProductImage(imageEntity);
+            }
+
             return true;
-        }
-        else
+        } else {
             return false;
+        }
     }
 }
