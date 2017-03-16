@@ -34,8 +34,8 @@
                                                 <th colspan="2">Total</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            <c:forEach items="${userCart.products}"  var="product">
+                                        <tbody id='cartData'>
+                                            <%--<c:forEach items="${userCart.products}"  var="product">
                                                 <tr>
                                                 <td>
                                                     <a href="#">
@@ -53,7 +53,7 @@
                                                 <td><a><div  id="test1" class="fa fa-trash-o"  onclick="remove(this,'ProducttotalPrice${product.id}')"  style="cursor: pointer;" ></div></a>
                                                 </td>
                                             </tr>
-                                            </c:forEach>
+                                            </c:forEach>--%>
                                         </tbody>
                                         <tfoot>
                                             <tr>

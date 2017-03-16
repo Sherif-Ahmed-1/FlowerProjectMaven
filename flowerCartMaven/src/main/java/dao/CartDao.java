@@ -130,7 +130,7 @@ public class CartDao {
         boolean flag=false;
         try {
 
-            PreparedStatement ps = con.prepareStatement("delete from cart where client_id=?");
+            PreparedStatement ps = con.prepareStatement("delete from cart where cart_id=?");
             ps.setInt(1, cart.getId());
             int num = ps.executeUpdate();
             if (num != 0) {

@@ -1,19 +1,26 @@
 
-function remove(row, productPrice)
+function remove(row, productPrice, id)
 {
-    document.getElementById(productPrice).innerHTML = 0;
+    productPrice.innerHTML = 0;
     $(row).parents("tr").fadeOut('slow', function (c) {
         $(row).parents("tr").remove();
     });
     calctotalprice();
+    removeFromCart(id);
 }
 function calcProductPrice(id, quantity)
 {
-    if (parseInt(quantity.value) <= parseInt(quantity.max) && parseInt(quantity.value) > 0)
-    {
-        document.getElementById("ProducttotalPrice" + id).innerHTML = parseInt(document.getElementById("price" + id).innerHTML) * quantity.value;
-        calctotalprice();
-    }
+//    if (parseInt(quantity.value) <= parseInt(quantity.max) && parseInt(quantity.value) > 0)
+//    {
+    document.getElementById("ProducttotalPrice" + id).innerHTML = parseFloat(document.getElementById("price" + id).innerHTML) * quantity.value;
+    calctotalprice();
+    updateProductQuantity(id, quantity);
+//    }
+
+}
+function  updateProductQuantity(id, quantity)
+{
+
 
 }
 function calctotalprice()
@@ -60,14 +67,16 @@ function removeFromCart(id)
                 break;
             }
         }
-
+        sessionStorage.setItem("ProductsId", JSON.stringify(productsId));
     }
     countProducts();
 
 }
+
+
 function addToCart(id)
 {
-
+    syncCartWithServer();
     var productsId = JSON.parse(sessionStorage.getItem("ProductsId"));
     if (productsId == null)
     {
@@ -99,19 +108,55 @@ function addToCart(id)
 
 function getProductsDetails()
 {
-    var productsId = {'productsId': sessionStorage.getItem("ProductsId")};
+    var productsId = {'productsId': sessionStorage.getItem("ProductsId")}
+    ;
     $.ajax({url: "GetProductsDetail?date=" + new Date().toString(), type: "GET", contentType: 'application/json', data: productsId,
         dataType: 'json', success: function (data, textStatus, jqXHR) {
-            console.log(data);
+            //       console.log(data);
+            for (i = 0; i < data.length; i++)
+            {
+                var row = '<tr><td><a href="#">' + '<img src="' + data[i].imageUrl + '" alt="Black Blouse Armani"></a></td>\n\
+                            <td><a href="#">' + data[i].productName + '/></a></td><td> <input type="number" value="1" min="1" max="${product.quantity}"\n\onchange="calcProductPrice(' + data[i].id + ', this)"class="form-control"></td><td><div id="price'
+                        + data[i].id + '">' + data[i].unitPrice + '</td><td>$0.00</td><td><div id="ProducttotalPrice' +
+                        data[i].id + '" name="ProducttotalPrice">' + data[i].unitPrice + '</td><td><a><div  id="test1" class="fa fa-trash-o"  onclick="remove(this,ProducttotalPrice' + data[i].id + ',' + data[i].id + ')"  style="cursor: pointer;" ></div></a></td></tr>';
+                console.log(row);
+                $("#cartData").append(row);
+            }
+            calctotalprice();
         }
-    });
-}
 
+    }
+    );
+
+}
+function syncCartWithServer()
+{
+
+
+//   if($("#isLoggedIn").val()=="loggedin") 
+//   {
+    var jsonArray = [];
+    var ProductsId = JSON.parse(sessionStorage.getItem("ProductsId"));
+    for (i = 0; i < ProductsId.length; i++)
+    {
+        var Pid = ProductsId[i];
+        jsonArray.push({id: Pid, value: sessionStorage.getItem(ProductsId[i].toString())});
+    }
+    console.log(jsonArray);
+    var jsondata = {localProducts: JSON.stringify(jsonArray)};
+    console.log(JSON.stringify(jsondata));
+    $.ajax({url: "SyncCartServlet?date=" + new Date().toString(), type: "GET", contentType: 'application/json', data: jsondata,
+        dataType: 'json', success: function (data, textStatus, jqXHR) {
+
+        }});
+
+//   }
+
+}
 function basketOnLoad()
 {
     getProductsDetails();
     calctotalprice();
-
 }
 $(document).ready(function () {
     countProducts();

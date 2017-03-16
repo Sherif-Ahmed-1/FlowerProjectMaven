@@ -8,6 +8,7 @@ package servlets;
 import Entities.Product;
 import Facade.ProductDetail;
 import com.google.gson.Gson;
+import dto.CheckOutProductDetail;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -26,14 +27,20 @@ public class GetProductsDetail extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Gson gson=new Gson();
-        
-        Integer [] ids=gson.fromJson(req.getParameter("productsId"), Integer[].class);
-        ProductDetail detail=new ProductDetail();
-        ArrayList<Product> products=detail.getProductsDetails(ids);
+        Gson gson = new Gson();
+        Integer[] ids = gson.fromJson(req.getParameter("productsId"), Integer[].class);
         resp.setContentType("application/json");
-        resp.getWriter().write(gson.toJson(products));
+        resp.getWriter().write(gson.toJson(getProduct(ids)));
     }
 
+    private static ArrayList<CheckOutProductDetail> getProduct(Integer[] id) {
+        ProductDetail detail = new ProductDetail();
+        ArrayList<Product> products = detail.getProductsDetails(id);
+        ArrayList<CheckOutProductDetail> checkOutProductDetails = new ArrayList<>();
+        for (Product p : products) {
+            checkOutProductDetails.add(new CheckOutProductDetail(p));
+        }
+        return checkOutProductDetails;
+    }
 
 }
