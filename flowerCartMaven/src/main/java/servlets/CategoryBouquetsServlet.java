@@ -29,10 +29,12 @@ public class CategoryBouquetsServlet extends HttpServlet {
             throws ServletException, IOException {
         
          int id = Integer.parseInt(request.getParameter("c"));
+         String categoryname = request.getParameter("n");
         BouquetsService service = new BouquetsService();
         ArrayList<Product> bouquetscat = service.getBouquetsFormCategory(id);
         
         request.setAttribute("bouquetscat", bouquetscat);
+        request.setAttribute("categoryname", categoryname);
         RequestDispatcher dis = request.getRequestDispatcher("BouquetsCategory.jsp");
         dis.forward(request, response);
         

@@ -1,10 +1,13 @@
 <%-- 
-    Document   : BouquetsCategory
-    Created on : Mar 13, 2017, 8:07:13 AM
+    Document   : AllFlowers
+    Created on : Mar 14, 2017, 8:33:01 PM
     Author     : alaa
 --%>
 
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <%@include file="header.jsp" %>
+<jsp:include  page="HomeServlet" />
 
 <div id="all">
 
@@ -13,9 +16,9 @@
 
             <div class="col-md-12">
                 <ul class="breadcrumb">
-                    <li><a href="#">Home</a>
+                    <li><a href="index.jsp">Home</a>
                     </li>
-                    <li>${requestScope.categoryname}</li>
+                    <li>All Flowers</li>
                 </ul>
             </div>
 
@@ -24,7 +27,7 @@
             <div class="col-md-9">
                 <div class="box">
                     <h1>Bouquets</h1>
-                    <p>?Every flower is a soul blossoming in nature.?</p>
+                    <p>Every flower is a soul blossoming in nature.</p>
                 </div>
 
                 <div class="box info-bar">
@@ -58,43 +61,36 @@
                 </div>
 
                 <div class="row products">
-                   <c:forEach items="${requestScope.bouquetscat}" var="product" end="6">
-                    <div class="col-md-4 col-sm-6">
-                        <div class="product">
-                            <div class="flip-container">
-                                <div class="flipper">
-                                    <div class="front">
-                                        <a href="ShowDetails?b=${product.id}">
-                                            <img src="${product.images.get(0).url}" alt="" class="img-responsive">
-                                        </a>
-                                    </div>
-                                    <div class="back">
-                                        <a href="ShowDetails?b=${product.id}">
-                                            <img src="${product.images.get(0).url}" alt="" class="img-responsive">
-                                        </a>
+                    <c:forEach items="${requestScope.flowers}" var="flower" end="6">
+                        <div class="col-md-3 col-sm-6">
+                            <div class="product" >
+                                <div class="flip-container">
+                                    <div class="flipper">
+                                        <div class="front">
+                                            <a href="flowerBouquests?f=${flower.id}&n=${flower.name}">
+                                                <img src="${flower.image.url}" alt="" class="img-responsive" >
+                                            </a>
+                                        </div>
+                                        <div class="back">
+                                            <a href="flowerBouquests?f=${flower.id}&n=${flower.name}">
+                                                <img src="${flower.image.url}" alt="" class="img-responsive">
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
+                                <a href="flowerBouquests?f=${flower.id}&n=${flower.name}" class="invisible">
+                                    <img src="${flower.image.url}" alt="" class="img-responsive">
+                                </a>
+                                <div class="text">
+                                    <h3><a href="flowerBouquests?f=${flower.id}&n=${flower.name}">${flower.name}</a></h3>
+                                    <p class="price">${flower.country}</p>
+                                </div>
+                                <!-- /.text -->
                             </div>
-                            <a href="ShowDetails?b=${product.id}" class="invisible">
-                                <img src="assets/img/bouques/Alstroemeria-AnyThing For You.jpg" alt="" class="img-responsive">
-                            </a>
-                            <div class="text">
-                                <h3><a href="ShowDetails?b=${product.id}">${product.name}</a></h3>
-                                <p class="price">${product.price}</p>
-                                <p class="buttons">
-                                    <a href="ShowDetails?b=${product.id}" class="btn btn-default">View detail</a>
-                                    <a href="basket.html" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                                </p>
-                            </div>
-                            <!-- /.text -->
+                            <!-- /.flower -->
                         </div>
-                        <!-- /.product -->
-                    </div>
-                   </c:forEach>
-                    <!-- /.col-md-4 -->
+                    </c:forEach>
                 </div>
-                <!-- /.products -->
-
                 <div class="pages">
 
                     <p class="loadMore">
@@ -126,6 +122,7 @@
         <!-- /.container -->
     </div>
     <!-- /#content -->
+
 
 
     <%@include file="footer.jsp" %>
