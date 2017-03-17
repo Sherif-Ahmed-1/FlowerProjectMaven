@@ -66,7 +66,7 @@
                                     <li><a><i class="fa fa-thumbs-o-up"></i> Products <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
                                             <li><a href="ProductAddition.jsp">Add Product</a></li>
-                                            <li><a href="ProductDetails.jsp">Edit Product</a></li>
+                                            <li><a href="ProductDetails.jsp">Product Details</a></li>
                                             <li><a href="FlowerAddition.jsp">Add Flower</a></li>
                                         </ul>
                                     </li>
@@ -74,14 +74,14 @@
                                         <ul class="nav child_menu">
                                             <!--<li><a href="form.html">View Client</a></li>-->
                                             <li><a href="ClientAddition.jsp">Add Client</a></li>
-                                            <li><a href="/FlowerCart/AdminView/ListClient.jsp">List Users</a></li>
+                                            <li><a href="ListClient.jsp">List Users</a></li>
                                         </ul>
                                     </li>
                                     <li><a><i class="fa fa-bars"></i>Category<span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
-                                            <li><a href="general_elements.html">Add Category</a></li>
-                                            <li><a href="media_gallery.html">Edit Category</a></li>
-                                            <li><a href="typography.html">Remove Category</a></li>
+                                            <li><a href="CategoryAddition.jsp">Add Category</a></li>
+                                            <li><a href="CategoryDetails.jsp">Category Details</a></li>
+                                            
                                         </ul>
                                     </li>
 
@@ -136,70 +136,6 @@
                                     </ul>
                                 </li>
 
-                                <li role="presentation" class="dropdown">
-                                    <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
-                                        <i class="fa fa-envelope-o"></i>
-                                        <span class="badge bg-green">6</span>
-                                    </a>
-                                    <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
-                                        <li>
-                                            <a>
-                                                <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                                                <span>
-                                                    <span>John Smith</span>
-                                                    <span class="time">3 mins ago</span>
-                                                </span>
-                                                <span class="message">
-                                                    Film festivals used to be do-or-die moments for movie makers. They were where...
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a>
-                                                <span class="image"><img src="../assets/img/img.jpg" alt="Profile Image" /></span>
-                                                <span>
-                                                    <span>John Smith</span>
-                                                    <span class="time">3 mins ago</span>
-                                                </span>
-                                                <span class="message">
-                                                    Film festivals used to be do-or-die moments for movie makers. They were where...
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a>
-                                                <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                                                <span>
-                                                    <span>John Smith</span>
-                                                    <span class="time">3 mins ago</span>
-                                                </span>
-                                                <span class="message">
-                                                    Film festivals used to be do-or-die moments for movie makers. They were where...
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a>
-                                                <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                                                <span>
-                                                    <span>John Smith</span>
-                                                    <span class="time">3 mins ago</span>
-                                                </span>
-                                                <span class="message">
-                                                    Film festivals used to be do-or-die moments for movie makers. They were where...
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <div class="text-center">
-                                                <a>
-                                                    <strong>See All Alerts</strong>
-                                                    <i class="fa fa-angle-right"></i>
-                                                </a>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </li>
                             </ul>
                         </nav>
                     </div>

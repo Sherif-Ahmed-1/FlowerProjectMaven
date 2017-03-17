@@ -19,13 +19,7 @@ function populateFlowers() {
     $("#flowers").val(flowersData + "," + selectedValue);
     $("[name=flowerObtained]").find(":selected").remove();
     $("[name=flowerObtained]").val("first").selected = true;
-//}
-/*else
-{
-    
-    $("[name=flowerObtained]").find(":selected").remove();
-    $("[name=flowerObtained]").val("first").selected = true;
-}*/
+
 }
 else
 {
@@ -33,6 +27,25 @@ else
     $("#flowers").val(selectedValue);
     $("[name=flowerObtained]").find(":selected").remove();
     $("[name=flowerObtained]").val("first").selected = true;
+}
+}
+
+function populateProducts() {
+    var selectedValue = $("[name=productsObtained]").find(":selected").val();
+    var productsData= $("#products").val();
+    if(productsData!==""){
+       // if(flowersData.contains(flowersData,selectedValue)!==true){
+    $("#products").val(productsData + "," + selectedValue);
+    $("[name=productsObtained]").find(":selected").remove();
+    $("[name=productsObtained]").val("first").selected = true;
+
+}
+else
+{
+     
+    $("#products").val(selectedValue);
+    $("[name=productsObtained]").find(":selected").remove();
+    $("[name=productsObtained]").val("first").selected = true;
 }
 }
 function validatePassword() {

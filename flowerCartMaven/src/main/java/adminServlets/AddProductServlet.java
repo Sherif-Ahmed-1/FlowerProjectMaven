@@ -153,14 +153,14 @@ public class AddProductServlet extends HttpServlet {
             if (productService.addProduct(product, imgPaths)) {
 
                 try {
-                    response.sendRedirect(getServletContext().getRealPath("/") + "AdminView/ProductAddition.jsp");
+                    response.sendRedirect("/FlowersCart1/AdminView/ProductAddition.jsp");
                 } catch (IOException ex) {
                     Logger.getLogger(AddProductServlet.class.getName()).log(Level.SEVERE, null, ex);
                 } finally {
                 }
             } else {
                 try {
-                    response.sendRedirect(getServletContext().getRealPath("/") + "AdminView/ProductAddition.jsp");
+                    response.sendRedirect("/FlowersCart1/AdminView/ProductAddition.jsp");
                 } catch (IOException ex) {
                     Logger.getLogger(AddProductServlet.class.getName()).log(Level.SEVERE, null, ex);
                 }

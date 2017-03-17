@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="../includes/header.jsp" />
 <jsp:include page="/ViewProductServlet?ProductID=${param.ID}"></jsp:include>
-<jsp:include page="../ListFlowerServlet"></jsp:include>
+<jsp:include page="../ListFlowerServlet?update=true&ProductID=${param.ID}"></jsp:include>
     <!-- page content -->
     <div class="right_col" >
         
@@ -21,7 +21,10 @@
 
                     <br />
                     <form class="form-horizontal form-label-left input_mask" method="post" action="${pageContext.request.contextPath}/UpdateProductServlet">
-
+    <div class="col-md-10 col-sm-6 col-xs-12 form-group has-feedback" hidden="hidden">
+                        <input type="text" class="form-control has-feedback-left" name="id" placeholder="Bouquet Name" required="true" value="${product.id}" hidden="true" tabindex="0">
+                        <span class="fa fa-gift form-control-feedback left" aria-hidden="true"></span>
+                    </div>
                     <div class="col-md-10 col-sm-6 col-xs-12 form-group has-feedback">
                         <input type="text" class="form-control has-feedback-left" name="name" placeholder="Bouquet Name" required="true" value="${product.name}" tabindex="1">
                         <span class="fa fa-gift form-control-feedback left" aria-hidden="true"></span>

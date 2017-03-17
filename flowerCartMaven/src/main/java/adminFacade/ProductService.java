@@ -8,7 +8,7 @@ package adminFacade;
 import Entities.Flower;
 import Entities.ImageEntity;
 import Entities.Product;
-import Entities.ProductFlower;
+import dto.ProductFlower;
 import dao.FlowerDao;
 import dao.ProductDoa;
 import dao.ProductFlowerDao;
@@ -67,23 +67,16 @@ public class ProductService {
 
     public boolean updateProduct(Product product, List<String> imgPaths) {
          ProductDoa productDoa = new ProductDoa();
-        ProductImageDao productImageDao = new ProductImageDao();
         ProductFlowerDao productFlowerDao = new ProductFlowerDao();
         FlowerDao flowerDao = new FlowerDao();
-        ImageEntity imageEntity = null;
         if (productDoa.updateProduct(product)) {
             int prodctID = productDoa.selectProductId(product.getName());
-            for (String imgPath : imgPaths) {
-                imageEntity = new ImageEntity();
-                imageEntity.setUrl(imgPath);
-                imageEntity.setProductID(prodctID);
-                productImageDao.updateProductImages(imageEntity);
-            }
+             productFlowerDao.deleteProductFlowers(prodctID);
             for (Flower flower : product.getFlowers()) {
                 ProductFlower productFlower = new ProductFlower();
                 productFlower.setProductID(prodctID);
                 productFlower.setFlowerID(flowerDao.selectFlowerID(flower.getName()));
-                productFlowerDao.updateProductFlowers(productFlower);
+                productFlowerDao.insertProductWithFlowers(productFlower);
             }
             return true;
         } else {
