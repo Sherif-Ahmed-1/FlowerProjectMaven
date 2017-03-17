@@ -26,6 +26,7 @@ import javax.servlet.http.HttpServletResponse;
 import Entities.Client;
 import Entities.Interests;
 import javax.servlet.RequestDispatcher;
+import javax.servlet.http.HttpSession;
 import org.apache.commons.beanutils.BeanUtils;
 
 /**
@@ -59,8 +60,8 @@ public class RegisterServlet extends HttpServlet {
         try {
 
             BeanUtils.populate(client, request.getParameterMap());
-              Enumeration<String> param= request.getParameterNames();
-            System.out.println(client.getBirthday());
+            Enumeration<String> param = request.getParameterNames();
+            System.out.println("Post : Register servlet : " + client.getBirthday());
             System.out.println(request.getParameter("interestsList"));
         } catch (IllegalAccessException ex) {
             Logger.getLogger(RegisterServlet.class.getName()).log(Level.SEVERE, null, ex);
@@ -73,15 +74,18 @@ public class RegisterServlet extends HttpServlet {
 //************** EndAdel **************/
 //************* startSherif **************/
         ClientService clientService = new ClientService();
-        if(clientService.signUp(client))
-        {
-        response.sendRedirect("register.jsp");
-        }
+        if (!clientService.signUp(client)) {
+            response.sendRedirect("register.jsp");
+        } else {
 //        RequestDispatcher dispatcher=request.getRequestDispatcher("LoginServlet");
 //        request.setAttribute("inputEmail", client.getMail() );
 //        request.setAttribute("inputPassword", client.getPassword());
 //        dispatcher.include(request, response);
-         response.sendRedirect("index.jsp");
+            HttpSession session = request.getSession(true);
+            session.setAttribute("LoggedIn", new Boolean("false"));
+            response.sendRedirect("index.jsp");
+           /// response.sendRedirect("index.jsp");
+        }
 //************** EndSherif **************/
 //************* startMoamen **************/
 //************** EndMoamen **************/

@@ -3,13 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package servlets;
+package adminServlets;
 
+import Entities.Client;
+import Entities.Order;
 import Entities.Product;
-import Facade.BouquetsService;
+import adminFacade.ClientService;
+import adminFacade.ProductService;
+import dao.OrderDao;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,32 +23,28 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author alaa
+ * @author Adel Zaid
  */
-@WebServlet(name = "CategoryBouquetsServlet", urlPatterns = {"/categoryBouquets"})
-public class CategoryBouquetsServlet extends HttpServlet {
-    
+@WebServlet(name = "ViewProductServlet", urlPatterns = {"/ViewProductServlet"})
+public class ViewProductServlet extends HttpServlet {
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-         int id = Integer.parseInt(request.getParameter("c"));
-         String categoryname = request.getParameter("n");
-        BouquetsService service = new BouquetsService();
-        ArrayList<Product> bouquetscat = service.getBouquetsFormCategory(id);
-        
-        request.setAttribute("bouquetscat", bouquetscat);
-        request.setAttribute("categoryname", categoryname);
-        RequestDispatcher dis = request.getRequestDispatcher("BouquetsCategory.jsp");
-        dis.forward(request, response);
+        PrintWriter out = response.getWriter();
+        String str = request.getParameter("ProductID");
+        System.out.println(str);
+        str = str.replaceAll("\\s+", "");
+        ProductService ps=new ProductService();
+        Product product=ps.getProduct(Integer.parseInt(str));
+        request.setAttribute("product", product);
         
     }
 
-   
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-    }
 
+    }
 
 }

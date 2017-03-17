@@ -8,20 +8,32 @@ function  viewImage(input) {
         reader.readAsDataURL(input.files[0]);
     }
 }
-
+$("#cancel").click(function (){
+   location.href="MainAdmin.jsp"; 
+});
 function populateFlowers() {
     var selectedValue = $("[name=flowerObtained]").find(":selected").val();
-    var flowersData = $("#flowers").val();
-    if (flowersData != "") {
-        $("#flowers").val(flowersData + "," + selectedValue);
-        $("[name=flowerObtained]").find(":selected").remove();
-        $("[name=flowerObtained]").val("first").selected = true;
-    } else
-    {
-        $("#flowers").val(selectedValue);
-        $("[name=flowerObtained]").find(":selected").remove();
-        $("[name=flowerObtained]").val("first").selected = true;
-    }
+    var flowersData= $("#flowers").val();
+    if(flowersData!==""){
+       // if(flowersData.contains(flowersData,selectedValue)!==true){
+    $("#flowers").val(flowersData + "," + selectedValue);
+    $("[name=flowerObtained]").find(":selected").remove();
+    $("[name=flowerObtained]").val("first").selected = true;
+//}
+/*else
+{
+    
+    $("[name=flowerObtained]").find(":selected").remove();
+    $("[name=flowerObtained]").val("first").selected = true;
+}*/
+}
+else
+{
+     
+    $("#flowers").val(selectedValue);
+    $("[name=flowerObtained]").find(":selected").remove();
+    $("[name=flowerObtained]").val("first").selected = true;
+}
 }
 function validatePassword() {
     var pass1 = document.getElementById("password").value;

@@ -5,6 +5,7 @@
  */
 package adminServlets;
 
+import Entities.Flower;
 import java.io.IOException;
 import java.util.logging.*;
 import javax.servlet.ServletException;
@@ -14,6 +15,7 @@ import Entities.Product;
 import adminFacade.ProductService;
 import java.io.File;
 import java.io.PrintWriter;
+import java.lang.reflect.Array;
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 import java.util.regex.Matcher;
@@ -76,7 +78,7 @@ public class AddProductServlet extends HttpServlet {
             ServletFileUpload upload = new ServletFileUpload(factory);
             List<FileItem> items = upload.parseRequest(request);
             Iterator<FileItem> iter = items.iterator();
-            
+
             while (iter.hasNext()) {
 
                 FileItem item = (FileItem) iter.next();
@@ -135,19 +137,30 @@ public class AddProductServlet extends HttpServlet {
 
         try {
             Product product = new Product();
+            String[] flowers = paramaters.get("flowers").split(",");
+            ArrayList<String> listOfFlowers = new ArrayList<>(Arrays.asList(flowers));
+            Flower flower = null;
+            ArrayList<Flower> listFlowers = new ArrayList<>();
+            for (String listFlower : listOfFlowers) {
+                flower = new Flower();
+                flower.setName(listFlower);
+                listFlowers.add(flower);
+            }
+            paramaters.remove("flowers");
             BeanUtils.populate(product, paramaters);
+            product.setFlowers(listFlowers);
             ProductService productService = new ProductService();
             if (productService.addProduct(product, imgPaths)) {
 
                 try {
-                    response.sendRedirect(getServletContext().getRealPath("/")+"AdminView/ProductAddition.jsp");
+                    response.sendRedirect(getServletContext().getRealPath("/") + "AdminView/ProductAddition.jsp");
                 } catch (IOException ex) {
                     Logger.getLogger(AddProductServlet.class.getName()).log(Level.SEVERE, null, ex);
                 } finally {
                 }
             } else {
                 try {
-                    response.sendRedirect(getServletContext().getRealPath("/")+"AdminView/ProductAddition.jsp");
+                    response.sendRedirect(getServletContext().getRealPath("/") + "AdminView/ProductAddition.jsp");
                 } catch (IOException ex) {
                     Logger.getLogger(AddProductServlet.class.getName()).log(Level.SEVERE, null, ex);
                 }

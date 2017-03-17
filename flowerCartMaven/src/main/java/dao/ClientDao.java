@@ -28,6 +28,9 @@ public class ClientDao {
 //private Connection getConnection()
 //{
 //// Connection con=DriverManager.getConnection("jdbc:ora")
+    
+    InterestsDao iDao = new InterestsDao();
+    
     public boolean deleteClientById(Client client) {
         Connection con = new ConnectionManager().getConnection();
         boolean flag = false;
@@ -282,6 +285,46 @@ public class ClientDao {
         }
         return clientById;
     }
+    
+    
+    // ********************allaa *****************
+    
+    public Client selectByEmail(String mail) {
+        Connection conn = new ConnectionManager().getConnection();
+        Client clientByMail = null;
+        try {
+            PreparedStatement ps = conn.prepareStatement("select * from client where mail=?");
+            ps.setString(1, mail);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                clientByMail = new Client();
+                clientByMail.setFname(rs.getString("fname"));
+                clientByMail.setLname(rs.getString("lname"));
+                clientByMail.setPassword(rs.getString("password"));
+                clientByMail.setMail(rs.getString("mail"));
+                clientByMail.setJob(rs.getString("job"));
+                clientByMail.setAddress(rs.getString("address"));
+                clientByMail.setPhone(rs.getString("phone"));
+                clientByMail.setCridetlimit(rs.getInt("cridetlimit"));
+                clientByMail.setBirthday(rs.getDate("birthday").toString());
+                clientByMail.setId(rs.getInt("id"));
+                clientByMail.setInterests(iDao.selectByClientId(clientByMail.getId()));
+
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ClientDao.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                conn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(ClientDao.class.getName()).log(Level.SEVERE, null, ex);
+
+            }
+
+        }
+        return clientByMail;
+    }
+    // ******************** end allaa **************
 
     public Client selectById(int id) {
         Connection conn = new ConnectionManager().getConnection();

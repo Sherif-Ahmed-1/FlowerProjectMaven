@@ -115,8 +115,6 @@ public class Client {
         this.address = address;
     }
 
- 
-
     public ArrayList<Interests> getInterests() {
         if (interests == null) {
             interests = new ArrayList<>();

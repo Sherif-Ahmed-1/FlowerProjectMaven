@@ -42,7 +42,7 @@
             <div id="top">
                 <div class="container">
                     <div class="col-md-6 offer" data-animate="fadeInDown">
-                        <a href="#" class="btn btn-success btn-sm" data-animate-hover="shake">Offer of the day</a>  <a href="#">Get flat 35% off on orders over $50!</a>
+                        <a href="#" class="btn btn-success btn-sm" data-animate-hover="shake">Smell, Admire and Meditate</a>  
                     </div>
                     <div class="col-md-6" data-animate="fadeInDown">
                         <ul class="menu">
@@ -209,11 +209,11 @@
             <div id="top">
                 <div class="container">
                     <div class="col-md-6 offer" data-animate="fadeInDown">
-                        <a href="#" class="btn btn-success btn-sm" data-animate-hover="shake">Offer of the day</a>  <a href="#">Get flat 35% off on orders over $50!</a>
+                        <a href="#" class="btn btn-success btn-sm" data-animate-hover="shake">Smell ,  Admire and Meditate</a>
                     </div>
                     <div class="col-md-6" data-animate="fadeInDown">
                         <ul class="menu">
-                            <li><a href="#"> My Account </a>
+                            <li><a href="Account.jsp"> ${sessionScope.user.fname} ${sessionScope.user.lname} </a>
                             </li>
                             <li><a href="#">Contact</a>
                             </li>
@@ -263,7 +263,7 @@
                             <li><a href="index.jsp">Home</a>
                             </li>
 
-                            <li><a href="#">Flowers</a>
+                            <li><a href="AllFlowers.jsp">Flowers</a>
                             </li>
 
                             <li><a href="AllBouquets.jsp">Bouquets</a>
@@ -279,7 +279,7 @@
                                                 <div class="col-sm-4">
                                                     <ul>
                                                         <c:forEach items="${requestScope.categories}" var="category">
-                                                            <li><a href="categoryBouquets?c=${category.id}">${category.name}</a>
+                                                            <li><a href="categoryBouquets?c=${category.id}&n=${category.name}">${category.name}</a>
                                                             </li>
                                                         </c:forEach>
                                                     </ul>
