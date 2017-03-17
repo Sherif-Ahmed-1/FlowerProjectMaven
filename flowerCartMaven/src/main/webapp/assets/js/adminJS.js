@@ -8,17 +8,28 @@ function  viewImage(input) {
         reader.readAsDataURL(input.files[0]);
     }
 }
-
+$("#cancel").click(function (){
+   location.href="MainAdmin.jsp"; 
+});
 function populateFlowers() {
     var selectedValue = $("[name=flowerObtained]").find(":selected").val();
     var flowersData= $("#flowers").val();
-    if(flowersData!=""){
+    if(flowersData!==""){
+       // if(flowersData.contains(flowersData,selectedValue)!==true){
     $("#flowers").val(flowersData + "," + selectedValue);
     $("[name=flowerObtained]").find(":selected").remove();
     $("[name=flowerObtained]").val("first").selected = true;
+//}
+/*else
+{
+    
+    $("[name=flowerObtained]").find(":selected").remove();
+    $("[name=flowerObtained]").val("first").selected = true;
+}*/
 }
 else
 {
+     
     $("#flowers").val(selectedValue);
     $("[name=flowerObtained]").find(":selected").remove();
     $("[name=flowerObtained]").val("first").selected = true;
@@ -47,5 +58,33 @@ function validateMobile() {
     } else {
         document.getElementById("phone").style.borderColor = "";
     }
+
+}
+var userId;
+function setPname(name, id) {
+    var x = name;
+    console.log(x);
+    $('#pname').html(x);
+    console.log(id);
+    userId = id;
+    console.log(userId);
+}
+function sendClientId() {
+    console.log(userId);
+
+
+    var arr = {'id': userId};
+
+
+    $.ajax({url: "../RemoveClientServlet?date=" + new Date().getTime(),
+        type: 'GET',
+        contentType: 'application/json',
+        data: arr,
+
+        success: function (data, textStatus, jqXHR) {
+            location.reload(true);
+        }
+    });
+    $('#no').click();
 
 }

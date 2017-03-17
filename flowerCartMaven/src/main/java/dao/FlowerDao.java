@@ -104,7 +104,7 @@ public class FlowerDao {
     public Flower selectOneFlower(int f) {
         Flower flower = new Flower();
         Connection con = new ConnectionManager().getConnection();
-        try  {
+        try {
             PreparedStatement ps = con.prepareStatement("select * from FLOWERS where id = ?");
             ps.setInt(1, f);
             ResultSet rs = ps.executeQuery();
@@ -113,49 +113,73 @@ public class FlowerDao {
             flower.setName(rs.getString(2));
             flower.setCountry(rs.getString(3));
             System.out.println(flower.toString());
-            
+
         } catch (SQLException ex) {
             ex.printStackTrace();
 
-        }
-        finally
-        {   try {
-            con.close();
+        } finally {
+            try {
+                con.close();
             } catch (SQLException ex) {
                 Logger.getLogger(FlowerDao.class.getName()).log(Level.SEVERE, null, ex);
             }
-        
+
         }
 
         return flower;
     }
 
+    public int selectFlowerID(String name) {
+        int id=-1;
+        Connection con = new ConnectionManager().getConnection();
+        try {
+            PreparedStatement ps = con.prepareStatement("select id from FLOWERS where name = ?");
+            ps.setString(1, name);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                id=rs.getInt(1);
+            }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(FlowerDao.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+
+        return id;
+    }
+
     public boolean deleteFlower(int id) {
         Connection con = new ConnectionManager().getConnection();
-        boolean flag=false;
-        try  {
+        boolean flag = false;
+        try {
             PreparedStatement ps = con.prepareStatement("DELETE FROM FLOWERS WHERE  id = ?");
             ps.setInt(1, id);
             ps.executeUpdate();
-            flag= true;
+            flag = true;
         } catch (SQLException ex) {
             ex.printStackTrace();
-          
-        }
-        finally
-        {   try {
-            con.close();
+
+        } finally {
+            try {
+                con.close();
             } catch (SQLException ex) {
                 Logger.getLogger(FlowerDao.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        return  flag;
+        return flag;
     }
 
     public ArrayList<Flower> selectFlowerByProductId(int id) {
         ArrayList<Flower> flowers = new ArrayList<>();
         Connection con = new ConnectionManager().getConnection();
-        try  {
+        try {
             PreparedStatement ps = con.prepareStatement("select * from FLOWERS where FLOWERS.ID  in (select F_ID from  BOQUET_FLOWERS where BOQUET_FLOWERS.P_ID = ?)");
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
@@ -167,13 +191,11 @@ public class FlowerDao {
                 flower.setImage(fiDao.selectFlowerImagesByFlowerId(flower.getId()));
                 flowers.add(flower);
                 System.out.println(flowers.toString());
-               
+
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
-        }
-        finally
-        {
+        } finally {
             try {
                 con.close();
             } catch (SQLException ex) {
