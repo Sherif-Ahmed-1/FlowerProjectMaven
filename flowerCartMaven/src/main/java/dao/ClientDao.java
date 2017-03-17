@@ -53,6 +53,28 @@ public class ClientDao {
         return flag;
     }
 
+    public boolean deleteClientById(int id) {
+        Connection con = new ConnectionManager().getConnection();
+        boolean flag = false;
+        try {
+            PreparedStatement ps = con.prepareStatement("delete from client where id=?");
+            ps.setInt(1, id);
+            int num = ps.executeUpdate();
+            if (num != 0) {
+                flag = true;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ClientDao.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(ClientDao.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return flag;
+    }
+
     public boolean deleteClientByMail(Client client) {
         Connection con = new ConnectionManager().getConnection();
         boolean flag = false;
@@ -306,13 +328,13 @@ public class ClientDao {
 
     public Client selectById(int id) {
         Connection conn = new ConnectionManager().getConnection();
-        Client clientById = null;
+        Client clientById = new Client();
         try {
             PreparedStatement ps = conn.prepareStatement("select * from client where id=?");
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                clientById = new Client();
+
                 clientById.setFname(rs.getString("fname"));
                 clientById.setLname(rs.getString("lname"));
                 clientById.setPassword(rs.getString("password"));
@@ -338,4 +360,6 @@ public class ClientDao {
         }
         return clientById;
     }
+
+
 }

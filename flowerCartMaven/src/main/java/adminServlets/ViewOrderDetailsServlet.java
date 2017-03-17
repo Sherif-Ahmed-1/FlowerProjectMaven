@@ -7,6 +7,8 @@ package adminServlets;
 
 import Entities.Client;
 import Entities.Order;
+import Entities.OrderDetails;
+import Entities.Product;
 import adminFacade.ClientService;
 import adminFacade.OrderService;
 import dao.OrderDao;
@@ -25,29 +27,33 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Moamenovic
  */
-@WebServlet(name = "ViewClientServlet", urlPatterns = {"/ViewClientServlet"})
-public class ViewClientServlet extends HttpServlet {
+@WebServlet(name = "ViewOrderDetailsServlet", urlPatterns = {"/ViewOrderDetailsServlet"})
+public class ViewOrderDetailsServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        PrintWriter out = response.getWriter();
-        String str = request.getParameter("ClientID");
-        System.out.println(str);
-        int id = Integer.parseInt(str.replaceAll("\\s+", ""));
-        ClientService cs = new ClientService();
-        Client c = cs.getClientById(id);
+        String str = request.getParameter("ID");
+        int OrderId = Integer.parseInt(str.replaceAll("\\s+", ""));
         OrderService orderService = new OrderService();
-        List<Order> list = (List<Order>) request.getSession().getAttribute("orders");
-        Client c2 =(Client) request.getSession().getAttribute("client");
-        List orders = orderService.selectOrdersByCLientID(id);
-        request.getSession().setAttribute("orders", orders);
-        request.getSession().setAttribute("client", c);
-        System.out.println(c.toString());
+        String clientID = request.getParameter("clientid");
+        int clientIDNumber = Integer.parseInt(clientID.replaceAll("\\s+", ""));
+        List<Order> orders = orderService.selectOrdersByCLientID(clientIDNumber);
 
-//        RequestDispatcher rd = request.getRequestDispatcher("/AdminView/ViewClient.jsp");
-//        rd.include(request, response);
-//        response.sendRedirect("/FlowerCart/AdminView/ViewClient.jsp");
+        List<OrderDetails> orderDetailses = new ArrayList<>();
+
+        for (Order o : orders) {
+            if (o.getID() == OrderId) {
+                for (OrderDetails ods : o.getOrderDetails()) {
+                    ods.setPname(orderService.returnProductName(ods.getProductId()));
+                    orderDetailses.add(ods);
+
+                }
+            }
+        }
+
+        request.getSession().setAttribute("ordersDetails", orderDetailses);
+
     }
 
     @Override

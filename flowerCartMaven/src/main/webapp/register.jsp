@@ -69,7 +69,7 @@
                         </div>
                         <div class="form-group">
                             <label class="control-label" for="phone">Phone <sup>*</sup></label>
-                            <input type="tel" name="phone" placeholder="Phone" class="form-control"  required>
+                            <input type="tel" name="phone" placeholder="Phone" class="form-control"  pattern="^01[0-2]\d{8}$" required>
                         </div>
                         <div class="form-group">
                             <label class="control-label" for="address">Address <sup>*</sup></label>

@@ -26,7 +26,7 @@
                 <div class="x_content">
                     <p class="text-danger font-15 m-b-30">
                     <h2>
-                        This table contains all flowers you have in the system
+                        This table contains all clients you have in the system
                     </h2>
                     </p>
                     <table id="datatable-buttons" class="table table-striped table-bordered">
@@ -57,19 +57,19 @@
                                 <td><c:out value="${client.birthday}"></c:out></td>   
                                 <td><c:out value="${client.phone}"></c:out></td>
                                 <td><c:out value="${client.cridetlimit}"></c:out></td>
-                                    <td class=" last" onclick="location.href = '/FlowerCart/AdminView/ViewClient.jsp?ID=' + $(this).parents('tr').find('td:eq(0)').html()">
+                                    <td class=" last" onclick="location.href = 'ViewClient.jsp?ID=' + $(this).parents('tr').find('td:eq(0)').html()">
                                         <!--<td class=" last" onclick="location.href = '/ViewClient.jsp?ClientID='+$(this).parents('tr').find('td:eq(0)').html()">-->   
-                                   <!-- <td class=" last" onclick=" $.get('/FlowerCart/AdminView/ViewClient.jsp'
-                                                    {
-                                                        ID: $(this).parents('tr').find('td:eq(0)').html()
-                                                    });">-->
+                                        <!-- <td class=" last" onclick=" $.get('/FlowerCart/AdminView/ViewClient.jsp'
+                                                         {
+                                                             ID: $(this).parents('tr').find('td:eq(0)').html()
+                                                         });">-->
 
                                         <a class="btn btn-block" >
                                             <i class="fa fa-pencil-square-o fa-lg"></i> View</a> </td>
-                                    <td class=" last">
+                                    <td class=" last"  onclick="setPname($(this).parents('tr').find('td:eq(1)').html(), $(this).parents('tr').find('td:eq(0)').html())">
                                         <div class="col-md-6" data-animate="fadeInDown">
-                                            <a class="btn btn-block" href="#">
-                                                <i class="fa fa-trash-o fa-lg" data-toggle="modal" data-target="#login-modal"></i> Remove
+                                            <a class="btn btn-block" data-toggle="modal" data-target="#login-modal" >
+                                                <i class="fa fa-trash-o fa-lg" ></i> Remove
                                             </a>
                                         </div>
                                     </td>
@@ -87,36 +87,24 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="Login">Customer login</h4>
+                <h4 class="modal-title" id="Login">Are you sure you want to remove<p id="pname" style="color: #E34234" ></p> </h4>
             </div>
             <div class="modal-body">
-                <form  method="post" action="LoginServlet">
-                    <div class="form-group">
-                        <input type="email" name="inputEmail" class="form-control" id="email-modal" placeholder="email">
-                    </div>
-                    <div class="form-group">
-                        <input type="password" name="inputPassword" class="form-control" id="password-modal" placeholder="password">
-                    </div>
 
-                    <p class="text-center">
-                        <button type="submit" class="btn btn-primary"><i class="fa fa-sign-in"></i> Log in</button>
-                    </p>
 
-                </form>
+                <p class="text-center">
+                    <button type="button" id="yes" class="btn btn-primary" onclick="sendClientId(this);" ><i class="fa fa-sign-in"></i> Yes</button>
+                </p>
+                <p class="text-center">
+                    <button id="no" type="button" data-dismiss="modal" class="btn btn-danger"><i class="fa fa-sign-in"></i> No</button>
+                </p>
 
-                <p class="text-center text-muted">Not registered yet?</p>
-                <p class="text-center text-muted"><a href="register.html"><strong>Register now</strong></a>! It is easy and done in 1&nbsp;minute and gives you access to special discounts and much more!</p>
+
 
             </div>
         </div>
     </div>
 </div>
 <!-- /page content -->
-<script>
 
-    function ViewClient() {
-
-
-    }
-</script>
 <jsp:include page="../includes/footer.jsp" />

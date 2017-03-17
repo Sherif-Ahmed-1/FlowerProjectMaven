@@ -73,3 +73,31 @@ function validateMobile() {
     }
 
 }
+var userId;
+function setPname(name, id) {
+    var x = name;
+    console.log(x);
+    $('#pname').html(x);
+    console.log(id);
+    userId = id;
+    console.log(userId);
+}
+function sendClientId() {
+    console.log(userId);
+
+
+    var arr = {'id': userId};
+
+
+    $.ajax({url: "../RemoveClientServlet?date=" + new Date().getTime(),
+        type: 'GET',
+        contentType: 'application/json',
+        data: arr,
+
+        success: function (data, textStatus, jqXHR) {
+            location.reload(true);
+        }
+    });
+    $('#no').click();
+
+}

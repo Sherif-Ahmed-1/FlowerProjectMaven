@@ -5,7 +5,9 @@
  */
 package Facade;
 
+import Entities.Cart;
 import Entities.Client;
+import dao.CartDao;
 import dao.ClientDao;
 import java.util.ArrayList;
 
@@ -17,7 +19,7 @@ public class ClientService {
 
     static ArrayList<String> loginEmails = new ArrayList<>();
 
-    private boolean isloggedIn(String email) {
+synchronized private boolean isloggedIn(String email) {
        for(String userMail:loginEmails)
            if(userMail.equalsIgnoreCase(email))
                return true;
@@ -38,8 +40,16 @@ public class ClientService {
     public boolean signUp(Client client) {
 
         ClientDao clientDao = new ClientDao();
+        
+        Client clientInfo;
         if (!clientDao.existMail(client)) {
-            return clientDao.insertClient(client);
+            
+             clientDao.insertClient(client);
+             clientInfo = clientDao.selectByEmail(client.getMail());
+             CartDao cartDao=new CartDao();
+             Cart cart=new Cart();
+             cart.setCustomerId(clientInfo.getId());
+             cartDao.insertCart(cart);
         }
         return false;
     }
