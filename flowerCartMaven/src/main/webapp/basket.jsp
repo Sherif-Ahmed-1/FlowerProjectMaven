@@ -22,7 +22,7 @@
 
                             <form method="post" action="checkout1.html">
                                 <h1>Shopping cart</h1>
-                                <p class="text-muted">You currently have 3 item(s) in your cart.</p>			   
+                                <div id="invalidQuantity"></div>
                                 <div class="table-responsive">
                                     <table class="table">
                                         <thead>

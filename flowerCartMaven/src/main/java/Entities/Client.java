@@ -20,6 +20,14 @@ public class Client {
 
     private String fname;
 
+    public ArrayList<Interests> getInterests() {
+        return interests;
+    }
+
+    public void setInterests(ArrayList<Interests> interests) {
+        this.interests = interests;
+    }
+
     private String lname;
 
     private String mail;

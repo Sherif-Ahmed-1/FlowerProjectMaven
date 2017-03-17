@@ -5,6 +5,7 @@
  */
 package servlets;
 
+import Facade.CartService;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import dto.LocalProducts;
@@ -27,10 +28,14 @@ public class SyncCartServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Gson gson = new Gson();
-        ArrayList<LocalProducts> productsId = gson.fromJson(req.getParameter("localProducts"), new TypeToken<ArrayList<LocalProducts>>(){}.getType());
-        for (LocalProducts p : productsId) {
-            System.out.println(p.getId()+"  "+p.getValue());
-        }
+        ArrayList<LocalProducts> productsId = gson.fromJson(req.getParameter("localProducts"), new TypeToken<ArrayList<LocalProducts>>() {
+        }.getType());
+        CartService cartService=new CartService(req.getSession());
+        resp.setContentType("application/json");
+         ArrayList<LocalProducts> merged= cartService.syncCart(productsId);
+        System.out.println(gson.toJson( merged));
+        resp.getWriter().write(gson.toJson( merged));
+         
     }
 
 }

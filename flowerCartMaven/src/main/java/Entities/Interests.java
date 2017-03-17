@@ -14,16 +14,15 @@ import java.io.Serializable;
 public class Interests  {
 
     private int id;
-    private int flowerId;
+    private String name;
 
-    public int getFlowerId() {
-        return flowerId;
+    public String getName() {
+        return name;
     }
 
-    public void setFlowerId(int flowerId) {
-        this.flowerId = flowerId;
+    public void setName(String name) {
+        this.name = name;
     }
-    
 
     public Interests() {
     }

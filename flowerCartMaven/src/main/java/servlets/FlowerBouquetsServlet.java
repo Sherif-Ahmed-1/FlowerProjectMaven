@@ -31,10 +31,12 @@ public class FlowerBouquetsServlet extends HttpServlet {
             throws ServletException, IOException {
         
         int id = Integer.parseInt(request.getParameter("f"));
+        String flowername = request.getParameter("n");
         BouquetsService service = new BouquetsService();
         ArrayList<Product> bouquets = service.getBouquetsFormFlower(id);
         
         request.setAttribute("bouquets", bouquets);
+        request.setAttribute("flowername", flowername);
         RequestDispatcher dis = request.getRequestDispatcher("BouquetsFlower.jsp");
         dis.forward(request, response);
         

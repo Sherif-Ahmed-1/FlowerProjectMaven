@@ -19,7 +19,7 @@ public class ClientService {
 
     static ArrayList<String> loginEmails = new ArrayList<>();
 
-    private boolean isloggedIn(String email) {
+synchronized private boolean isloggedIn(String email) {
        for(String userMail:loginEmails)
            if(userMail.equalsIgnoreCase(email))
                return true;
@@ -45,13 +45,17 @@ public class ClientService {
         if (!clientDao.existMail(client)) {
             
              clientDao.insertClient(client);
-             clientInfo = clientDao.selectClientByMail(client.getMail());
+             clientInfo = clientDao.selectByEmail(client.getMail());
              CartDao cartDao=new CartDao();
              Cart cart=new Cart();
              cart.setCustomerId(clientInfo.getId());
              cartDao.insertCart(cart);
-             
         }
         return false;
+    }
+    
+    public Client getUser(String mail){
+        ClientDao clientDao = new ClientDao();
+        return clientDao.selectByEmail(mail);
     }
 }

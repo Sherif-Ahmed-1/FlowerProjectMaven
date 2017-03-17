@@ -28,7 +28,7 @@ public class RemoveCartProductServlet extends HttpServlet {
             throws ServletException, IOException {
         int  id= Integer.parseInt( request.getParameter("id"));
         CartService cartService=new CartService(request.getSession(true));
-        cartService.removeProduct(id);
+//        cartService.removeProduct(id);
       response.sendRedirect("cart.jsp");
     }
 }

@@ -28,6 +28,7 @@
         <script src="js/bootstrap-rating-input.js" type="text/javascript"></script>
         <link rel="shortcut icon" href="favicon.png">
         <script src="js/jquery.min.js" type="text/javascript"></script>
+        <script src="js/jquery.cookie.js" type="text/javascript"></script>
         <script src="js/Cart.js" type="text/javascript"></script>
     </head>
 
@@ -42,7 +43,7 @@
             <div id="top">
                 <div class="container">
                     <div class="col-md-6 offer" data-animate="fadeInDown">
-                        <a href="#" class="btn btn-success btn-sm" data-animate-hover="shake">Offer of the day</a>  <a href="#">Get flat 35% off on orders over $50!</a>
+                        <a href="#" class="btn btn-success btn-sm" data-animate-hover="shake">Smell, Admire and Meditate</a>  
                     </div>
                     <div class="col-md-6" data-animate="fadeInDown">
                         <ul class="menu">
@@ -209,24 +210,22 @@
             <div id="top">
                 <div class="container">
                     <div class="col-md-6 offer" data-animate="fadeInDown">
-                        <a href="#" class="btn btn-success btn-sm" data-animate-hover="shake">Offer of the day</a>  <a href="#">Get flat 35% off on orders over $50!</a>
+                        <a href="#" class="btn btn-success btn-sm" data-animate-hover="shake">Smell ,  Admire and Meditate</a>
                     </div>
                     <input type="hidden" value="loggedin" id="isLoggedIn"/>
                     <div class="col-md-6" data-animate="fadeInDown">
                         <ul class="menu">
-                            <li><a href="#"> My Account </a>
+                            <li><a href="Account.jsp"> ${sessionScope.user.fname} ${sessionScope.user.lname} </a>
                             </li>
                             <li><a href="#">Contact</a>
                             </li>
                             <li><a href="#">Recently viewed</a>
                             </li>
-                            <li><a href="LogoutServlet"> Log out </a>
+                            <li><a><div style="cursor: pointer;" onclick="clearCart()">Log out</div></a>
                             </li>
                         </ul>
                     </div>
                 </div>
-
-
             </div>
         </c:if>
         <!-- *** TOP BAR END *** -->
@@ -265,26 +264,27 @@
                         <li><a href="index.jsp">Home</a>
                         </li>
 
-                        <li><a href="#">Flowers</a>
-                        </li>
+                            <li><a href="AllFlowers.jsp">Flowers</a>
+                            </li>
 
                         <li><a href="AllBouquets.jsp">Bouquets</a>
                         </li>
 
-                        <li class="dropdown yamm-fw">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">Categories <b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <div class="yamm-content">
-                                        <div class="row">
-                                            <div class="col-sm-4"></div>
-                                            <div class="col-sm-4">
-                                                <ul>
-                                                    <c:forEach items="${requestScope.categories}" var="category">
-                                                        <li><a href="categoryBouquets?c=${category.id}">${category.name}</a>
-                                                        </li>
-                                                    </c:forEach>
-                                                </ul>
+                            <li class="dropdown yamm-fw">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">Categories <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <div class="yamm-content">
+                                            <div class="row">
+                                                <div class="col-sm-4"></div>
+                                                <div class="col-sm-4">
+                                                    <ul>
+                                                        <c:forEach items="${requestScope.categories}" var="category">
+                                                            <li><a href="categoryBouquets?c=${category.id}&n=${category.name}">${category.name}</a>
+                                                            </li>
+                                                        </c:forEach>
+                                                    </ul>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
