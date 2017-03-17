@@ -11,18 +11,17 @@ function  viewImage(input) {
 
 function populateFlowers() {
     var selectedValue = $("[name=flowerObtained]").find(":selected").val();
-    var flowersData= $("#flowers").val();
-    if(flowersData!=""){
-    $("#flowers").val(flowersData + "," + selectedValue);
-    $("[name=flowerObtained]").find(":selected").remove();
-    $("[name=flowerObtained]").val("first").selected = true;
-}
-else
-{
-    $("#flowers").val(selectedValue);
-    $("[name=flowerObtained]").find(":selected").remove();
-    $("[name=flowerObtained]").val("first").selected = true;
-}
+    var flowersData = $("#flowers").val();
+    if (flowersData != "") {
+        $("#flowers").val(flowersData + "," + selectedValue);
+        $("[name=flowerObtained]").find(":selected").remove();
+        $("[name=flowerObtained]").val("first").selected = true;
+    } else
+    {
+        $("#flowers").val(selectedValue);
+        $("[name=flowerObtained]").find(":selected").remove();
+        $("[name=flowerObtained]").val("first").selected = true;
+    }
 }
 function validatePassword() {
     var pass1 = document.getElementById("password").value;
@@ -47,5 +46,33 @@ function validateMobile() {
     } else {
         document.getElementById("phone").style.borderColor = "";
     }
+
+}
+var userId;
+function setPname(name, id) {
+    var x = name;
+    console.log(x);
+    $('#pname').html(x);
+    console.log(id);
+    userId = id;
+    console.log(userId);
+}
+function sendClientId() {
+    console.log(userId);
+
+
+    var arr = {'id': userId};
+
+
+    $.ajax({url: "../RemoveClientServlet?date=" + new Date().getTime(),
+        type: 'GET',
+        contentType: 'application/json',
+        data: arr,
+
+        success: function (data, textStatus, jqXHR) {
+            location.reload(true);
+        }
+    });
+    $('#no').click();
 
 }

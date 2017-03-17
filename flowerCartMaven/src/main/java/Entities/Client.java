@@ -5,10 +5,7 @@
  */
 package Entities;
 
-import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 /**
  *
@@ -35,8 +32,8 @@ public class Client {
     private int cridetlimit;
 
     private String address;
-    
-    private ArrayList<Interests> interests ;
+
+    private ArrayList<Interests> interests;
 
     public int getId() {
         return id;
@@ -116,6 +113,24 @@ public class Client {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+ 
+
+    public ArrayList<Interests> getInterests() {
+        if (interests == null) {
+            interests = new ArrayList<>();
+        }
+        return interests;
+    }
+
+    public void setInterests(ArrayList<Interests> interests) {
+        this.interests = interests;
+    }
+
+    @Override
+    public String toString() {
+        return "Client{" + "id=" + id + ", fname=" + fname + ", lname=" + lname + ", mail=" + mail + ", password=" + password + ", birthday=" + birthday + ", job=" + job + ", phone=" + phone + ", cridetlimit=" + cridetlimit + ", address=" + address + ", interests=" + interests + '}';
     }
 
 }

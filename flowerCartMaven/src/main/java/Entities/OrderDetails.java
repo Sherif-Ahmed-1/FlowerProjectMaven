@@ -1,4 +1,5 @@
 package Entities;
+
 /**
  *
  * @author Moamenovic
@@ -8,6 +9,15 @@ public class OrderDetails {
     private int productId;
     private int orderId;
     private int quantity;
+    private String pname;
+
+    public String getPname() {
+        return pname;
+    }
+
+    public void setPname(String pname) {
+        this.pname = pname;
+    }
 
     public int getProductId() {
         return productId;
