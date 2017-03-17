@@ -88,47 +88,42 @@ public class AddProductServlet extends HttpServlet {
                     String value = item.getString();
                     paramaters.put(name, value);
 
-                    out.println(name + " : " + value);
-
                 } else // processUploadedFile(item);
-                {
-                    String itemName = item.getName();
-                    Random generator = new Random();
-                    int r = Math.abs(generator.nextInt());
+                 if (item.getSize() != 0) {
+                        String itemName = item.getName();
+                        Random generator = new Random();
+                        int r = Math.abs(generator.nextInt());
 
-                    String reg = "[.*]";
-                    String replacingtext = "";
+                        String reg = "[.*]";
+                        String replacingtext = "";
 
-                    Pattern pattern = Pattern.compile(reg);
-                    Matcher matcher = pattern.matcher(itemName);
-                    StringBuffer buffer = new StringBuffer();
+                        Pattern pattern = Pattern.compile(reg);
+                        Matcher matcher = pattern.matcher(itemName);
+                        StringBuffer buffer = new StringBuffer();
 
-                    while (matcher.find()) {
-                        matcher.appendReplacement(buffer, replacingtext);
+                        while (matcher.find()) {
+                            matcher.appendReplacement(buffer, replacingtext);
+                        }
+                        int IndexOf = itemName.indexOf(".");
+                        String domainName = itemName.substring(IndexOf);
+
+                        String finalimage = buffer.toString() + "_" + r + domainName;
+
+                        String path = "assets\\img\\bouques\\" + finalimage;
+                        imgPaths.add(path);
+                        File savedFile = new File(getServletContext().getRealPath("/") + path);
+
+                        try {
+                            item.write(savedFile);
+                        } catch (Exception ex) {
+                            Logger.getLogger(AddProductServlet.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                     }
-                    int IndexOf = itemName.indexOf(".");
-                    String domainName = itemName.substring(IndexOf);
-
-                    String finalimage = buffer.toString() + "_" + r + domainName;
-
-                    String path = "assets\\img\\bouques\\" + finalimage;
-                    imgPaths.add(path);
-                    File savedFile = new File(getServletContext().getRealPath("/") + path);
-
-                    try {
-                        item.write(savedFile);
-                    } catch (Exception ex) {
-                        Logger.getLogger(AddProductServlet.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-
-                }
             }
-        } catch (IOException ex) {
-            Logger.getLogger(AddProductServlet.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (FileUploadException ex) {
+        } catch (IOException | FileUploadException ex) {
             Logger.getLogger(AddProductServlet.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            out.close();
+//            out.close();
         }
 
     }
@@ -153,14 +148,14 @@ public class AddProductServlet extends HttpServlet {
             if (productService.addProduct(product, imgPaths)) {
 
                 try {
-                    response.sendRedirect("/FlowersCart1/AdminView/ProductAddition.jsp");
+                    response.sendRedirect("/FlowerCart/AdminView/ProductAddition.jsp?add=true");
                 } catch (IOException ex) {
                     Logger.getLogger(AddProductServlet.class.getName()).log(Level.SEVERE, null, ex);
                 } finally {
                 }
             } else {
                 try {
-                    response.sendRedirect("/FlowersCart1/AdminView/ProductAddition.jsp");
+                    response.sendRedirect("/FlowerCart/AdminView/ProductAddition.jsp?add=false");
                 } catch (IOException ex) {
                     Logger.getLogger(AddProductServlet.class.getName()).log(Level.SEVERE, null, ex);
                 }

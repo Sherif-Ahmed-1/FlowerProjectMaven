@@ -8,45 +8,47 @@ function  viewImage(input) {
         reader.readAsDataURL(input.files[0]);
     }
 }
-$("#cancel").click(function (){
-   location.href="MainAdmin.jsp"; 
+$("#cancel").click(function () {
+    location.href = "MainAdmin.jsp";
 });
+function show() {
+  
+    
+}
 function populateFlowers() {
     var selectedValue = $("[name=flowerObtained]").find(":selected").val();
-    var flowersData= $("#flowers").val();
-    if(flowersData!==""){
-       // if(flowersData.contains(flowersData,selectedValue)!==true){
-    $("#flowers").val(flowersData + "," + selectedValue);
-    $("[name=flowerObtained]").find(":selected").remove();
-    $("[name=flowerObtained]").val("first").selected = true;
+    var flowersData = $("#flowers").val();
+    if (flowersData !== "") {
+        // if(flowersData.contains(flowersData,selectedValue)!==true){
+        $("#flowers").val(flowersData + "," + selectedValue);
+        $("[name=flowerObtained]").find(":selected").remove();
+        $("[name=flowerObtained]").val("first").selected = true;
 
-}
-else
-{
-     
-    $("#flowers").val(selectedValue);
-    $("[name=flowerObtained]").find(":selected").remove();
-    $("[name=flowerObtained]").val("first").selected = true;
-}
+    } else
+    {
+
+        $("#flowers").val(selectedValue);
+        $("[name=flowerObtained]").find(":selected").remove();
+        $("[name=flowerObtained]").val("first").selected = true;
+    }
 }
 
 function populateProducts() {
     var selectedValue = $("[name=productsObtained]").find(":selected").val();
-    var productsData= $("#products").val();
-    if(productsData!==""){
-       // if(flowersData.contains(flowersData,selectedValue)!==true){
-    $("#products").val(productsData + "," + selectedValue);
-    $("[name=productsObtained]").find(":selected").remove();
-    $("[name=productsObtained]").val("first").selected = true;
+    var productsData = $("#products").val();
+    if (productsData !== "") {
+        // if(flowersData.contains(flowersData,selectedValue)!==true){
+        $("#products").val(productsData + "," + selectedValue);
+        $("[name=productsObtained]").find(":selected").remove();
+        $("[name=productsObtained]").val("first").selected = true;
 
-}
-else
-{
-     
-    $("#products").val(selectedValue);
-    $("[name=productsObtained]").find(":selected").remove();
-    $("[name=productsObtained]").val("first").selected = true;
-}
+    } else
+    {
+
+        $("#products").val(selectedValue);
+        $("[name=productsObtained]").find(":selected").remove();
+        $("[name=productsObtained]").val("first").selected = true;
+    }
 }
 function validatePassword() {
     var pass1 = document.getElementById("password").value;
@@ -93,7 +95,6 @@ function sendClientId() {
         type: 'GET',
         contentType: 'application/json',
         data: arr,
-
         success: function (data, textStatus, jqXHR) {
             location.reload(true);
         }

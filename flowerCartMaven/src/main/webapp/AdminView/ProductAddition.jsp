@@ -7,13 +7,7 @@
     <link href="../assets/css/custom.min.css" rel="stylesheet">
     <!-- page content -->
     <div class="right_col" >
-        <!--Error-->
-        <div class="col-md-12 col-xs-12">
-            <div class="x_panel" >
-                <center><h1 id="result">Your Bouquet has been saved successfully</h1></center>
-            </div>
-        </div>
-        <!--Error-->
+        
         <div class="col-md-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
@@ -36,7 +30,7 @@
                     </div>
                     <div class="col-md-2 col-sm-12 col-xs-12 form-group has-feedback" style="position: relative; float: right; cursor: pointer;">
 
-                        <img id="pro_img" src="#" width="150" height="140" alt="Your photo" tabindex="8">
+                        <img id="pro_img" src="../assets/img/icons/error.png" width="150" height="140" alt="Your photo" tabindex="8">
                         <input type="file" name="file" id="upload_img" multiple="true" onchange="viewImage(this)" tabindex="8">
                     </div>
                     <div class="col-md-3 col-sm-12 col-xs-12 form-group has-feedback">
@@ -106,3 +100,26 @@
 <!-- /page content -->
 
 <jsp:include page="../includes/footer.jsp" />
+
+<c:choose>
+    <c:when test="${param.add==true}">
+        <h3> <c:out value="${param.add}"/></h3>
+        <script>
+            new PNotify({title: 'Success',
+                text: 'Your Bouquet has been saved into the system',
+                type: 'success',
+                styling: 'bootstrap3'});
+        </script>
+    </c:when>
+         <c:when test="${param.add==false}">
+        <h3> <c:out value="${param.add}"/></h3>
+        <script>
+            new PNotify({
+                            title: 'Sorry',
+                            text: 'Your Bouquet has not been saved',
+                            type: 'error',
+                            styling: 'bootstrap3'
+                        });
+        </script>
+    </c:when>
+</c:choose>

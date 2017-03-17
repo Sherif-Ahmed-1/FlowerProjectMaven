@@ -75,14 +75,14 @@ public class AddCategoryServlet extends HttpServlet {
         if (categoryService.addCategory(category)) {
             
             try {
-                response.sendRedirect("/FlowersCart1/AdminView/CategoryAddition.jsp");
+                response.sendRedirect("/FlowerCart/AdminView/CategoryAddition.jsp?add=true");
             } catch (IOException ex) {
                 Logger.getLogger(AddCategoryServlet.class.getName()).log(Level.SEVERE, null, ex);
             } finally {
             }
         } else {
             try {
-                response.sendRedirect("/FlowersCart1/AdminView/CategoryAddition.jsp");
+                response.sendRedirect("/FlowerCart/AdminView/CategoryAddition.jsp?add=false");
             } catch (IOException ex) {
                 Logger.getLogger(AddCategoryServlet.class.getName()).log(Level.SEVERE, null, ex);
             }

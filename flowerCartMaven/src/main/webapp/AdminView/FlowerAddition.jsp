@@ -7,13 +7,6 @@
     <link href="../assets/css/custom.min.css" rel="stylesheet">
     <!-- page content -->
     <div class="right_col" >
-        <!--Error-->
-        <div class="col-md-12 col-xs-12">
-            <div class="x_panel" >
-                <center><h1 id="result">Your Flower has been saved successfully</h1></center>
-            </div>
-        </div>
-        <!--Error-->
         <div class="col-md-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">

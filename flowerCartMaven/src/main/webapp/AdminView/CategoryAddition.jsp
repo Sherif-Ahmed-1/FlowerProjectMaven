@@ -6,7 +6,9 @@
 
     <link href="../assets/css/custom.min.css" rel="stylesheet">
     <!-- page content -->
-    <div class="right_col" >
+
+    <div id="main" class="right_col">
+
         <!--Error-->
         <div id="result" class="col-md-12 col-xs-12" hidden="true">
             <div class="x_panel" >
@@ -34,7 +36,7 @@
                         <input type="text" class="form-control has-feedback-left" name="name" placeholder="Category Name" required="true" tabindex="1">
                         <span class="fa fa-bars form-control-feedback left" aria-hidden="true"></span>
                     </div>
-                    
+
                     <div class="col-md-5 col-sm-9 col-xs-12 form-group has-feedback" >
                         <div class="ln_solid"></div>
                         <label>Bouquets:</label>
@@ -49,13 +51,13 @@
                         </optgroup>
                     </div>
                     <div class="col-md-5 col-sm-9 col-xs-12 form-group" >
-                      <div class="ln_solid"></div>
-                      <label>Chosen Bouquets:</label>
+                        <div class="ln_solid"></div>
+                        <label>Chosen Bouquets:</label>
                         <div class="col-md-12 col-sm-9 col-xs-12 form-group has-feedback" > 
                             <input type="text" class="form-control has-feedback-left" name="products" id="products" readonly="true" />              
-                        <span class="fa fa-gift form-control-feedback left" aria-hidden="true"></span>
-                  </div>
-                       
+                            <span class="fa fa-gift form-control-feedback left" aria-hidden="true"></span>
+                        </div>
+
                     </div>
                     <br>
                     <br>
@@ -73,6 +75,7 @@
                     <div class="ln_solid"></div>
                     <div class="form-group">
                         <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
+
                             <button id="cancel" type="button" class="btn btn-danger" tabindex="10">Cancel</button>
                             <button class="btn btn-success" type="reset" tabindex="11">Reset Data</button>
                             <button type="submit" class="btn btn-primary" tabindex="12">Add Category</button>
@@ -87,3 +90,26 @@
 <!-- /page content -->
 
 <jsp:include page="../includes/footer.jsp" />
+
+<c:choose>
+    <c:when test="${param.add==true}">
+        <h3> <c:out value="${param.add}"/></h3>
+        <script>
+            new PNotify({title: 'Success',
+                text: 'Your Category has been saved into the system',
+                type: 'success',
+                styling: 'bootstrap3'});
+        </script>
+    </c:when>
+         <c:when test="${param.add==false}">
+        <h3> <c:out value="${param.add}"/></h3>
+        <script>
+            new PNotify({
+                            title: 'Sorry',
+                            text: 'Your category has not been saved',
+                            type: 'error',
+                            styling: 'bootstrap3'
+                        });
+        </script>
+    </c:when>
+</c:choose>
