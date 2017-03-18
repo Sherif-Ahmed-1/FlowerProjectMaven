@@ -9,13 +9,6 @@
 
     <div id="main" class="right_col">
 
-        <!--Error-->
-        <div id="result" class="col-md-12 col-xs-12" hidden="true">
-            <div class="x_panel" >
-                <center><h1>Your Category has been saved successfully</h1></center>
-            </div>
-        </div>
-        <!--Error-->
         <div class="col-md-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
@@ -53,12 +46,11 @@
                     <div class="col-md-5 col-sm-9 col-xs-12 form-group" >
                         <div class="ln_solid"></div>
                         <label>Chosen Bouquets:</label>
-                        <div class="col-md-12 col-sm-9 col-xs-12 form-group has-feedback" > 
-                            <input type="text" class="form-control has-feedback-left" name="products" id="products" readonly="true" />              
-                            <span class="fa fa-gift form-control-feedback left" aria-hidden="true"></span>
-                        </div>
-
+                        <div id="chosenDiv">
+                        
                     </div>
+                    </div>
+                    
                     <br>
                     <br>
                     <br>
@@ -101,15 +93,15 @@
                 styling: 'bootstrap3'});
         </script>
     </c:when>
-         <c:when test="${param.add==false}">
+    <c:when test="${param.add==false}">
         <h3> <c:out value="${param.add}"/></h3>
         <script>
             new PNotify({
-                            title: 'Sorry',
-                            text: 'Your category has not been saved',
-                            type: 'error',
-                            styling: 'bootstrap3'
-                        });
+                title: 'Sorry',
+                text: 'Your category has not been saved',
+                type: 'error',
+                styling: 'bootstrap3'
+            });
         </script>
     </c:when>
 </c:choose>

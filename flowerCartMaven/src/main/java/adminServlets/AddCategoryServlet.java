@@ -55,25 +55,23 @@ public class AddCategoryServlet extends HttpServlet {
     }
 
     List<String> imgPaths = new ArrayList<>();
-    
 
     private void insertCategory(HttpServletRequest request, HttpServletResponse response) {
-
+        Map<String, String[]> parameterMap = request.getParameterMap();
         Category category = new Category();
-        String[] products = request.getParameter("products").split(",");
-        ArrayList<String> listOfProdcuts = new ArrayList<>(Arrays.asList(products));
-        Product product = null;
-        ArrayList<Product> listProdcuts= new ArrayList<>();
+        String[] listOfProdcuts= parameterMap.get("bouqet");
+        ArrayList<Product> listProdcuts = new ArrayList<>();
+        Product product;
         for (String p : listOfProdcuts) {
             product = new Product();
             product.setName(p);
             listProdcuts.add(product);
         }
-        category.setName(request.getParameter("name"));
+        category.setName(parameterMap.get("name")[0]);
         category.setProductList(listProdcuts);
         CategoryService categoryService = new CategoryService();
         if (categoryService.addCategory(category)) {
-            
+
             try {
                 response.sendRedirect("/FlowerCart/AdminView/CategoryAddition.jsp?add=true");
             } catch (IOException ex) {

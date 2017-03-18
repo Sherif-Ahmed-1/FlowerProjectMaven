@@ -54,7 +54,8 @@
 <!-- PNotify -->
 <script src="../assets/js/pnotify.js"></script>
 <script src="../assets/js/pnotify.buttons.js"></script>
-
+<!--Chart-->
+<script src="../assets/js/echarts.min.js"></script>
 
 <!-- bootstrap-daterangepicker -->
 <script src="../assets/js/moment.min.js"></script>

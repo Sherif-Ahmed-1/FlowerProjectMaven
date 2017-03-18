@@ -11,51 +11,38 @@ function  viewImage(input) {
 $("#cancel").click(function () {
     location.href = "MainAdmin.jsp";
 });
-function show() {
-  
-    
+
+var elemsid = 1;
+function removeFlowerOption(ele, selectedValue) {
+    $("[name=flowerObtained]").append("<option>" + selectedValue + "</option>");
+    $("#" + ele).remove();
 }
 function populateFlowers() {
     var selectedValue = $("[name=flowerObtained]").find(":selected").val();
-    var flowersData = $("#flowers").val();
-    if (flowersData !== "") {
-        // if(flowersData.contains(flowersData,selectedValue)!==true){
-        $("#flowers").val(flowersData + "," + selectedValue);
-        $("[name=flowerObtained]").find(":selected").remove();
-        $("[name=flowerObtained]").val("first").selected = true;
-
-    } else
-    {
-
-        $("#flowers").val(selectedValue);
-        $("[name=flowerObtained]").find(":selected").remove();
-        $("[name=flowerObtained]").val("first").selected = true;
-    }
+    $("#chosenDiv").append("<div class='alert alert-success alert-dismissible fade in' id='parent" + elemsid + "'  role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close' onclick=\"removeFlowerOption('parent" + elemsid + "','" + selectedValue + "');\"><span aria-hidden='true'>x</span></button><input id='chosenItem' name='flower"+elemsid+"' type='text' value='" + selectedValue + "' style='background: transparent; border: none;'/></div>");
+    $("[name=flowerObtained]").find(":selected").remove();
+    $("[name=flowerObtained]").val("first").selected = true;
+elemsid++;
 }
 
+
+function removeProductOption(ele, selectedValue) {
+    $("[name=productsObtained]").append("<option>" + selectedValue + "</option>");
+    $("#" + ele).remove();
+}
 function populateProducts() {
     var selectedValue = $("[name=productsObtained]").find(":selected").val();
-    var productsData = $("#products").val();
-    if (productsData !== "") {
-        // if(flowersData.contains(flowersData,selectedValue)!==true){
-        $("#products").val(productsData + "," + selectedValue);
-        $("[name=productsObtained]").find(":selected").remove();
-        $("[name=productsObtained]").val("first").selected = true;
-
-    } else
-    {
-
-        $("#products").val(selectedValue);
-        $("[name=productsObtained]").find(":selected").remove();
-        $("[name=productsObtained]").val("first").selected = true;
-    }
+    $("#chosenDiv").append("<div class='alert alert-success alert-dismissible fade in' id='parent" + elemsid + "'  role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close' onclick=\"removeProductOption('parent" + elemsid + "','" + selectedValue + "');\"><span aria-hidden='true'>x</span></button><input id='chosenItem' name='bouqet' type='text' value='" + selectedValue + "' style='background: transparent; border: none;'/></div>");
+    $("[name=productsObtained]").find(":selected").remove();
+    $("[name=productsObtained]").val("first").selected = true;
+    elemsid++;
 }
 function validatePassword() {
     var pass1 = document.getElementById("password").value;
     var pass2 = document.getElementById("confirmPassword").value;
     var ok = true;
     if (pass1 != pass2 || pass1 == "" || pass2 == "") {
-        //alert("Passwords Do not match");
+//alert("Passwords Do not match");
         document.getElementById("password").style.borderColor = "#E34234";
         document.getElementById("confirmPassword").style.borderColor = "#E34234";
         ok = false;
@@ -86,11 +73,7 @@ function setPname(name, id) {
 }
 function sendClientId() {
     console.log(userId);
-
-
     var arr = {'id': userId};
-
-
     $.ajax({url: "../RemoveClientServlet?date=" + new Date().getTime(),
         type: 'GET',
         contentType: 'application/json',
@@ -100,5 +83,4 @@ function sendClientId() {
         }
     });
     $('#no').click();
-
 }
