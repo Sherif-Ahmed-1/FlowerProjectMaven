@@ -5,6 +5,7 @@
  */
 package adminServlets;
 
+import adminFacade.CategoryService;
 import java.io.IOException;
 import java.util.Enumeration;
 
@@ -15,13 +16,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import adminFacade.ClientService;
+import adminFacade.ProductService;
 
 /**
  *
  * @author Moamenovic
  */
-@WebServlet(name = "RemoveClientServlet", urlPatterns = {"/RemoveClientServlet"})
-public class RemoveClientServlet extends HttpServlet {
+@WebServlet(name = "RemoveCategoryServlet", urlPatterns = {"/RemoveCategoryServlet"})
+public class RemoveCategoryServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -31,22 +33,17 @@ public class RemoveClientServlet extends HttpServlet {
         while (names.hasMoreElements()) {
             System.out.println(names.nextElement());
         }
-        //************** EndAllaa **************/
-        //************* startAdel ************
-        //************** EndAdel **************/
-        //************* startSherif **************/
-        //************** EndSherif **************/
-        //************* startMoamen **************/
+
         String str = request.getParameter("id");
         System.out.println(str);
 
         int id = Integer.parseInt(str.trim());
         System.out.println(id);
-        ClientService clientService = new ClientService();
-        if (clientService.removeClient(id)) {
+        CategoryService categoryService = new CategoryService();
+        if (categoryService.deleteCategory(id)) {
             System.out.println(id);
         }
-        //************** EndMoamen **************/
+
     }
 
     @Override
