@@ -19,17 +19,31 @@ public class ClientService {
 
     static ArrayList<String> loginEmails = new ArrayList<>();
 
-synchronized private boolean isloggedIn(String email) {
-       for(String userMail:loginEmails)
-           if(userMail.equalsIgnoreCase(email))
-               return true;
-       loginEmails.add(email);
-       return false;
+    synchronized private boolean isloggedIn(String email) {
+        for (String userMail : loginEmails) {
+            if (userMail.equalsIgnoreCase(email)) {
+                return true;
+            }
+        }
+        loginEmails.add(email);
+        return false;
+    }
+
+    synchronized public void logout(String email) {
+        for(int i=0;i<loginEmails.size();i++)
+        {
+            if(loginEmails.get(i).equalsIgnoreCase(email))
+            {
+                loginEmails.remove(i);
+                return;
+            }
+        }
     }
 
     public boolean Login(String email, String password) {
-        if(isloggedIn(email))
+        if (isloggedIn(email)) {
             return false;
+        }
         Client client = new Client();
         client.setMail(email);
         client.setPassword(password);
@@ -40,21 +54,21 @@ synchronized private boolean isloggedIn(String email) {
     public boolean signUp(Client client) {
 
         ClientDao clientDao = new ClientDao();
-        
+
         Client clientInfo;
         if (!clientDao.existMail(client)) {
-            
-             clientDao.insertClient(client);
-             clientInfo = clientDao.selectByEmail(client.getMail());
-             CartDao cartDao=new CartDao();
-             Cart cart=new Cart();
-             cart.setCustomerId(clientInfo.getId());
-             cartDao.insertCart(cart);
+
+            clientDao.insertClient(client);
+            clientInfo = clientDao.selectByEmail(client.getMail());
+            CartDao cartDao = new CartDao();
+            Cart cart = new Cart();
+            cart.setCustomerId(clientInfo.getId());
+            cartDao.insertCart(cart);
         }
         return false;
     }
-    
-    public Client getUser(String mail){
+
+    public Client getUser(String mail) {
         ClientDao clientDao = new ClientDao();
         return clientDao.selectByEmail(mail);
     }

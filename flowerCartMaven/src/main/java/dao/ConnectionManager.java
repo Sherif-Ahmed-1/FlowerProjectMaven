@@ -22,24 +22,11 @@ import oracle.jdbc.OracleDriver;
  */
 public class ConnectionManager {
 private DataSource dataSource; 
-    public ConnectionManager() {
-        try { 
-            Context context=(Context) new InitialContext().lookup("java:comp/env");
-             dataSource=(DataSource) context.lookup("jdbc/TestDB"); 
-        
-        } catch (NamingException ex) {
-            Logger.getLogger(ConnectionManager.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+    public ConnectionManager() {    
     }
     public Connection getConnection()
     {
-    try { 
-      return dataSource.getConnection();
-    } catch (SQLException ex) {
-        Logger.getLogger(ConnectionManager.class.getName()).log(Level.SEVERE, null, ex);
-    }
-    return null;
-
+      return JNDI.getInstance().getDataSource();
+    
     }
 }
