@@ -80,4 +80,10 @@ public class ClientService {
         ClientDao clientDao = new ClientDao();
         return clientDao.selectByEmail(mail);
     }
+
+    public boolean updateUser(Client client) {
+          ClientDao clientDao = new ClientDao();
+          System.out.println("updateuser : " + clientDao.updateClient(client));
+        return clientDao.updateClient(client);
+    }
 }
