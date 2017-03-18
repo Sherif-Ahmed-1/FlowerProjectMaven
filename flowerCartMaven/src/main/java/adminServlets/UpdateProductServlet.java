@@ -56,7 +56,6 @@ public class UpdateProductServlet extends HttpServlet {
         //************* startAllaa **************/
         //************** EndAllaa **************/
         //************* startAdel ************
-       
         updateProduct(request, response);
 
         //************** EndAdel **************/
@@ -67,8 +66,8 @@ public class UpdateProductServlet extends HttpServlet {
     }
 
     List<String> imgPaths = new ArrayList<>();
-  
-    private void  updateProduct(HttpServletRequest request, HttpServletResponse response) throws IOException, IOException {
+
+    private void updateProduct(HttpServletRequest request, HttpServletResponse response) throws IOException, IOException {
 
         Product product = new Product();
         String[] flowers = request.getParameter("flowers").split(",");
@@ -77,10 +76,12 @@ public class UpdateProductServlet extends HttpServlet {
         ArrayList<Flower> listFlowers = new ArrayList<>();
         for (String listFlower : listOfFlowers) {
             flower = new Flower();
-            flower.setName(listFlower);
-            listFlowers.add(flower);
+            if (!listFlower.equals("")) {
+                flower.setName(listFlower);
+                listFlowers.add(flower);
+            }
         }
-       
+        product.setId(Integer.parseInt(request.getParameter("id")));
         product.setName(request.getParameter("name"));
         product.setPrice(Float.parseFloat(request.getParameter("price")));
         product.setQuantity(Integer.parseInt(request.getParameter("quantity")));
@@ -89,11 +90,11 @@ public class UpdateProductServlet extends HttpServlet {
         product.setFlowers(listFlowers);
         ProductService productService = new ProductService();
         if (productService.updateProduct(product, imgPaths)) {
-            
+
             try {
-                
+
                 response.sendRedirect("/FlowersCart1/AdminView/ProductDetails.jsp");
-                
+
             } catch (Exception ex) {
                 Logger.getLogger(UpdateProductServlet.class.getName()).log(Level.SEVERE, null, ex);
             } finally {
@@ -101,13 +102,11 @@ public class UpdateProductServlet extends HttpServlet {
         } else {
             try {
                 response.sendRedirect("/FlowersCart1/AdminView/ProductDetails.jsp");
-                
-                
+
             } catch (Exception ex) {
                 Logger.getLogger(UpdateProductServlet.class
                         .getName()).log(Level.SEVERE, null, ex);
-                
-                
+
             }
         }
 

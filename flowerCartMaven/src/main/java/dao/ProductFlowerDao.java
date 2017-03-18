@@ -6,7 +6,7 @@
 package dao;
 
 import Entities.ImageEntity;
-import Entities.ProductFlower;
+import dto.ProductFlower;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -20,24 +20,23 @@ import java.util.logging.Logger;
  * @author Adel Zaid
  */
 public class ProductFlowerDao {
-     //************************* Start Adel ************************
-    public boolean insertProductWithFlowers(ProductFlower productFlower)  {
+    //************************* Start Adel ************************
+
+    public boolean insertProductWithFlowers(ProductFlower productFlower) {
         Connection con = new ConnectionManager().getConnection();
-        boolean flag=false;
-        try  {
+        boolean flag = false;
+        try {
             PreparedStatement ps = con.prepareStatement("INSERT INTO BOQUET_FLOWERS (P_ID, F_ID) VALUES ( ?, ?)");
             ps.setInt(1, productFlower.getProductID());
-           
+
             ps.setInt(2, productFlower.getFlowerID());
             ps.executeUpdate();
 
-            flag= true;
+            flag = true;
         } catch (SQLException ex) {
             ex.printStackTrace();
 
-        }
-        finally
-        {
+        } finally {
             try {
                 con.close();
             } catch (SQLException ex) {
@@ -46,17 +45,18 @@ public class ProductFlowerDao {
         }
         return flag;
     }
-      public ArrayList<ProductFlower> selectProductFlowersByProductId(int id)  {
-       ArrayList<ProductFlower> productFlowersList = new ArrayList<>();
-       Connection con = new ConnectionManager().getConnection();
-        try  {
+
+    public ArrayList<ProductFlower> selectProductFlowersByProductId(int id) {
+        ArrayList<ProductFlower> productFlowersList = new ArrayList<>();
+        Connection con = new ConnectionManager().getConnection();
+        try {
             PreparedStatement ps = con.prepareStatement("select * from BOQUET_FLOWERS where P_ID  = ?");
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 ProductFlower image = new ProductFlower();
                 image.setProductID(rs.getInt(1));
-                image.setFlowerID(rs.getInt(2));    
+                image.setFlowerID(rs.getInt(2));
                 productFlowersList.add(image);
                 System.out.println(image.toString());
             }
@@ -64,19 +64,18 @@ public class ProductFlowerDao {
         } catch (SQLException ex) {
             ex.printStackTrace();
 
-        }
-        finally
-        {
-           try {
-               con.close();
-           } catch (SQLException ex) {
-               Logger.getLogger(ProductImageDao.class.getName()).log(Level.SEVERE, null, ex);
-           }
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(ProductImageDao.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
 
         return productFlowersList;
     }
-        public boolean updateProductFlowers(ProductFlower productFlower) {
+
+    public boolean updateProductFlowers(ProductFlower productFlower) {
         Connection con = new ConnectionManager().getConnection();
         boolean flag = false;
         try {
@@ -100,6 +99,28 @@ public class ProductFlowerDao {
         return flag;
     }
 
+    public boolean deleteProductFlowers(int productID) {
+        Connection con = new ConnectionManager().getConnection();
+        boolean flag = false;
+        try {
+            PreparedStatement ps = con.prepareStatement("delete from BOQUET_FLOWERS where P_ID = ?");
+
+            ps.setInt(1, productID);
+            ps.executeUpdate();
+
+            flag = true;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(ProductDoa.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return flag;
+    }
     //************************* end Adel ************************
-    
+
 }

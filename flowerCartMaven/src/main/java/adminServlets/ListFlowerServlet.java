@@ -7,8 +7,10 @@ package adminServlets;
 
 import Entities.Flower;
 import Entities.Product;
+import dto.ProductFlower;
 import dao.FlowerDao;
 import dao.ProductDoa;
+import dao.ProductFlowerDao;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -35,19 +37,29 @@ public class ListFlowerServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         FlowerDao flowerDoa = new FlowerDao();
-        listFlowers = flowerDoa.selectAllFlowers();
-        request.setAttribute("flowers", listFlowers);
+        boolean update = Boolean.parseBoolean(request.getParameter("update"));
+        
+        if (update) {
+            int id = Integer.parseInt(request.getParameter("ProductID").trim());
+            ProductFlowerDao productFlowerDao = new ProductFlowerDao();
+            ArrayList<ProductFlower> productFlowers = productFlowerDao.selectProductFlowersByProductId(id);
+            FlowerDao flowerDoa = new FlowerDao();
+            listFlowers = flowerDoa.selectAllFlowers();
+            for (int i = 0; i < listFlowers.size(); i++) {
+                for (int j = 0; j < productFlowers.size(); j++) {
+                    if (listFlowers.get(i).getId() == productFlowers.get(j).getFlowerID()) {
+                        listFlowers.remove(i);
+                    }
+                }
+            }
+            request.setAttribute("flowers", listFlowers);
+        } else {
+            FlowerDao flowerDoa = new FlowerDao();
+            listFlowers = flowerDoa.selectAllFlowers();
+            request.setAttribute("flowers", listFlowers);
+        }
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
