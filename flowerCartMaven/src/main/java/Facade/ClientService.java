@@ -50,6 +50,14 @@ public class ClientService {
         ClientDao clientDao = new ClientDao();
         return clientDao.validclient(client);
     }
+    
+    public boolean CheckPassword(String email , String password){
+        Client client = new Client();
+        client.setMail(email);
+        client.setPassword(password);
+        ClientDao clientDao = new ClientDao();
+        return clientDao.validclient(client);
+    }
 
     public boolean signUp(Client client) {
 

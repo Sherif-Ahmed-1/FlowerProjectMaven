@@ -70,7 +70,7 @@ public class ProductDoa {
                 product.setFlowers(fDao.selectFlowerByProductId(product.getId()));
                 product.setImages(iDao.selectProductImagesByProductId(product.getId()));
                 productList.add(product);
-                System.out.println(product.toString());
+              //  System.out.println(product.toString());
             }
 
         } catch (SQLException ex) {
@@ -106,7 +106,7 @@ public class ProductDoa {
                 product.setImages(iDao.selectProductImagesByProductId(product.getId()));
                 product.setFlowers(fDao.selectFlowerByProductId(product.getId()));
                 productList.add(product);
-                System.out.println(product.toString());
+             //   System.out.println(product.toString());
             }
 
         } catch (SQLException ex) {
@@ -140,7 +140,7 @@ public class ProductDoa {
                 product.setRating(rs.getInt(6));
                 product.setImages(iDao.selectProductImagesByProductId(product.getId()));
                 product.setFlowers(fDao.selectFlowerByProductId(product.getId()));
-                System.out.println("dao product " + product.getName());
+             //   System.out.println("dao product " + product.getName());
             }
 
         } catch (SQLException ex) {
@@ -251,7 +251,7 @@ public class ProductDoa {
                 product.setImages(iDao.selectProductImagesByProductId(product.getId()));
                 product.setFlowers(fDao.selectFlowerByProductId(product.getId()));
                 productList.add(product);
-                System.out.println(product.toString());
+            //    System.out.println(product.toString());
             }
 
         } catch (SQLException ex) {
