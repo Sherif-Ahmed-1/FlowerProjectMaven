@@ -33,7 +33,7 @@ public class FlowerImageDao {
             if (rs.next()) {
                 flowerImage.setId(rs.getInt(1));
                 flowerImage.setUrl(rs.getString(2));
-                System.out.println(flowerImage.toString());
+//                System.out.println(flowerImage.toString());
             }
 
         } catch (SQLException ex) {

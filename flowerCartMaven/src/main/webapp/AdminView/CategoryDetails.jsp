@@ -37,15 +37,44 @@
                             <tr>
                                 <td > <c:out value="${category.id}"></c:out></td>
                                 <td style="font-weight: bold;"> <c:out value="${category.name}"></c:out></td>
-                               
-                                <td class=" last"><a class="btn btn-block" onclick="location.href = '${pageContext.request.contextPath}/AdminView/ViewCategory.jsp?ID=' + $(this).parents('tr').find('td:eq(0)').html()">
+
+                                    <td class=" last"><a class="btn btn-block" onclick="location.href = '${pageContext.request.contextPath}/AdminView/ViewCategory.jsp?ID=' + $(this).parents('tr').find('td:eq(0)').html()">
                                         <i class="fa fa-pencil-square-o fa-lg"></i> Edit</a></td>
-                                <td class=" last"><a class="btn btn-block" onclick="location.href = '${pageContext.request.contextPath}/DeleteCategoryServlet?ID=' + $(this).parents('tr').find('td:eq(0)').html();$(this).parents('tr').remove();">
-                                        <i class="fa fa-trash-o fa-lg"></i> Remove</a></td>
+
+                                <td class=" last"  onclick="setCname($(this).parents('tr').find('td:eq(1)').html(), $(this).parents('tr').find('td:eq(0)').html())">
+                                    <div class="col-md-6" data-animate="fadeInDown">
+                                        <a class="btn btn-block" data-toggle="modal" data-target="#login-modal" >
+                                            <i class="fa fa-trash-o fa-lg" ></i> Remove
+                                        </a>
+                                    </div>
+                                </td>
                             </tr>
                         </c:forEach>
                     </tbody>
                 </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="Login">Are you sure you want to remove<p id="cname" style="color: orange" ></p> </h4>
+            </div>
+            <div class="modal-body row">
+                <div class="col-md-6">
+                    <p class="text-center">
+                        <button type="button" id="yes" class="btn btn-success" onclick="deleteCategoryId(this);" ><i class="fa fa-sign-in"></i> Yes</button>
+                    </p>
+                </div>
+                <div class="col-md-6">
+                    <p class="text-center">
+                        <button id="no" type="button" data-dismiss="modal" class="btn btn-warning"><i class="fa fa-sign-in"></i> No</button>
+                    </p>
+                </div>
             </div>
         </div>
     </div>

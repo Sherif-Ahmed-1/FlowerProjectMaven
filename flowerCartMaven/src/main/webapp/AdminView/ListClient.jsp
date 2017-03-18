@@ -87,20 +87,19 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="Login">Are you sure you want to remove<p id="pname" style="color: #E34234" ></p> </h4>
+                <h4 class="modal-title" id="Login">Are you sure you want to remove<p id="pname" style="color: orange" ></p> </h4>
             </div>
-            <div class="modal-body">
-
-
-                <p class="text-center">
-                    <button type="button" id="yes" class="btn btn-primary" onclick="sendClientId(this);" ><i class="fa fa-sign-in"></i> Yes</button>
-                </p>
-                <p class="text-center">
-                    <button id="no" type="button" data-dismiss="modal" class="btn btn-danger"><i class="fa fa-sign-in"></i> No</button>
-                </p>
-
-
-
+            <div class="modal-body row">
+                <div class="col-md-6">
+                    <p class="text-center">
+                        <button type="button" id="yes" class="btn btn-success" onclick="sendClientId(this);" ><i class="fa fa-sign-in"></i> Yes</button>
+                    </p>
+                </div>
+                <div class="col-md-6">
+                    <p class="text-center">
+                        <button id="no" type="button" data-dismiss="modal" class="btn btn-warning"><i class="fa fa-sign-in"></i> No</button>
+                    </p>
+                </div>
             </div>
         </div>
     </div>

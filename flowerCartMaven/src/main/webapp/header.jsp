@@ -221,7 +221,7 @@
                             </li>
                             <li><a href="#">Recently viewed</a>
                             </li>
-                            <li><a><div style="cursor: pointer;" onclick="clearCart()">Log out</div></a>
+                            <li style="cursor: pointer;" onclick="clearCart()"><a >Log out</a>
                             </li>
                         </ul>
                     </div>
@@ -294,7 +294,7 @@
                         </li>
                     </ul>
 
-                </div>
+               
                 <!--/.nav-collapse -->
 
                 <div class="navbar-buttons">
@@ -312,6 +312,8 @@
                     </div>
 
                 </div>
+                
+                 </div>
 
                 <div class="collapse clearfix" id="search">
 

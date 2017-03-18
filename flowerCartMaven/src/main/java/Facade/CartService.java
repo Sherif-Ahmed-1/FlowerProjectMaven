@@ -85,23 +85,23 @@ public class CartService {
     }
 
     private void insertDbQuantity(LocalProducts localProducts) {
-        int cartId = getCartID();
+//        int cartId = getCartID();
         CartDetailDao cartDetailDao = new CartDetailDao();
         CartDetails details;
         details = new CartDetails();
-        details.setCartId(cartId);
+//        details.setCartId(cartId);
         details.setProductId(localProducts.getId());
         details.setQuantity(localProducts.getValue());
         cartDetailDao.insertCartDetail(details, getClientId());
     }
 
     private void insertDbQuantity(ArrayList<LocalProducts> insertProduct) {
-        int cartId = getCartID();
+//        int cartId = getCartID();
         CartDetailDao cartDetailDao = new CartDetailDao();
         CartDetails details;
         for (LocalProducts cpd : insertProduct) {
             details = new CartDetails();
-            details.setCartId(cartId);
+//            details.setCartId(cartId);
             details.setProductId(cpd.getId());
             details.setQuantity(cpd.getValue());
             cartDetailDao.insertCartDetail(details, getClientId());
@@ -109,11 +109,11 @@ public class CartService {
     }
 
     private void updateDbQuantity(LocalProducts localProducts) {
-        int cartId = getCartID();
+//        int cartId = getCartID();
         CartDetailDao cartDetailDao = new CartDetailDao();
         CartDetails details;
         details = new CartDetails();
-        details.setCartId(cartId);
+//        details.setCartId(cartId);
         details.setProductId(localProducts.getId());
         details.setQuantity(localProducts.getValue());
         cartDetailDao.updateCartDetails(details, getClientId());
@@ -121,13 +121,13 @@ public class CartService {
     }
 
     private void updateDbQuantity(ArrayList<CartProductDetails> updateDb) {
-        int cartId = getCartID();
+//        int cartId = getCartID();
         CartDetailDao cartDetailDao = new CartDetailDao();
         CartDetails details;
         int clientid = getClientId();
         for (CartProductDetails cpd : updateDb) {
             details = new CartDetails();
-            details.setCartId(cartId);
+//            details.setCartId(cartId);
             details.setProductId(cpd.getProductId());
             details.setQuantity(cpd.getQuntity());
             cartDetailDao.updateCartDetails(details, clientid);
@@ -182,8 +182,8 @@ public class CartService {
         if (client == null) {
             return null;
         }
-        CartDao cartDao = new CartDao();
-        Cart cart = cartDao.selectByCLientId(client.getId());
+//        CartDao cartDao = new CartDao();
+//        Cart cart = cartDao.selectByCLientId(client.getId());
         CartDetailDao cartDetailDao = new CartDetailDao();
         return cartDetailDao.selectCartProductsDetailById(client.getId());
     }

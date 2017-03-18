@@ -150,7 +150,7 @@ function syncCartWithServer()
     if ($("#isLoggedIn").val() == "loggedin" && isloggedin != "true")
     {
 
-        $.cookie("isloggedin", "true", {expires: '', path: '/'});
+        $.cookie("isloggedin", "true", {expires: ''});
         var jsonArray = [];
         var ProductsId = JSON.parse(localStorage.getItem("ProductsId"));
         if (ProductsId != null)
@@ -194,6 +194,7 @@ function clearCart()
     }
     countProducts();
     $.ajax({url: "LogoutServlet?date=" + new Date().toString(), success: function (data, textStatus, jqXHR) {
+            $.removeCookie("isloggedin");
             location.reload();
         }});
 

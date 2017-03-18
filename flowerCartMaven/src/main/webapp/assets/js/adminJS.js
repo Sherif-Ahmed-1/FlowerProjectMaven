@@ -63,6 +63,8 @@ function validateMobile() {
 
 }
 var userId;
+var categoryId;
+var productId;
 function setPname(name, id) {
     var x = name;
     console.log(x);
@@ -71,6 +73,25 @@ function setPname(name, id) {
     userId = id;
     console.log(userId);
 }
+function setCname(name, id) {
+
+    $('#cname').html(name);
+    console.log(id);
+    categoryId = id;
+
+}
+
+function productSetName(name, id) {
+
+    $('#productName').html(name);
+    console.log(id);
+    productId = id;
+
+}
+
+
+
+// server
 function sendClientId() {
     console.log(userId);
     var arr = {'id': userId};
@@ -83,4 +104,42 @@ function sendClientId() {
         }
     });
     $('#no').click();
+}
+
+function deleteCategoryId() {
+
+
+
+    var arr = {'id': categoryId};
+
+
+    $.ajax({url: "../RemoveCategoryServlet?date=" + new Date().getTime(),
+        type: 'GET',
+        contentType: 'application/json',
+        data: arr,
+        success: function (data, textStatus, jqXHR) {
+            location.reload(true);
+        }
+    });
+    $('#no').click();
+
+}
+
+function deleteProductId() {
+
+
+
+    var arr = {'id': productId};
+
+    console.log(arr);
+    $.ajax({url: "../RemoveProductServlet?date=" + new Date().getTime(),
+        type: 'GET',
+        contentType: 'application/json',
+        data: arr,
+        success: function (data, textStatus, jqXHR) {
+            location.reload(true);
+        }
+    });
+    $('#no').click();
+
 }

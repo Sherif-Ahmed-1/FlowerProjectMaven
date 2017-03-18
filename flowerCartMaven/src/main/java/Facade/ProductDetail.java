@@ -18,6 +18,8 @@ public class ProductDetail {
     public ArrayList<Product> getProductsDetails(Integer[] ids) {
         ArrayList<Product> products = new ArrayList<>();
         ProductDoa pDao = new ProductDoa();
+        if( ids == null) 
+            return products;
         for (int i = 0; i < ids.length; i++) {
             products.add(pDao.selectOneProduct(ids[i]));
         }

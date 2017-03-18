@@ -5,6 +5,8 @@
  */
 package servlets;
 
+import Entities.Client;
+import Facade.ClientService;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -27,9 +29,12 @@ public class LogoutServlet extends HttpServlet {
         //************* startAllaa **************/
 
         HttpSession session = request.getSession(true);
+        Client client=(Client) session.getAttribute("user");
         session.setAttribute("LoggedIn", new Boolean("false"));
+        session.invalidate();
         response.sendRedirect("index.jsp");
-
+        ClientService clientService=new ClientService();
+        clientService.logout(client.getMail());
         //************** EndAllaa **************/
         //************* startAdel ************
         
