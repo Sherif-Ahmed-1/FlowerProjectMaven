@@ -41,6 +41,7 @@ public class FlowerImageDao {
 
         } finally {
             try {
+                
                 con.close();
             } catch (SQLException ex) {
                 Logger.getLogger(FlowerImageDao.class.getName()).log(Level.SEVERE, null, ex);

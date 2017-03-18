@@ -1,5 +1,5 @@
-
 <jsp:include page="../includes/header.jsp" />
+<%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="/ViewClientServlet?ClientID=${param.ID}"></jsp:include>
 
     <!-- page content -->
@@ -12,7 +12,7 @@
                 <div class="col-md-12 col-xs-12">
                     <div class="x_panel">
                         <div class="x_title">
-                            <h2>Add New Client <small>Enter Client details</small></h2>
+                            <h2>View Client  <small> all details</small></h2>
                             <ul class="nav navbar-right panel_toolbox">
                                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                 </li>
@@ -21,10 +21,10 @@
                         </div>
                         <div class="x_panel">
                             <br />
-                            <form class="form-horizontal form-label-left input_mask" method="post" action="${pageContext.request.contextPath}/AddClientServlet">
+                            <form class="form-horizontal form-label-left input_mask" >
 
-                            <div class="col-md-7 col-sm-7 col-xs-7 form-group has-feedback">
-                                <input disabled="true" type="text" class="form-control has-feedback-left" name="fname" placeholder="First Name" required="true" value="${client.fname}">
+                                <div class="col-md-7 col-sm-7 col-xs-7 form-group has-feedback">
+                                    <input disabled="true" type="text" class="form-control has-feedback-left" name="fname" placeholder="First Name" required="true" value="${client.fname}">
                                 <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
                             </div>
                             <div class="col-md-7 col-sm-7 col-xs-7 form-group has-feedback">
@@ -53,8 +53,9 @@
                                 <input  disabled="true" type="number" class="form-control has-feedback-left no-spin" name="cridetlimit" id="credit" placeholder="credit limit" required="true" value="${client.cridetlimit}">
                                 <span class="fa fa-usd form-control-feedback left" aria-hidden="true"></span>
                             </div>
-                            <div class="col-md-7 col-sm-7 col-xs-7">
-                                <textarea  disabled="true" class="form-control"  name="address" value="${client.address}" ></textarea>
+                           <div class="col-md-7 col-sm-7 col-xs-7 form-group has-feedback">
+                                <input  disabled="true" type="text" class="form-control has-feedback-left no-spin" name="cridetlimit" id="credit"  required="true" value="${client.address}">
+                                <span class="fa fa-home form-control-feedback left" aria-hidden="true"></span>
                             </div>
                             <br>
                             <br>
@@ -64,34 +65,38 @@
                             <br>
                             <br>
 
-                            </p>
-                            <table id="datatable-buttons" class="table table-striped table-bordered">
-                                <thead>
-                                    <tr>
 
-                                        <th>ID</th>
-                                        <th>order Date</th>
-                                        <th>Price</th>
+                        </form>
+                        <br>
+                        <br>
+                        <br>
+                        <table id="datatable-buttons" class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
 
-                                    </tr>
-                                </thead>
+                                    <th>ID</th>
+                                    <th>order Date</th>
+                                    <th>Price</th>
+
+                                </tr>
+                            </thead>
 
 
-                                <tbody>
+                            <tbody>
 
 
                                 <c:forEach var="order" items="${orders}">
                                     <tr>
-
-                                        <td> <c:out value="${order.id}"></c:out></td>
-                                    <td><c:out value="${order.stamp}"></c:out></td>
-                                    <td><c:out value="${order.price}"></c:out></td>
-
-                                    </tr>
+                                        <td> <c:out value="${order.ID}"></c:out></td>
+                                        <td><c:out value="${order.stamp}"></c:out></td>
+                                        <td><c:out value="${order.price}"></c:out></td>
+                                            <td class=" last" onclick="location.href = 'ViewClientOrderDetails.jsp?ID=' + $(this).parents('tr').find('td:eq(0)').html()">
+                                                <a class="btn btn-block" >
+                                                    <i class="fa fa-pencil-square-o fa-lg"></i> View details</a> </td>
+                                        </tr>
                                 </c:forEach>
-                                </tbody>
-                            </table>
-                        </form>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -100,5 +105,7 @@
 
     </div>
 </div>
+
+
 <!-- /page content -->
 <jsp:include page="../includes/footer.jsp" />

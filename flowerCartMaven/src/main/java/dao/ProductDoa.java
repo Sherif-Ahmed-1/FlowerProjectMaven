@@ -182,12 +182,11 @@ public class ProductDoa {
         return num;
     }
 
-
     public boolean updateProduct(Product product) {
         Connection con = new ConnectionManager().getConnection();
         boolean flag = false;
         try {
-            PreparedStatement ps = con.prepareStatement("update PRODUCT set (NAME, PRICE, QUANTITY, DESCRIPTION, RATING) VALUES (?, ?, ?, ?, ?) where id = ?");
+            PreparedStatement ps = con.prepareStatement("update PRODUCT set NAME=?, PRICE=?, QUANTITY=?, DESCRIPTION=?, RATING=? where id = ?");
             ps.setString(1, product.getName());
             ps.setFloat(2, product.getPrice());
             ps.setInt(3, product.getQuantity());
@@ -267,6 +266,32 @@ public class ProductDoa {
         }
 
         return productList;
+    }
+
+    public String selectProductName(int id) {
+
+        Connection con = new ConnectionManager().getConnection();
+        String name = new String();
+        try {
+            PreparedStatement ps = con.prepareStatement("select name from PRODUCT where PRODUCT.ID = ?");
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                name = rs.getString(1);
+            }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(ProductDoa.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return name;
     }
 
 }

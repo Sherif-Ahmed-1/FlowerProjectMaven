@@ -7,13 +7,7 @@
     <link href="../assets/css/custom.min.css" rel="stylesheet">
     <!-- page content -->
     <div class="right_col" >
-        <!--Error-->
-        <div class="col-md-12 col-xs-12">
-            <div class="x_panel" >
-                <center><h1 id="result">Your Bouquet has been saved successfully</h1></center>
-            </div>
-        </div>
-        <!--Error-->
+        
         <div class="col-md-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
@@ -36,7 +30,7 @@
                     </div>
                     <div class="col-md-2 col-sm-12 col-xs-12 form-group has-feedback" style="position: relative; float: right; cursor: pointer;">
 
-                        <img id="pro_img" src="#" width="150" height="140" alt="Your photo" tabindex="8">
+                        <img id="pro_img" src="../assets/img/icons/error.png" width="150" height="140" alt="Your photo" tabindex="8">
                         <input type="file" name="file" id="upload_img" multiple="true" onchange="viewImage(this)" tabindex="8">
                     </div>
                     <div class="col-md-3 col-sm-12 col-xs-12 form-group has-feedback">
@@ -48,7 +42,7 @@
                         <span class="fa fa-stack-exchange form-control-feedback right" aria-hidden="true"></span>
                     </div>
                     <div class="col-md-4 col-sm-12 col-xs-12 form-group has-feedback">
-                        <input type="number" class="form-control has-feedback-left" name="rating" placeholder="Rating" max="5" min="1" tabindex="4">
+                        <input type="number" class="form-control" name="rating" placeholder="Rating" max="10" min="1" tabindex="4">
                         <span class="fa fa-star-half-o form-control-feedback right" aria-hidden="true"></span>
                     </div>
                     <div class="col-md-10 col-sm-10 col-xs-12">
@@ -71,8 +65,7 @@
                       <div class="ln_solid"></div>
                       <label>Chosen flowers:</label>
                         <div class="col-md-12 col-sm-9 col-xs-12 form-group has-feedback" > 
-                        <input type="text" class="form-control has-feedback-left" name="flowers" id="flowers" disabled="true" />
-                         
+                            <input type="text" class="form-control has-feedback-left" name="flowers" id="flowers" readonly="true" />              
                         <span class="fa fa-gift form-control-feedback left" aria-hidden="true"></span>
                   </div>
                        
@@ -93,9 +86,9 @@
                     <div class="ln_solid"></div>
                     <div class="form-group">
                         <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
-                            <button type="button" class="btn btn-danger"  tabindex="10">Cancel</button>
+                            <button id="cancel" type="button" class="btn btn-danger"  tabindex="10">Cancel</button>
                             <button class="btn btn-success" type="reset" tabindex="11">Reset Data</button>
-                            <button type="submit" class="btn btn-primary" tabindex="12">Add Bouqet</button>
+                            <button type="submit" class="btn btn-primary" tabindex="12">Add Bouquet</button>
                         </div>
                     </div>
 
@@ -107,3 +100,26 @@
 <!-- /page content -->
 
 <jsp:include page="../includes/footer.jsp" />
+
+<c:choose>
+    <c:when test="${param.add==true}">
+        <h3> <c:out value="${param.add}"/></h3>
+        <script>
+            new PNotify({title: 'Success',
+                text: 'Your Bouquet has been saved into the system',
+                type: 'success',
+                styling: 'bootstrap3'});
+        </script>
+    </c:when>
+         <c:when test="${param.add==false}">
+        <h3> <c:out value="${param.add}"/></h3>
+        <script>
+            new PNotify({
+                            title: 'Sorry',
+                            text: 'Your Bouquet has not been saved',
+                            type: 'error',
+                            styling: 'bootstrap3'
+                        });
+        </script>
+    </c:when>
+</c:choose>

@@ -41,7 +41,7 @@ public class CartServlet extends HttpServlet {
             product.setQuantity(50);
             product.setDescription("asdasd");
             product.setId(1);
-            cartService.addProduct(product);
+//            cartService.addProduct(product);
 
             product = new Product();
             product.setName("p2");
@@ -49,7 +49,7 @@ public class CartServlet extends HttpServlet {
             product.setQuantity(50);
             product.setDescription("asdasd");
             product.setId(2);
-            cartService.addProduct(product);
+//            cartService.addProduct(product);
         }
     }
 

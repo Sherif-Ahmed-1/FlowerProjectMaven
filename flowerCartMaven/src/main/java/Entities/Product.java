@@ -19,9 +19,8 @@ public class Product {
     private int quantity;
     private String description;
     private int rating;
-    
     private ArrayList<ImageEntity> images;
-    private ArrayList<Flower> flowers ;
+    private ArrayList<Flower> flowers;
 
 
     public ArrayList<Flower> getFlowers() {

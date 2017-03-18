@@ -1,6 +1,7 @@
 package Entities;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -49,6 +50,10 @@ public class Order {
     }
 
     public List<OrderDetails> getOrderDetails() {
+        if (orderDetails == null) {
+            orderDetails = new ArrayList<>();
+
+        }
         return orderDetails;
     }
 

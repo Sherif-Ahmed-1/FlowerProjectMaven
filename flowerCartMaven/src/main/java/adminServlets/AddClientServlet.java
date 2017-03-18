@@ -63,11 +63,11 @@ public class AddClientServlet extends HttpServlet {
             if (clientService.addClient(client)) {
                 PrintWriter out = response.getWriter();
                 out.println("Client has been added");
-                response.sendRedirect("/FlowersCart1/AdminView/ClientAddition.jsp");
+                response.sendRedirect("/FlowerCart/AdminView/ClientAddition.jsp");
             } else {
                 PrintWriter out = response.getWriter();
                 out.println("Client has not been saved");
-                response.sendRedirect("/FlowersCart1/AdminView/ClientAddition.jsp");
+                response.sendRedirect("/FlowerCart/AdminView/ClientAddition.jsp");
             }
             //************** EndMoamen **************/
         } catch (IllegalAccessException ex) {

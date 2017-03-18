@@ -51,6 +51,10 @@
 <script src="../assets/js/buttons.html5.min.js"></script>
 <script src="../assets/js/buttons.print.min.js"></script>
 
+<!-- PNotify -->
+<script src="../assets/js/pnotify.js"></script>
+<script src="../assets/js/pnotify.buttons.js"></script>
+
 
 <!-- bootstrap-daterangepicker -->
 <script src="../assets/js/moment.min.js"></script>
