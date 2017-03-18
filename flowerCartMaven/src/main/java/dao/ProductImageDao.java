@@ -37,7 +37,7 @@ public class ProductImageDao {
                 image.setId(rs.getInt(1));
                 image.setUrl(rs.getString(2));    
                 productImagesList.add(image);
-                System.out.println(image.toString());
+              //  System.out.println(image.toString());
             }
 
         } catch (SQLException ex) {

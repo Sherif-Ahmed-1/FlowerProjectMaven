@@ -41,6 +41,7 @@ public class LoginServlet extends HttpServlet {
             Client user = clientService.getUser(email);
             HttpSession session = request.getSession(true);
             session.setAttribute("LoggedIn", new Boolean("true"));
+            session.setAttribute("PasswordDiv", true);
             session.setAttribute("user", user);
             response.sendRedirect("index.jsp");
         } else {

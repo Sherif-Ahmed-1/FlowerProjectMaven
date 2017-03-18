@@ -84,7 +84,7 @@ public class FlowerDao {
                 flower.setCountry(rs.getString(3));
                 flower.setImage(fiDao.selectFlowerImagesByFlowerId(flower.getId()));
                 flowertList.add(flower);
-                System.out.println(flower.toString());
+            //    System.out.println(flower.toString());
             }
 
         } catch (SQLException ex) {
@@ -112,7 +112,7 @@ public class FlowerDao {
             flower.setId(rs.getInt(1));
             flower.setName(rs.getString(2));
             flower.setCountry(rs.getString(3));
-            System.out.println(flower.toString());
+         //   System.out.println(flower.toString());
             
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -166,7 +166,7 @@ public class FlowerDao {
                 flower.setCountry(rs.getString(3));
                 flower.setImage(fiDao.selectFlowerImagesByFlowerId(flower.getId()));
                 flowers.add(flower);
-                System.out.println(flowers.toString());
+          //      System.out.println(flowers.toString());
                
             }
         } catch (SQLException ex) {
