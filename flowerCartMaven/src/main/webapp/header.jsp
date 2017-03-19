@@ -54,7 +54,7 @@
                             </li>
                             <li><a href="contactus.jsp">Contact</a>
                             </li>
-                            <li><a href="#">Recently viewed</a>
+                            <li><a href="HighRatedBouquets.jsp">High Rated</a>
                             </li>
 
                         </ul>
@@ -220,7 +220,7 @@
                             </li>
                             <li><a href="contactus.jsp">Contact</a>
                             </li>
-                            <li><a href="#">Recently viewed</a>
+                            <li><a href="HighRatedBouquets.jsp">High Rated</a>
                             </li>
                             <li style="cursor: pointer;" onclick="clearCart()"><a >Log out</a>
                             </li>

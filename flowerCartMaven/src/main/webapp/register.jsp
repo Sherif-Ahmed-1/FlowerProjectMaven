@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <script src="js/registerPage.js" type="text/javascript"></script>
 
-<jsp:include page="header.jsp"></jsp:include>
+<%@include file="header.jsp" %>
     <div id="all">
 
         <div id="content">
@@ -23,14 +23,14 @@
                     </ul>
 
                 </div>
-            <jsp:include page="sideBar.jsp"></jsp:include>
+            <%@include file="sideBar.jsp" %>
                 <div class="col-md-9 center" >
                     <div class="box">
                         <h1>New account</h1>
 
                         <p class="lead">Not our registered customer yet?</p>
                         <p>With registration with us new world of fashion, fantastic discounts and much more opens to you! The whole process will not take you more than a minute!</p>
-                        <p class="text-muted">If you have any questions, please feel free to <a href="contact.html">contact us</a>, our customer service center is working for you 24/7.</p>
+                        <p class="text-muted">If you have any questions, please feel free to <a href="contactus.jsp">contact us</a>, our customer service center is working for you 24/7.</p>
 
                         <hr>
 
@@ -143,4 +143,4 @@
         
         --></div>
     <!-- /#content -->
-<jsp:include page="footer.jsp"></jsp:include>
+    <%@include file="footer.jsp" %>
