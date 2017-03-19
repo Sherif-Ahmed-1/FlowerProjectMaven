@@ -104,7 +104,7 @@
                                 </div>
                                 <div id="collapseTwo" class="panel-collapse collapse">
                                     <div class="panel-body">
-                                       It will die since it arrives you.
+                                       It will die once it arrives you.
                                     </div>
                                 </div>
                             </div>
@@ -125,7 +125,7 @@
                                 </div>
                                 <div id="collapseThree" class="panel-collapse collapse">
                                     <div class="panel-body">
-                                        By not enter our web site.
+                                        By not entering our web site.
                                     </div>
                                 </div>
                             </div>

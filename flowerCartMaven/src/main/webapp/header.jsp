@@ -210,7 +210,7 @@
         _________________________________________________________ -->
             <div id="top">
                 <div class="container">
-                    <div class="col-md-6 offer" data-animate="fadeInDown">
+                    <div class="col-md-6 " data-animate="fadeInDown">
                         <a href="#" class="btn btn-success btn-sm" data-animate-hover="shake">Smell ,  Admire and Meditate</a>
                     </div>
                     <input type="hidden" value="loggedin" id="isLoggedIn"/>
@@ -218,7 +218,7 @@
                         <ul class="menu">
                             <li><a href="Account.jsp"> ${sessionScope.user.fname} ${sessionScope.user.lname} </a>
                             </li>
-                            <li><a href="#">Contact</a>
+                            <li><a href="contactus.jsp">Contact</a>
                             </li>
                             <li><a href="#">Recently viewed</a>
                             </li>
