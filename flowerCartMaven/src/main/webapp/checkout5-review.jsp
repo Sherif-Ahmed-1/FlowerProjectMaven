@@ -40,37 +40,28 @@
                         <div class="content">
                             <br/>
                             <br/>
-
-                            <div class="row ">
-
-
+                            <div class="table-responsive" >
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th colspan="2">Product</th>
+                                            <th>Quantity</th>
+                                            <th>Unit price</th>
+                                            <th>Discount</th>
+                                            <th colspan="2">Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="orderReviewTable">
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th colspan="5">Total</th>
+                                            <th colspan="2"><div id="totalPrice"></div></th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
                             </div>
-
-
                         </div>
-                        <div class="row"></div>
-                        <div class="table-responsive" >
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th colspan="2">Product</th>
-                                        <th>Quantity</th>
-                                        <th>Unit price</th>
-                                        <th>Discount</th>
-                                        <th colspan="2">Total</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="orderReviewTable">
-                                </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <th colspan="5">Total</th>
-                                        <th colspan="2"><div id="totalPrice"></div></th>
-                                    </tr>
-                                </tfoot>
-                            </table>
-                        </div>
-
 
                         <div class="box-footer">
                             <!--                        <div class="pull-left">

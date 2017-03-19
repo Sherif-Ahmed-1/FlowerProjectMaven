@@ -16,6 +16,16 @@ public class Extra {
     private float price;
     private int quantity;
 
+    public ImageEntity getImage() {
+        return image;
+    }
+
+    public void setImage(ImageEntity image) {
+        this.image = image;
+    }
+    
+    private ImageEntity image;
+
     public int getID() {
         return ID;
     }

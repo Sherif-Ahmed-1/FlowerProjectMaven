@@ -7,6 +7,7 @@
 
 
 <%@include file="header.jsp" %>
+<jsp:include page="ExtrasServlet"></jsp:include>
 
  <div id="content">
             <div class="container">
@@ -20,7 +21,6 @@
                 </div>
 
                 <div class="col-md-9" id="checkout">
-
                     <div class="box">
                         <form method="post" action="checkout4-Offers.jsp">
                             <h1>Checkout</h1>
@@ -38,23 +38,49 @@
                             </ul>
 
                             <div class="content">
-                                <div class="row"></div>
-                                <div class="row"></div>
-                                <center>
-                                <div class="row center">
-                                    <div class="col-sm-1"></div>
-                                    <div class="col-sm-10">
-                                        <div class="form-group">
-                                            <label for="firstname">Say Somthing Nice To Write on the Bouquet : </label>
-                                            <br/>
-                                            <textarea  rows="10" type="text" class="form-control" id="firstname"></textarea>
-                                        </div>
-                                    </div>
-                                    
+                                 <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th >Extras</th>
+                                                <th>Name</th>
+                                                <th>Quantity</th>
+                                                <th>Unit price</th>
+                                                <th colspan="2">Total</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id='cartData'>
+                                        <c:forEach items="${requestScope.extras}" var="extra">
+                                                <tr>
+                                                <td >
+                                                    <a href="#" >
+                                                        <img src="${extra.image.url}" alt="Extra Image" class="img-container">
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    <a href="#"><c:out value="${extra.name}"/></a>
+                                                </td>
+                                                <td>
+                                                    <input type="number" value="0" min="0" max="${extra.quantity}" onchange="calcProductPrice(${extra.ID}, this)"  class="form-control">
+                                                </td>
+                                                <td><div id="price${extra.ID}"> <c:out value="${extra.price}.00"/></td>
+                                                <!--<td>$0.00</td>-->
+                                                <td><div id="ProducttotalPrice${extra.ID}" name="ProducttotalPrice"><c:out value="${extra.price}"/></div></td>
+                                                <td><a><div  id="test1" class="fa fa-trash-o"  onclick="remove(this,'ProducttotalPrice${extra.ID}')"  style="cursor: pointer;" ></div></a>
+                                                </td>
+                                            </tr>
+                                        </c:forEach>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th colspan="5">Total</th>
+                                                <th colspan="2"><div id="totalPrice"></div></th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+
                                 </div>
-                                </center>
-                                <div class="row"></div>
-                                <div class="row"></div>
                                
                             </div>
 

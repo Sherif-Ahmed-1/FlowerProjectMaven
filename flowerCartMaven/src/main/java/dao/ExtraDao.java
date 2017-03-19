@@ -21,6 +21,7 @@ public class ExtraDao {
     Extra oneExtra;
     Connection con;
     ArrayList<Extra> extratList;
+    ExtraImagDao iDao = new ExtraImagDao();
 
     public boolean insertExtra(Extra extra)  {
        Connection con = new ConnectionManager().getConnection();
@@ -78,6 +79,7 @@ public class ExtraDao {
                 extra.setName(rs.getString(2));
                 extra.setPrice(rs.getFloat(3));
                 extra.setQuantity(rs.getInt(4));
+                extra.setImage(iDao.selectExtraImagesByExtraId(extra.getID()));
                 extratList.add(extra);
                 System.out.println(extra.toString());
             }
