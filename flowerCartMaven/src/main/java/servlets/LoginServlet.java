@@ -12,6 +12,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,8 +25,6 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "LoginServlet", urlPatterns = {"/LoginServlet"})
 public class LoginServlet extends HttpServlet {
 
-
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -35,6 +34,11 @@ public class LoginServlet extends HttpServlet {
 
         String email = request.getParameter("inputEmail");
         String password = request.getParameter("inputPassword");
+        String remember = request.getParameter("remember");
+
+        Cookie rememberEmail = new Cookie("rememberEmail", "");
+        Cookie rememberPassword = new Cookie("rememberPassword", "");
+        Cookie checked = new Cookie("checked", "");
         // check against database
         ClientService clientService = new ClientService();
         if (clientService.Login(email, password)) {
@@ -43,6 +47,29 @@ public class LoginServlet extends HttpServlet {
             session.setAttribute("LoggedIn", new Boolean("true"));
             session.setAttribute("PasswordDiv", true);
             session.setAttribute("user", user);
+            if (remember != null) {
+                rememberEmail = new Cookie("rememberEmail", email);
+                rememberEmail.setMaxAge(24 * 60 * 60 * 30);
+                response.addCookie(rememberEmail);
+                rememberPassword = new Cookie("rememberPassword", password);
+                rememberPassword.setMaxAge(24 * 60 * 60 * 30);
+                response.addCookie(rememberPassword);
+                checked = new Cookie("checked", "true");
+                checked.setMaxAge(24 * 60 * 60 * 30);
+                response.addCookie(checked);
+            } else {
+                rememberEmail = new Cookie("rememberEmail", "");
+
+                response.addCookie(rememberEmail);
+                rememberPassword = new Cookie("rememberPassword", "");
+
+                response.addCookie(rememberPassword);
+                checked = new Cookie("checked", "");
+
+                response.addCookie(checked);
+                rememberPassword.setMaxAge(0);
+                rememberEmail.setMaxAge(0);
+            }
             response.sendRedirect("index.jsp");
         } else {
             HttpSession session = request.getSession(true);

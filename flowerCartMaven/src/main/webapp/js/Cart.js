@@ -210,23 +210,34 @@ $(document).ready(function () {
 setInterval(function () {
     syncCartWithServer();
 }, 2000);
-function checkAvaliableQuantity(id,quantity) {
+function checkAvaliableQuantity(id, quantity) {
 
     jsondata = {productId: id};
     $.ajax({url: "CheckAvailableQuantity?date=" + new Date().toString(), type: "GET", contentType: 'application/json', data: jsondata
         , success: function (data, textStatus, jqXHR) {
             console.log(quantity);
             console.log(quantity.value);
-            if(parseInt(data)>= quantity.value)
+            if (parseInt(data) >= quantity.value)
             {
-                    calcProductPrice(id, quantity)
-                    $("#invalidQuantity").html("");
-            }
-            else
+                calcProductPrice(id, quantity)
+                $("#invalidQuantity").html("");
+            } else
             {
-             $("#invalidQuantity").html("sorry the max quantity is "+data);
-             quantity.value=parseInt(data);
+                $("#invalidQuantity").html("sorry the max quantity is " + data);
+                quantity.value = parseInt(data);
             }
         }});
 
+}
+
+function rememberMe() {
+    if ($.cookie("rememberEmail") != "" && $.cookie("rememberPassword")) {
+        $("#inputEmail").val($.cookie("rememberEmail"));
+        $("#inputPassword").val($.cookie("rememberPassword"));
+        $("#remember").prop('checked', true);
+    } else {
+        $("#inputEmail").val("");
+        $("#inputPassword").val("");
+        $("#remember").prop('checked', false);
+    }
 }
