@@ -117,7 +117,7 @@ function addToCart(id)
 //        var quantity = parseInt(JSON.parse(localStorage.getItem(id.toString())));
 //        localStorage.setItem(id.toString(), JSON.stringify(quantity + 1));
 //    }
-checkoutValidate();
+    checkoutValidate();
 }
 function getProductsDetails()
 {
@@ -130,7 +130,7 @@ function getProductsDetails()
                 var row = '<tr><td><a href="#">' + '<img src="' + data[i].imageUrl + '" alt="Black Blouse Armani"></a></td>\n\
                             <td><a href="#">' + data[i].productName + '</a></td><td> <input type="number" value="' + localStorage.getItem(data[i].id.toString()) + '" min="1" \n\onchange="checkAvaliableQuantity(' + data[i].id + ', this)"class="form-control"></td><td><div id="price'
                         + data[i].id + '">' + data[i].unitPrice + '</td><td>$0.00</td><td><div id="ProducttotalPrice' +
-                        data[i].id + '" name="ProducttotalPrice">' + parseInt(localStorage.getItem(data[i].id.toString()))*parseInt( data[i].unitPrice) + '</td><td><a><div  id="test1" class="fa fa-trash-o"  onclick="remove(this,ProducttotalPrice' + data[i].id + ',' + data[i].id + ')"  style="cursor: pointer;" ></div></a></td></tr>';
+                        data[i].id + '" name="ProducttotalPrice">' + parseInt(localStorage.getItem(data[i].id.toString())) * parseInt(data[i].unitPrice) + '</td><td><a><div  id="test1" class="fa fa-trash-o"  onclick="remove(this,ProducttotalPrice' + data[i].id + ',' + data[i].id + ')"  style="cursor: pointer;" ></div></a></td></tr>';
                 $("#cartData").append(row);
             }
             calctotalprice();
@@ -193,7 +193,7 @@ function clearCart()
             $.removeCookie("isloggedin");
             location.reload();
         }});
-checkoutValidate();
+    checkoutValidate();
 }
 function basketOnLoad()
 {
@@ -234,4 +234,15 @@ function  checkoutValidate()
         $("#checkoutButton").prop("disabled", false);
     else
         $("#checkoutButton").prop("disabled", true);
+}
+function rememberMe() {
+    if ($.cookie("rememberEmail") != "" && $.cookie("rememberPassword")) {
+        $("#inputEmail").val($.cookie("rememberEmail"));
+        $("#inputPassword").val($.cookie("rememberPassword"));
+        $("#remember").prop('checked', true);
+    } else {
+        $("#inputEmail").val("");
+        $("#inputPassword").val("");
+        $("#remember").prop('checked', false);
+    }
 }
