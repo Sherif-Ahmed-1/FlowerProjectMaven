@@ -102,6 +102,7 @@ public class ExtraDao {
             extra.setName(rs.getString(2));
             extra.setPrice(rs.getFloat(3));
             extra.setQuantity(rs.getInt(4));
+            extra.setImage(iDao.selectExtraImagesByExtraId(extra.getID()));
             System.out.println(extra.toString());
             con.close();
         } catch (SQLException ex) {
