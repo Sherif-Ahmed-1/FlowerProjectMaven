@@ -70,6 +70,23 @@
 
                 <form action="EditServlet" method="post">
                     <h3>Personal details</h3>
+                    
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="company">Email</label>
+                                <input type="email" class="form-control" id="emaill"  name="mail" value="${sessionScope.user.mail}" required>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="street">Date Of Birth </label>
+                                <input type="date"  name="birthday" min="1980-12-31" max="2017-01-02" class="form-control" id="birthday" value="${sessionScope.user.birthday}" required>
+                            </div>
+                        </div>
+                    </div>
+                   <!-- /.row -->
+                            
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group">
@@ -84,22 +101,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- /.row -->
-
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label for="company">Email</label>
-                                <input type="email" class="form-control" id="company"  name="mail" value="${sessionScope.user.mail}" required>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label for="street">Date Of Birth </label>
-                                <input type="date"  name="birthday" min="1980-12-31" max="2017-01-02" class="form-control" id="street" value="${sessionScope.user.birthday}" required>
-                            </div>
-                        </div>
-                    </div>
+                    
                     <!-- /.row -->
 
                     <h3>Contact Data</h3>

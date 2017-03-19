@@ -80,7 +80,7 @@
                                             <li><a href="ListClient.jsp">List Users</a></li>
                                         </ul>
                                     </li>
-                                    <li><a><i class="fa fa-bars"></i>Category<span class="fa fa-chevron-down"></span></a>
+                                    <li><a><i class="fa fa-check-square-o"></i>Category<span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
                                             <li><a href="CategoryAddition.jsp">Add Category</a></li>
                                             <li><a href="CategoryDetails.jsp">Category Details</a></li>
@@ -95,7 +95,7 @@
 
                         <!-- /menu footer buttons -->
                         <div class="sidebar-footer">
-                            <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html"  style="width: 100%">
+                            <a data-toggle="tooltip" data-placement="top" title="Logout" href="Login.jsp"  style="width: 100%">
                                 <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
                             </a>
                         </div>
@@ -119,7 +119,7 @@
                                     </a>
                                     <ul class="dropdown-menu dropdown-usermenu pull-right">
 
-                                        <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                                        <li><a href="Login.jsp"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
                                     </ul>
                                 </li>
 

@@ -213,7 +213,7 @@ public class ProductDoa {
         Connection con = new ConnectionManager().getConnection();
         boolean flag = false;
         try {
-            PreparedStatement ps = con.prepareStatement("DELETE FROM PRODUCT WHERE  id = ?");
+            PreparedStatement ps = con.prepareStatement("DELETE FROM PRODUCT WHERE  id =?");
             ps.setInt(1, id);
 
             ps.executeUpdate();

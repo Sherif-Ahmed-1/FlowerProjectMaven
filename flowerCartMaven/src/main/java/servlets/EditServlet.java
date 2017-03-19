@@ -9,12 +9,16 @@ import Entities.Client;
 import Facade.ClientService;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.lang.reflect.InvocationTargetException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.apache.commons.beanutils.BeanUtils;
 
 /**
  *
@@ -62,6 +66,34 @@ public class EditServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        try {
+            clientService = new ClientService();
+            Client clientUpdated = new Client();
+            BeanUtils.populate(clientUpdated, request.getParameterMap());
+          // interests 
+           System.out.println("Client Edittt : "  + clientUpdated);
+            Client clientToSave = clientService.getUser(clientUpdated.getMail());
+            clientUpdated.setId(clientToSave.getId());
+            if(newpassword != null){
+                 clientUpdated.setPassword(newpassword);
+            } else {
+                clientUpdated.setPassword(clientToSave.getPassword());
+            }
+            
+            if (clientService.updateUser(clientUpdated)){
+            response.sendRedirect("Account.jsp");
+            request.getSession().setAttribute("user", clientUpdated);
+
+            } else {
+             response.sendRedirect("EditAccount.jsp");
+            }
+            
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(EditServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InvocationTargetException ex) {
+            Logger.getLogger(EditServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
 
 }

@@ -66,12 +66,12 @@ public class ProductService {
     }
 
     public boolean updateProduct(Product product, List<String> imgPaths) {
-         ProductDoa productDoa = new ProductDoa();
+        ProductDoa productDoa = new ProductDoa();
         ProductFlowerDao productFlowerDao = new ProductFlowerDao();
         FlowerDao flowerDao = new FlowerDao();
         if (productDoa.updateProduct(product)) {
             int prodctID = productDoa.selectProductId(product.getName());
-             productFlowerDao.deleteProductFlowers(prodctID);
+            productFlowerDao.deleteProductFlowers(prodctID);
             for (Flower flower : product.getFlowers()) {
                 ProductFlower productFlower = new ProductFlower();
                 productFlower.setProductID(prodctID);

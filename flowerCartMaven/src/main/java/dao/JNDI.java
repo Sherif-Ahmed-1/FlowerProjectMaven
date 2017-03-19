@@ -19,23 +19,24 @@ import javax.sql.DataSource;
  * @author Sheko
  */
 public class JNDI {
-    
+
     DataSource dataSource;
+
     private JNDI() {
-            try { 
-            Context context=(Context) new InitialContext().lookup("java:comp/env");
-             dataSource=(DataSource) context.lookup("jdbc/TestDB"); 
-        
+        try {
+            Context context = (Context) new InitialContext().lookup("java:comp/env");
+            dataSource = (DataSource) context.lookup("jdbc/TestDB");
+
         } catch (NamingException ex) {
             Logger.getLogger(ConnectionManager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public static JNDI getInstance() {
         return JNDIHolder.INSTANCE;
     }
-    public Connection getDataSource()
-    {
+
+    public Connection getDataSource() {
         try {
             return dataSource.getConnection();
         } catch (SQLException ex) {
@@ -43,6 +44,7 @@ public class JNDI {
         }
         return null;
     }
+
     private static class JNDIHolder {
 
         private static final JNDI INSTANCE = new JNDI();

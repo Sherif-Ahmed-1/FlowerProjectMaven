@@ -76,15 +76,15 @@ public class CategoryDao {
         return categoryById;
     }
 
-    public int selectCategoryID (String name) {
-        int id=-1;
+    public int selectCategoryID(String name) {
+        int id = -1;
         Connection con = new ConnectionManager().getConnection();
         try {
             PreparedStatement ps = con.prepareStatement("select id from category where name=?");
             ps.setString(1, name);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                id=rs.getInt("ID");
+                id = rs.getInt("ID");
             }
 
         } catch (SQLException ex) {
@@ -172,6 +172,28 @@ public class CategoryDao {
         try {
             PreparedStatement ps = con.prepareStatement("delete from category where id=?");
             ps.setInt(1, category.getId());
+            int num = ps.executeUpdate();
+            if (num != 0) {
+                flag = true;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CategoryDao.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CategoryDao.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return flag;
+    }
+
+    public boolean deleteCategoryById(int id) {
+        Connection con = new ConnectionManager().getConnection();
+        boolean flag = false;
+        try {
+            PreparedStatement ps = con.prepareStatement("delete from category where id=?");
+            ps.setInt(1, id);
             int num = ps.executeUpdate();
             if (num != 0) {
                 flag = true;

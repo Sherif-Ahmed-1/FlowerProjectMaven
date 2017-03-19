@@ -89,7 +89,8 @@ public class AddProductServlet extends HttpServlet {
                     paramaters.put(name, value);
 
                 } else // processUploadedFile(item);
-                 if (item.getSize() != 0) {
+                {
+                    if (item.getSize() != 0) {
                         String itemName = item.getName();
                         Random generator = new Random();
                         int r = Math.abs(generator.nextInt());
@@ -119,11 +120,11 @@ public class AddProductServlet extends HttpServlet {
                             Logger.getLogger(AddProductServlet.class.getName()).log(Level.SEVERE, null, ex);
                         }
                     }
+                }
             }
         } catch (IOException | FileUploadException ex) {
             Logger.getLogger(AddProductServlet.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-//            out.close();
         }
 
     }
@@ -132,16 +133,20 @@ public class AddProductServlet extends HttpServlet {
 
         try {
             Product product = new Product();
-            String[] flowers = paramaters.get("flowers").split(",");
-            ArrayList<String> listOfFlowers = new ArrayList<>(Arrays.asList(flowers));
             Flower flower = null;
             ArrayList<Flower> listFlowers = new ArrayList<>();
+            ArrayList<String> listOfFlowers = new ArrayList<>();
+            for (Map.Entry<String, String> entry : paramaters.entrySet()) {
+                String key = entry.getKey();
+                if (key.contains("flower")) {
+                    listOfFlowers.add(entry.getValue());
+                }
+            }
             for (String listFlower : listOfFlowers) {
                 flower = new Flower();
                 flower.setName(listFlower);
                 listFlowers.add(flower);
             }
-            paramaters.remove("flowers");
             BeanUtils.populate(product, paramaters);
             product.setFlowers(listFlowers);
             ProductService productService = new ProductService();
