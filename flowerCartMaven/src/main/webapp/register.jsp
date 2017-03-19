@@ -37,23 +37,23 @@
                         <form action="RegisterServlet" method="post">
                             <div class="form-group">
                                 <label for="name">First Name<sup>*</sup></label>
-                                <input type="text" class="form-control" id="name" name="fname" required>
+                                <input type="text" class="form-control" id="name" name="fname" maxlength="50" required>
                             </div>
                             <div class="form-group">
                                 <label for="name">Last Name<sup>*</sup></label>
-                                <input type="text" class="form-control" id="name" name="lname" required>
+                                <input type="text" class="form-control" id="name" name="lname" maxlength="50" required>
                             </div>
                             <div class="form-group">
                                 <label for="email">Email<sup>*</sup></label>
-                                <input type="email" class="form-control" id="email"  name="mail" required>
+                                <input type="email" class="form-control" id="email"  name="mail" maxlength="100" required>
                             </div>
                             <div class="form-group">
                                 <label for="password">Password<sup>*</sup></label>
-                                <input type="password" class="form-control" id="password" name="password" onblur="setConfirmPassword()" required>
+                                <input type="password" class="form-control" id="password" name="password" maxlength="50" onblur="setConfirmPassword()" required>
                             </div>
                             <div class="form-group">
                                 <label for="password">confirm Password<sup>*</sup></label>
-                                <input type="password" class="form-control" id="Confirmpassword" onblur="viewpassword()" required>
+                                <input type="password" class="form-control" id="Confirmpassword" maxlength="50" onblur="viewpassword()" required>
                             </div>
                             <div class="form-group">
                                 <label  for="birthday">Date of Birth <sup>*</sup></label>
@@ -65,15 +65,15 @@
                         <h3>Your Contact Details</h3>
                         <div class="form-group">
                             <label  for="job">Job <sup>*</sup></label>
-                            <input type="text" name="job" placeholder="Job"class="form-control"  required>
+                            <input type="text" name="job" placeholder="Job"class="form-control" maxlength="50"  required>
                         </div>
                         <div class="form-group">
                             <label class="control-label" for="phone">Phone <sup>*</sup></label>
-                            <input type="tel" name="phone" placeholder="Phone" class="form-control"  pattern="^01[0-2]\d{8}$" required>
+                            <input type="tel" name="phone" placeholder="Phone" class="form-control"  maxlength="50" pattern="^01[0-2]\d{8}$" required>
                         </div>
                         <div class="form-group">
                             <label class="control-label" for="address">Address <sup>*</sup></label>
-                            <input type="text" name="address" placeholder="Address" class="form-control"  required>
+                            <input type="text" name="address" placeholder="Address" class="form-control" maxlength="50"  required>
                         </div>
                     </div>
 
@@ -83,9 +83,9 @@
                     <div class="well" style="background-color: white;">
                         <h3>Your Billing Data</h3>
                         <div class="form-group">
-                            <label class="control-label" for="cridetlimit">Credit Limit <sup>*</sup></label>
+                            <label class="control-label"  for="cridetlimit">Credit Limit <sup>*</sup></label>
 
-                            <input type="number" name="cridetlimit" class="form-control" placeholder="Credit Limit" required>
+                            <input type="number" name="cridetlimit" max="9999999999999999999999999999999999999999" class="form-control" placeholder="Credit Limit" required>
                         </div>
                     </div>
                     <div class="well" style="background-color: white;">
@@ -93,10 +93,10 @@
                         <div class="control-group">
                             <label class="control-label" for="inputCreditLimit">Interest </label>
                             <div class="controls">
-                                <input type="text" name="interestsList" placeholder="Interest Name">
-                                <input type="text" name="interestsList" placeholder="Interest Name">
-                                <input type="text" name="interestsList" placeholder="Interest Name">
-                                <input type="text" name="interestsList" placeholder="Interest Name">
+                                <input type="text" maxlength="50" name="interestsList" placeholder="Interest Name">
+                                <input type="text" maxlength="50" name="interestsList" placeholder="Interest Name">
+                                <input type="text" maxlength="50" name="interestsList" placeholder="Interest Name">
+                                <input type="text" maxlength="50" name="interestsList" placeholder="Interest Name">
                             </div>
                         </div>
                     </div>
