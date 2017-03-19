@@ -43,7 +43,7 @@
         _________________________________________________________ -->
             <div id="top">
                 <div class="container">
-                    <div class="col-md-6 offer" data-animate="fadeInDown">
+                    <div class="col-md-6 " data-animate="fadeInDown">
                         <a href="#" class="btn btn-success btn-sm" data-animate-hover="shake">Smell, Admire and Meditate</a>  
                     </div>
                     <div class="col-md-6" data-animate="fadeInDown">
@@ -52,7 +52,7 @@
                             </li>
                             <li><a href="register.jsp">Register</a>
                             </li>
-                            <li><a href="contact.html">Contact</a>
+                            <li><a href="contactus.jsp">Contact</a>
                             </li>
                             <li><a href="#">Recently viewed</a>
                             </li>

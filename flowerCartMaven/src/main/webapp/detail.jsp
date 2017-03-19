@@ -29,16 +29,16 @@
                             <img src="${image.url}" data-imagezoom="true"  alt="" class="img-responsive">
                         </div>
 
-                        <div class="ribbon sale">
+<!--                        <div class="ribbon sale">
                             <div class="theribbon">SALE</div>
                             <div class="ribbon-background"></div>
                         </div>
-                        <!-- /.ribbon -->
+                         /.ribbon 
 
                         <div class="ribbon new">
                             <div class="theribbon">NEW</div>
                             <div class="ribbon-background"></div>
-                        </div>
+                        </div>-->
                         <!-- /.ribbon -->
 
                     </div>
