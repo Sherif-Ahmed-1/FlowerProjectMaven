@@ -7,7 +7,7 @@
     <link href="../assets/css/custom.min.css" rel="stylesheet">
     <!-- page content -->
     <div class="right_col" >
-        
+
         <div class="col-md-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
@@ -62,13 +62,11 @@
                         </optgroup>
                     </div>
                     <div class="col-md-5 col-sm-9 col-xs-12 form-group" >
-                      <div class="ln_solid"></div>
-                      <label>Chosen flowers:</label>
-                        <div class="col-md-12 col-sm-9 col-xs-12 form-group has-feedback" > 
-                            <input type="text" class="form-control has-feedback-left" name="flowers" id="flowers" readonly="true" />              
-                        <span class="fa fa-gift form-control-feedback left" aria-hidden="true"></span>
-                  </div>
-                       
+                        <div class="ln_solid"></div>
+                        <label>Chosen Flowers:</label>
+                        <div id="chosenDiv">
+
+                        </div>
                     </div>
                     <br>
                     <br>
@@ -111,15 +109,15 @@
                 styling: 'bootstrap3'});
         </script>
     </c:when>
-         <c:when test="${param.add==false}">
+    <c:when test="${param.add==false}">
         <h3> <c:out value="${param.add}"/></h3>
         <script>
             new PNotify({
-                            title: 'Sorry',
-                            text: 'Your Bouquet has not been saved',
-                            type: 'error',
-                            styling: 'bootstrap3'
-                        });
+                title: 'Sorry',
+                text: 'Your Bouquet has not been saved',
+                type: 'error',
+                styling: 'bootstrap3'
+            });
         </script>
     </c:when>
 </c:choose>

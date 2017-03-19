@@ -13,19 +13,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import Entities.Product;
 import adminFacade.ProductService;
-import java.io.File;
-import java.io.PrintWriter;
-import java.lang.reflect.Array;
-import java.lang.reflect.InvocationTargetException;
 import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import javax.servlet.annotation.MultipartConfig;
-import org.apache.commons.beanutils.BeanUtils;
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.FileUploadException;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 /**
  *
@@ -67,13 +56,18 @@ public class UpdateProductServlet extends HttpServlet {
 
     List<String> imgPaths = new ArrayList<>();
 
-    private void updateProduct(HttpServletRequest request, HttpServletResponse response) throws IOException, IOException {
+    private void updateProduct(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         Product product = new Product();
-        String[] flowers = request.getParameter("flowers").split(",");
-        ArrayList<String> listOfFlowers = new ArrayList<>(Arrays.asList(flowers));
-        Flower flower = null;
+         ArrayList<String> listOfFlowers = new ArrayList<>();
+            for (Map.Entry<String, String[]> entry : request.getParameterMap().entrySet()) {
+                String key = entry.getKey();
+                if (key.contains("flower")) {
+                    listOfFlowers.add(entry.getValue()[0]);
+                }
+            }
         ArrayList<Flower> listFlowers = new ArrayList<>();
+        Flower flower;
         for (String listFlower : listOfFlowers) {
             flower = new Flower();
             if (!listFlower.equals("")) {
@@ -93,7 +87,7 @@ public class UpdateProductServlet extends HttpServlet {
 
             try {
 
-                response.sendRedirect("/FlowersCart1/AdminView/ProductDetails.jsp");
+                response.sendRedirect("/FlowerCart/AdminView/ProductDetails.jsp");
 
             } catch (Exception ex) {
                 Logger.getLogger(UpdateProductServlet.class.getName()).log(Level.SEVERE, null, ex);
@@ -101,7 +95,7 @@ public class UpdateProductServlet extends HttpServlet {
             }
         } else {
             try {
-                response.sendRedirect("/FlowersCart1/AdminView/ProductDetails.jsp");
+                response.sendRedirect("/FlowerCart/AdminView/ProductDetails.jsp");
 
             } catch (Exception ex) {
                 Logger.getLogger(UpdateProductServlet.class

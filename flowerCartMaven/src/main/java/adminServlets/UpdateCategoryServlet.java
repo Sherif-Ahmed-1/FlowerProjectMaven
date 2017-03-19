@@ -57,33 +57,31 @@ public class UpdateCategoryServlet extends HttpServlet {
     }
 
     private void updateCategory(HttpServletRequest request, HttpServletResponse response) throws IOException, IOException {
+        Map<String, String[]> parameterMap = request.getParameterMap();
         Category category = new Category();
-        String[] products = request.getParameter("products").split(",");
-        ArrayList<String> listOfProdcuts = new ArrayList<>(Arrays.asList(products));
-        Product product = null;
+        String[] listOfProdcuts = parameterMap.get("bouqet");
         ArrayList<Product> listProdcuts = new ArrayList<>();
+        Product product;
         for (String p : listOfProdcuts) {
             product = new Product();
-            if (!p.equals("")) {
-                product.setName(p);
-                listProdcuts.add(product);
-            }
+            product.setName(p);
+            listProdcuts.add(product);
         }
-        category.setId(Integer.parseInt(request.getParameter("id")));
-        category.setName(request.getParameter("name"));
+        category.setId(Integer.parseInt(parameterMap.get("id")[0]));
+        category.setName(parameterMap.get("name")[0]);
         category.setProductList(listProdcuts);
         CategoryService categoryService = new CategoryService();
         if (categoryService.updateCategory(category)) {
 
             try {
-                response.sendRedirect("/FlowersCart1/AdminView/CategoryDetails.jsp");
+                response.sendRedirect("/FlowerCart/AdminView/CategoryDetails.jsp");
             } catch (IOException ex) {
                 Logger.getLogger(AddCategoryServlet.class.getName()).log(Level.SEVERE, null, ex);
             } finally {
             }
         } else {
             try {
-                response.sendRedirect("/FlowersCart1/AdminView/CategoryDetails.jsp");
+                response.sendRedirect("/FlowerCart/AdminView/CategoryDetails.jsp");
             } catch (IOException ex) {
                 Logger.getLogger(AddCategoryServlet.class.getName()).log(Level.SEVERE, null, ex);
             }

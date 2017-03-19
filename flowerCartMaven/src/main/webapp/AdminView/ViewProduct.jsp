@@ -5,7 +5,7 @@
 <jsp:include page="../ListFlowerServlet?update=true&ProductID=${param.ID}"></jsp:include>
     <!-- page content -->
     <div class="right_col" >
-        
+
         <div class="col-md-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
@@ -21,7 +21,7 @@
 
                     <br />
                     <form class="form-horizontal form-label-left input_mask" method="post" action="${pageContext.request.contextPath}/UpdateProductServlet">
-    <div class="col-md-10 col-sm-6 col-xs-12 form-group has-feedback" hidden="hidden">
+                    <div class="col-md-10 col-sm-6 col-xs-12 form-group has-feedback" hidden="hidden">
                         <input type="text" class="form-control has-feedback-left" name="id" placeholder="Bouquet Name" required="true" value="${product.id}" hidden="true" tabindex="0">
                         <span class="fa fa-gift form-control-feedback left" aria-hidden="true"></span>
                     </div>
@@ -32,10 +32,10 @@
                     <div class="col-md-2 col-sm-12 col-xs-12 form-group has-feedback" style="position: relative; float: right; cursor: pointer;">
 
                         <img id="pro_img" src="<c:out value="..\\"></c:out>${product.images.get(0).url}" width="150" height="140" alt="Your photo" tabindex="8">
-                        <input type="file" name="file" id="upload_img" multiple="true" onchange="viewImage(this)" tabindex="8">
-                    </div>
-                    <div class="col-md-3 col-sm-12 col-xs-12 form-group has-feedback">
-                        <input type="number" class="form-control" name="price" value="${product.price}" placeholder="Price" required="true" tabindex="2">
+                            <input type="file" name="file" id="upload_img" multiple="true" onchange="viewImage(this)" tabindex="8">
+                        </div>
+                        <div class="col-md-3 col-sm-12 col-xs-12 form-group has-feedback">
+                            <input type="number" class="form-control" name="price" value="${product.price}" placeholder="Price" required="true" tabindex="2">
                         <span class="fa fa-money form-control-feedback right" aria-hidden="true"></span>
                     </div>
                     <div class="col-md-3 col-sm-12 col-xs-12 form-group has-feedback">
@@ -55,21 +55,24 @@
                         <select class="select2_group form-control" name="flowerObtained" tabindex="6" onchange="populateFlowers()">
                             <option value="first" disabled="disabled" selected="selected">Select Flower</option>
                             <optgroup label="Flowers">
-                            <c:forEach var="flower" items="${flowers}">
-                                <option> <c:out value="${flower.name}"></c:out></option>
-                            </c:forEach>
+                                <c:forEach var="flower" items="${flowers}">
+                                    <option> <c:out value="${flower.name}"></c:out></option>
+                                </c:forEach>
 
                         </select>
                         </optgroup>
                     </div>
+
                     <div class="col-md-5 col-sm-9 col-xs-12 form-group" >
                         <div class="ln_solid"></div>
                         <label>Chosen flowers:</label>
-                        <div class="col-md-12 col-sm-9 col-xs-12 form-group has-feedback" > 
-                        <input type="text" class="form-control has-feedback-left" name="flowers" id="flowers" readonly="true" value="<c:forEach var="flower" items="${product.flowers}"><c:out value="${flower.name}"></c:out><c:out value=","></c:out></c:forEach>" />              
-                            <span class="fa fa-gift form-control-feedback left" aria-hidden="true"></span>
+                        <div id="chosenDiv">
+                            <c:forEach var="flower" items="${product.flowers}">
+                                <div class="alert alert-success alert-dismissible fade in" id="parent0" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="removeOption();"><span aria-hidden="true">x</span></button>
+                                    <input id="chosenItem" name="bouqet" type="text" value="${flower.name}" style="background: transparent; border: none;"></div>
+                                </c:forEach>
                         </div>
-
                     </div>
                     <br>
                     <br>
