@@ -15,11 +15,12 @@
         <meta name="keywords" content="">
         <link href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,300,100' rel='stylesheet' type='text/css'>
         <!-- styles -->
-        <link href="css/font-awesome.css" rel="stylesheet">
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/animate.min.css" rel="stylesheet">
-        <link href="css/owl.carousel.css" rel="stylesheet">
-        <link href="css/owl.theme.css" rel="stylesheet">
+        <link href="css/font-awesome.css" rel="stylesheet"/>
+        <link href="css/bootstrap.min.css" rel="stylesheet"/>
+        <link href="css/animate.min.css" rel="stylesheet"/>
+        <link href="css/owl.carousel.css" rel="stylesheet"/>
+        <link href="css/owl.theme.css" rel="stylesheet"/>
+        <link href="css/offers.css" rel="stylesheet"/>
         <!-- theme stylesheet -->
         <link href="css/style.default.css" rel="stylesheet" id="theme-stylesheet">
         <!-- your stylesheet with modifications -->
@@ -47,7 +48,7 @@
                     </div>
                     <div class="col-md-6" data-animate="fadeInDown">
                         <ul class="menu">
-                            <li><a href="#" data-toggle="modal" data-target="#login-modal">Login</a>
+                            <li><a href="#" data-toggle="modal" data-target="#login-modal" onclick="rememberMe()">Login</a>
                             </li>
                             <li><a href="register.jsp">Register</a>
                             </li>
@@ -70,14 +71,14 @@
                             <div class="modal-body">
                                 <form  method="post" action="LoginServlet">
                                     <div class="form-group">
-                                        <input type="email" name="inputEmail" class="form-control" id="email-modal" placeholder="email">
+                                        <input type="email" name="inputEmail" id="inputEmail" class="form-control" id="email-modal" placeholder="email">
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" name="inputPassword" class="form-control" id="password-modal" placeholder="password">
+                                        <input type="password" name="inputPassword" id="inputPassword" class="form-control" id="password-modal" placeholder="password">
                                     </div>
-
+                                    <label class="checkbox-inline"><input type="checkbox" id="remember" name="remember" value="remember">Remember Me !</label>
                                     <p class="text-center">
-                                        <button type="submit" class="btn btn-primary"><i class="fa fa-sign-in"></i> Log in</button>
+                                        <button type="submit" class="btn btn-primary" ><i class="fa fa-sign-in"></i> Log in</button>
                                     </p>
 
                                 </form>
@@ -237,7 +238,7 @@
             <div class="container">
                 <div class="navbar-header">
 
-                    
+
                     <a class="navbar-brand home" href="index.jsp" data-animate-hover="bounce">
                         <img src="img/logo.png" alt="Obaju logo" class="hidden-xs">
                         <img src="img/logo-small.png" alt="Obaju logo" class="visible-xs"><span class="sr-only">Obaju - go to homepage</span>
@@ -264,29 +265,29 @@
                         <li><a href="index.jsp">Home</a>
                         </li>
 
-                            <li><a href="AllFlowers.jsp">Flowers</a>
-                            </li>
+                        <li><a href="AllFlowers.jsp">Flowers</a>
+                        </li>
 
                         <li><a href="AllBouquets.jsp">Bouquets</a>
                         </li>
 
-                            <li class="dropdown yamm-fw">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">Categories <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <div class="yamm-content">
-                                            <div class="row">
-                                                <div class="col-sm-4"></div>
-                                                <div class="col-sm-4">
-                                                    <ul>
-                                                        <c:forEach items="${requestScope.categories}" var="category">
-                                                            <li><a href="categoryBouquets?c=${category.id}&n=${category.name}">${category.name}</a>
-                                                            </li>
-                                                        </c:forEach>
-                                                    </ul>
-                                                </div>
+                        <li class="dropdown yamm-fw">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">Categories <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <div class="yamm-content">
+                                        <div class="row">
+                                            <div class="col-sm-4"></div>
+                                            <div class="col-sm-4">
+                                                <ul>
+                                                    <c:forEach items="${requestScope.categories}" var="category">
+                                                        <li><a href="categoryBouquets?c=${category.id}&n=${category.name}">${category.name}</a>
+                                                        </li>
+                                                    </c:forEach>
+                                                </ul>
                                             </div>
                                         </div>
+                                    </div>
                                     </div>
                                     <!-- /.yamm-content -->
                                 </li>
@@ -294,26 +295,26 @@
                         </li>
                     </ul>
 
-               
-                <!--/.nav-collapse -->
 
-                <div class="navbar-buttons">
-
-                    <div class="navbar-collapse collapse right" id="basket-overview">
-                        <a href="basket.jsp" class="btn btn-primary navbar-btn"><i class="fa fa-shopping-cart"></i><span class="hidden-sm" id="myCart"></span></a>
-                    </div>
                     <!--/.nav-collapse -->
 
-                    <div class="navbar-collapse collapse right" id="search-not-mobile">
-                        <button type="button" class="btn navbar-btn btn-primary" data-toggle="collapse" data-target="#search">
-                            <span class="sr-only">Toggle search</span>
-                            <i class="fa fa-search"></i>
-                        </button>
+                    <div class="navbar-buttons">
+
+                        <div class="navbar-collapse collapse right" id="basket-overview">
+                            <a href="basket.jsp" class="btn btn-primary navbar-btn"><i class="fa fa-shopping-cart"></i><span class="hidden-sm" id="myCart"></span></a>
+                        </div>
+                        <!--/.nav-collapse -->
+
+                        <div class="navbar-collapse collapse right" id="search-not-mobile">
+                            <button type="button" class="btn navbar-btn btn-primary" data-toggle="collapse" data-target="#search">
+                                <span class="sr-only">Toggle search</span>
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </div>
+
                     </div>
 
                 </div>
-                
-                 </div>
 
                 <div class="collapse clearfix" id="search">
 

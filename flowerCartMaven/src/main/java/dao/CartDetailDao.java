@@ -161,8 +161,8 @@ public class CartDetailDao {
       boolean flag=false;
         try  {
             PreparedStatement ps=con.prepareStatement("update cart_details set quantity=? where client_id=? and PRODUCT_ID=?");
-            ps.setInt(1, clientid);
-            ps.setInt(2, cartDetails.getCartId());
+            ps.setInt(1, cartDetails.getQuantity());
+            ps.setInt(2, clientid);
             ps.setInt(3, cartDetails.getProductId());
             int num=ps.executeUpdate();
             if(num!=0)

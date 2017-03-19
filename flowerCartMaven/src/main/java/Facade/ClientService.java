@@ -30,10 +30,8 @@ public class ClientService {
     }
 
     synchronized public void logout(String email) {
-        for(int i=0;i<loginEmails.size();i++)
-        {
-            if(loginEmails.get(i).equalsIgnoreCase(email))
-            {
+        for (int i = 0; i < loginEmails.size(); i++) {
+            if (loginEmails.get(i).equalsIgnoreCase(email)) {
                 loginEmails.remove(i);
                 return;
             }
@@ -50,8 +48,8 @@ public class ClientService {
         ClientDao clientDao = new ClientDao();
         return clientDao.validclient(client);
     }
-    
-    public boolean CheckPassword(String email , String password){
+
+    public boolean CheckPassword(String email, String password) {
         Client client = new Client();
         client.setMail(email);
         client.setPassword(password);
@@ -82,8 +80,8 @@ public class ClientService {
     }
 
     public boolean updateUser(Client client) {
-          ClientDao clientDao = new ClientDao();
-          System.out.println("updateuser : " + clientDao.updateClient(client));
+        ClientDao clientDao = new ClientDao();
+        System.out.println("updateuser : " + clientDao.updateClient(client));
         return clientDao.updateClient(client);
     }
 }

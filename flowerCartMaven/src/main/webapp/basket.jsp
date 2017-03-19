@@ -20,7 +20,7 @@
                     <div class="col-md-9" id="basket">
                         <div class="box">
 
-                            <form method="post" action="checkout1.html">
+                            <form method="post" action="checkout.jsp">
                                 <h1>Shopping cart</h1>
                                 <div id="invalidQuantity"></div>
                                 <div class="table-responsive">
@@ -68,12 +68,12 @@
 
                                 <div class="box-footer">
                                     <div class="pull-left">
-                                        <a href="category.html" class="btn btn-default"><i class="fa fa-chevron-left"></i> Continue shopping</a>
+                                        <a href="AllBouquets.jsp" class="btn btn-default"><i class="fa fa-chevron-left"></i> Continue shopping</a>
                                     </div>
                                     <div class="pull-right">
-                                        <button class="btn btn-default"><i class="fa fa-refresh"></i> Update basket</button>
-                                        <button type="submit" class="btn btn-primary">Proceed to checkout <i class="fa fa-chevron-right"></i>
-                                        </button>
+                                        <!--<button class="btn btn-default"><i class="fa fa-refresh"></i> Update basket</button>-->
+                                        <button type="submit" id="checkoutButton" class="btn btn-primary" disabled="true">Proceed to checkout <i class="fa fa-chevron-right"></i>
+                                        </button>  
                                     </div>
                                 </div>
 
