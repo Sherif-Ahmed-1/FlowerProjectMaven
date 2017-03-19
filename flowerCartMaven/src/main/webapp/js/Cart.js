@@ -18,11 +18,6 @@ function calcProductPrice(id, quantity)
 //    }
 
 }
-function  updateProductQuantity(id, quantity)
-{
-
-
-}
 function calctotalprice()
 {
     var total = 0;
@@ -77,6 +72,7 @@ function removeFromCart(id)
             , data: jsonProduct
         });
     }
+    checkoutValidate();
 }
 
 
@@ -121,7 +117,7 @@ function addToCart(id)
 //        var quantity = parseInt(JSON.parse(localStorage.getItem(id.toString())));
 //        localStorage.setItem(id.toString(), JSON.stringify(quantity + 1));
 //    }
-
+checkoutValidate();
 }
 function getProductsDetails()
 {
@@ -132,9 +128,9 @@ function getProductsDetails()
             for (i = 0; i < data.length; i++)
             {
                 var row = '<tr><td><a href="#">' + '<img src="' + data[i].imageUrl + '" alt="Black Blouse Armani"></a></td>\n\
-                            <td><a href="#">' + data[i].productName + '</a></td><td> <input type="number" value="1" min="1" \n\onchange="checkAvaliableQuantity(' + data[i].id + ', this)"class="form-control"></td><td><div id="price'
+                            <td><a href="#">' + data[i].productName + '</a></td><td> <input type="number" value="' + localStorage.getItem(data[i].id.toString()) + '" min="1" \n\onchange="checkAvaliableQuantity(' + data[i].id + ', this)"class="form-control"></td><td><div id="price'
                         + data[i].id + '">' + data[i].unitPrice + '</td><td>$0.00</td><td><div id="ProducttotalPrice' +
-                        data[i].id + '" name="ProducttotalPrice">' + data[i].unitPrice + '</td><td><a><div  id="test1" class="fa fa-trash-o"  onclick="remove(this,ProducttotalPrice' + data[i].id + ',' + data[i].id + ')"  style="cursor: pointer;" ></div></a></td></tr>';
+                        data[i].id + '" name="ProducttotalPrice">' + parseInt(localStorage.getItem(data[i].id.toString()))*parseInt( data[i].unitPrice) + '</td><td><a><div  id="test1" class="fa fa-trash-o"  onclick="remove(this,ProducttotalPrice' + data[i].id + ',' + data[i].id + ')"  style="cursor: pointer;" ></div></a></td></tr>';
                 $("#cartData").append(row);
             }
             calctotalprice();
@@ -175,7 +171,7 @@ function syncCartWithServer()
                 }
                 localStorage.setItem("ProductsId", JSON.stringify(ids));
                 countProducts();
-
+                checkoutValidate();
             }});
 
     }
@@ -197,12 +193,13 @@ function clearCart()
             $.removeCookie("isloggedin");
             location.reload();
         }});
-
+checkoutValidate();
 }
 function basketOnLoad()
 {
     getProductsDetails();
     calctotalprice();
+    checkoutValidate();
 }
 $(document).ready(function () {
     countProducts();
@@ -210,23 +207,31 @@ $(document).ready(function () {
 setInterval(function () {
     syncCartWithServer();
 }, 2000);
-function checkAvaliableQuantity(id,quantity) {
+function checkAvaliableQuantity(pid, quantity) {
 
-    jsondata = {productId: id};
+    jsondata = {localProduct: JSON.stringify({id: pid, value: quantity.value})};
     $.ajax({url: "CheckAvailableQuantity?date=" + new Date().toString(), type: "GET", contentType: 'application/json', data: jsondata
         , success: function (data, textStatus, jqXHR) {
             console.log(quantity);
             console.log(quantity.value);
-            if(parseInt(data)>= quantity.value)
+            if (parseInt(data) >= quantity.value)
             {
-                    calcProductPrice(id, quantity)
-                    $("#invalidQuantity").html("");
-            }
-            else
+                calcProductPrice(pid, quantity)
+                $("#invalidQuantity").html("");
+            } else
             {
-             $("#invalidQuantity").html("sorry the max quantity is "+data);
-             quantity.value=parseInt(data);
+                $("#invalidQuantity").html("sorry the max quantity is " + data);
+                quantity.value = parseInt(data);
             }
         }});
 
+}
+function  checkoutValidate()
+{
+
+    var productsId = JSON.parse(localStorage.getItem("ProductsId"));
+    if (productsId != null && productsId.length != 0)
+        $("#checkoutButton").prop("disabled", false);
+    else
+        $("#checkoutButton").prop("disabled", true);
 }
