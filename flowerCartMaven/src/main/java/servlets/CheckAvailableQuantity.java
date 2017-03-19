@@ -26,10 +26,12 @@ public class CheckAvailableQuantity extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Gson gson = new Gson();
-        Integer productsId = gson.fromJson(req.getParameter("productId"), Integer.class);
+        LocalProducts localproduct = gson.fromJson(req.getParameter("localProduct"), LocalProducts.class);
         CartService cartService = new CartService(req.getSession());
-         cartService.getAvailableProductQuantity(productsId);
-        resp.getWriter().print(cartService.getAvailableProductQuantity(productsId));
+         int avalQuantity= cartService.getAvailableProductQuantity(localproduct.getId());
+         if(avalQuantity>=localproduct.getValue())
+             cartService.updateUserCart(localproduct);
+        resp.getWriter().print(avalQuantity);
     }
 
 }

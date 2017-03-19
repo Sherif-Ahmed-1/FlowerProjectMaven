@@ -72,8 +72,8 @@
                                     </div>
                                     <div class="pull-right">
                                         <!--<button class="btn btn-default"><i class="fa fa-refresh"></i> Update basket</button>-->
-                                        <button type="submit" class="btn btn-primary">Proceed to checkout <i class="fa fa-chevron-right"></i>
-                                        </button>
+                                        <button type="submit" id="checkoutButton" class="btn btn-primary" disabled="true">Proceed to checkout <i class="fa fa-chevron-right"></i>
+                                        </button>  
                                     </div>
                                 </div>
 
