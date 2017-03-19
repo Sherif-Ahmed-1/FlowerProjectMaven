@@ -18,10 +18,9 @@
                     </ul>
                     <div class="clearfix"></div>
                 </div>
+                <form class="form-horizontal form-label-left input_mask" method="post" action="${pageContext.request.contextPath}/UpdateCategoryServlet">
                 <div class="x_content">
-
                     <br />
-                    <form class="form-horizontal form-label-left input_mask" method="post" action="${pageContext.request.contextPath}/UpdateCategoryServlet">
                     <div class="col-md-10 col-sm-6 col-xs-12 form-group has-feedback" hidden="hidden">
                         <input type="text" class="form-control has-feedback-left" name="id" placeholder="Bouquet Name" required="true" value="${category.id}" hidden="true" tabindex="0">
                         <span class="fa fa-gift form-control-feedback left" aria-hidden="true"></span>
@@ -30,7 +29,6 @@
                         <input type="text" class="form-control has-feedback-left" name="name" placeholder="Category Name" required="true" value="${category.name}" hidden="true" tabindex="0">
                         <span class="fa fa-gift form-control-feedback left" aria-hidden="true"></span>
                     </div>
-
             </div>
 
             <div class="col-md-5 col-sm-9 col-xs-12 form-group has-feedback" >
@@ -46,14 +44,14 @@
                 </select>
                 </optgroup>
             </div>
-                    <div class="col-md-5 col-sm-9 col-xs-12 form-group" >
-                        <div class="ln_solid"></div>
-                        <label>Chosen Bouquets:</label>
-                        <div id="chosenDiv">
+            <div class="col-md-5 col-sm-9 col-xs-12 form-group" >
+                <div class="ln_solid"></div>
+                <label>Chosen Bouquets:</label>
+                <div id="chosenDiv">
                     <c:forEach var="cat" items="${category.productList}">
                         <div class="alert alert-success alert-dismissible fade in" id="parent0" role="alert">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="removeOption();"><span aria-hidden="true">x</span></button>
-                            <input id="chosenItem" name="bouqet" type="text" value="${cat.name}" style="background: transparent; border: none;"></div>
+                            <input id="chosenItem"  readonly="true" name="bouqet" type="text" value="${cat.name}" style="background: transparent; border: none;"></div>
                         </c:forEach>
                 </div>
             </div>
@@ -83,6 +81,6 @@
         </div>
     </div>
 </div>
-</div>
+
 <!-- /page content -->
 <jsp:include page="../includes/footer.jsp" />

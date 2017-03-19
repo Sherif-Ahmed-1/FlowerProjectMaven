@@ -70,7 +70,7 @@
                             <c:forEach var="flower" items="${product.flowers}">
                                 <div class="alert alert-success alert-dismissible fade in" id="parent0" role="alert">
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="removeOption();"><span aria-hidden="true">x</span></button>
-                                    <input id="chosenItem" name="bouqet" type="text" value="${flower.name}" style="background: transparent; border: none;"></div>
+                                    <input id="chosenItem"  readonly="true" name="bouqet" type="text" value="${flower.name}" style="background: transparent; border: none;"></div>
                                 </c:forEach>
                         </div>
                     </div>

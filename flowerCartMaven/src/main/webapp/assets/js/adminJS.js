@@ -19,10 +19,10 @@ function removeFlowerOption(ele, selectedValue) {
 }
 function populateFlowers() {
     var selectedValue = $("[name=flowerObtained]").find(":selected").val();
-    $("#chosenDiv").append("<div class='alert alert-success alert-dismissible fade in' id='parent" + elemsid + "'  role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close' onclick=\"removeFlowerOption('parent" + elemsid + "','" + selectedValue + "');\"><span aria-hidden='true'>x</span></button><input id='chosenItem' name='flower"+elemsid+"' type='text' value='" + selectedValue + "' style='background: transparent; border: none;'/></div>");
+    $("#chosenDiv").append("<div class='alert alert-success alert-dismissible fade in' id='parent" + elemsid + "'  role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close' onclick=\"removeFlowerOption('parent" + elemsid + "','" + selectedValue + "');\"><span aria-hidden='true'>x</span></button><input id='chosenItem'  readonly='true' name='flower" + elemsid + "' type='text' value='" + selectedValue + "' style='background: transparent; border: none;'/></div>");
     $("[name=flowerObtained]").find(":selected").remove();
     $("[name=flowerObtained]").val("first").selected = true;
-elemsid++;
+    elemsid++;
 }
 
 
@@ -32,7 +32,7 @@ function removeProductOption(ele, selectedValue) {
 }
 function populateProducts() {
     var selectedValue = $("[name=productsObtained]").find(":selected").val();
-    $("#chosenDiv").append("<div class='alert alert-success alert-dismissible fade in' id='parent" + elemsid + "'  role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close' onclick=\"removeProductOption('parent" + elemsid + "','" + selectedValue + "');\"><span aria-hidden='true'>x</span></button><input id='chosenItem' name='bouqet' type='text' value='" + selectedValue + "' style='background: transparent; border: none;'/></div>");
+    $("#chosenDiv").append("<div class='alert alert-success alert-dismissible fade in' id='parent" + elemsid + "'  role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close' onclick=\"removeProductOption('parent" + elemsid + "','" + selectedValue + "');\"><span aria-hidden='true'>x</span></button><input id='chosenItem'  readonly='true' name='bouqet' type='text' value='" + selectedValue + "' style='background: transparent; border: none;'/></div>");
     $("[name=productsObtained]").find(":selected").remove();
     $("[name=productsObtained]").val("first").selected = true;
     elemsid++;
@@ -89,8 +89,6 @@ function productSetName(name, id) {
 
 }
 
-
-
 // server
 function sendClientId() {
     console.log(userId);
@@ -143,3 +141,19 @@ function deleteProductId() {
     $('#no').click();
 
 }
+
+var j = echarts.init(document.getElementById("echart_pie")); 
+var catArr=[];
+var catArrNo=[];
+ $("#obtainedCats option").each(function () {
+    catArr.push($(this).html());
+});
+ $("#obtainedCatsNo option").each(function () {
+    catArrNo.push($(this).html());
+});
+j.setOption({
+    tooltip: {trigger: "item", formatter: "{a} <br/>{b} : {c} ({d}%)"},
+    legend: {x: "center", y: "bottom", data: [catArr[0],catArr[1]]},
+    toolbox: {show: true, feature: {magicType: {show: !0, type: ["pie", "funnel"], option: {funnel: {x: "25%", width: "50%", funnelAlign: "left", max: 1548}}}, restore: {show: !0, title: "Restore"}, saveAsImage: {show: !0, title: "Save Image"}}},
+    calculable: !0, series: [{name: "No. of Bouquets", type: "pie", radius: "55%", center: ["50%", "48%"], data: [{value: catArrNo[0], name: catArr[0]}, {value: catArrNo[1], name: catArr[1]}]}]});
+                    

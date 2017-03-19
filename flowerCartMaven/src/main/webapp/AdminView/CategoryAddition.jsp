@@ -46,7 +46,7 @@
                     <div class="col-md-5 col-sm-9 col-xs-12 form-group" >
                         <div class="ln_solid"></div>
                         <label>Chosen Bouquets:</label>
-                        <div id="chosenDiv">
+                        <div id="chosenDiv" >
                         
                     </div>
                     </div>
