@@ -24,33 +24,29 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "ShowDetailsServlet", urlPatterns = {"/ShowDetails"})
 public class ShowDetailsServlet extends HttpServlet {
 
-   
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        int id = Integer.parseInt(request.getParameter("b"));
+        Product product = (Product) getServletContext().getAttribute("productDetail");
+        int id = product.getId();
         System.out.println(id);
         BouquetsService bouquetsService = new BouquetsService();
         Product productDetail = bouquetsService.getBouquetById(id);
-        
+
         ArrayList<Product> simaliarProducts = bouquetsService.getBouquetsByFlowers(productDetail.getFlowers());
-        
+
         request.setAttribute("productDetail", productDetail);
         request.setAttribute("simaliarProducts", simaliarProducts);
-        
+
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("detail.jsp");
         requestDispatcher.forward(request, response);
-           
+
     }
 
-   
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
+
     }
 
-    
 }

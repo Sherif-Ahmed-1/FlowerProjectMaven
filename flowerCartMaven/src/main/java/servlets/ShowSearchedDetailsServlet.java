@@ -35,12 +35,12 @@ public class ShowSearchedDetailsServlet extends HttpServlet {
 
         ArrayList<Product> simaliarProducts = bouquetsService.getBouquetsByFlowers(productDetail.getFlowers());
 
-        request.setAttribute("productDetail", productDetail);
-        request.setAttribute("simaliarProducts", simaliarProducts);
+        request.getServletContext().setAttribute("productDetail", productDetail);
+        request.getServletContext().setAttribute("simaliarProducts", simaliarProducts);
 
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("detail.jsp");
-        requestDispatcher.forward(request, response);
-
+//        response.sendRedirect("detail.jsp");
+//        RequestDispatcher requestDispatcher = request.getRequestDispatcher("detail.jsp");
+//        requestDispatcher.forward(request, response);
     }
 
     @Override

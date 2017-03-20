@@ -36,54 +36,54 @@ public class LoginServlet extends HttpServlet {
         String password = request.getParameter("inputPassword");
         String remember = request.getParameter("remember");
 
-        Cookie rememberEmail = new Cookie("rememberEmail", "");
-        Cookie rememberPassword = new Cookie("rememberPassword", "");
-        Cookie checked = new Cookie("checked", "");
-        // check against database
+            Cookie rememberEmail = new Cookie("rememberEmail", "");
+            Cookie rememberPassword = new Cookie("rememberPassword", "");
+            Cookie checked = new Cookie("checked", "");
+            // check against database
         ClientService clientService = new ClientService();
-        if (clientService.Login(email, password)) {
-            Client user = clientService.getUser(email);
-            HttpSession session = request.getSession(true);
-            session.setAttribute("LoggedIn", new Boolean("true"));
-            session.setAttribute("PasswordDiv", true);
-            session.setAttribute("user", user);
-            if (remember != null) {
-                rememberEmail = new Cookie("rememberEmail", email);
-                rememberEmail.setMaxAge(24 * 60 * 60 * 30);
-                response.addCookie(rememberEmail);
-                rememberPassword = new Cookie("rememberPassword", password);
-                rememberPassword.setMaxAge(24 * 60 * 60 * 30);
-                response.addCookie(rememberPassword);
-                checked = new Cookie("checked", "true");
-                checked.setMaxAge(24 * 60 * 60 * 30);
-                response.addCookie(checked);
+            if (clientService.Login(email, password)) {
+                Client user = clientService.getUser(email);
+                HttpSession session = request.getSession(true);
+                session.setAttribute("LoggedIn", new Boolean("true"));
+                session.setAttribute("PasswordDiv", true);
+                session.setAttribute("user", user);
+                if (remember != null) {
+                    rememberEmail = new Cookie("rememberEmail", email);
+                    rememberEmail.setMaxAge(24 * 60 * 60 * 30);
+                    response.addCookie(rememberEmail);
+                    rememberPassword = new Cookie("rememberPassword", password);
+                    rememberPassword.setMaxAge(24 * 60 * 60 * 30);
+                    response.addCookie(rememberPassword);
+                    checked = new Cookie("checked", "true");
+                    checked.setMaxAge(24 * 60 * 60 * 30);
+                    response.addCookie(checked);
+                } else {
+                    rememberEmail = new Cookie("rememberEmail", "");
+
+                    response.addCookie(rememberEmail);
+                    rememberPassword = new Cookie("rememberPassword", "");
+
+                    response.addCookie(rememberPassword);
+                    checked = new Cookie("checked", "");
+
+                    response.addCookie(checked);
+                    rememberPassword.setMaxAge(0);
+                    rememberEmail.setMaxAge(0);
+                }
+                response.sendRedirect("index.jsp");
             } else {
-                rememberEmail = new Cookie("rememberEmail", "");
-
-                response.addCookie(rememberEmail);
-                rememberPassword = new Cookie("rememberPassword", "");
-
-                response.addCookie(rememberPassword);
-                checked = new Cookie("checked", "");
-
-                response.addCookie(checked);
-                rememberPassword.setMaxAge(0);
-                rememberEmail.setMaxAge(0);
+                HttpSession session = request.getSession(true);
+                session.setAttribute("LoggedIn", new Boolean("false"));
+                response.sendRedirect("index.jsp");
             }
-            response.sendRedirect("index.jsp");
-        } else {
-            HttpSession session = request.getSession(true);
-            session.setAttribute("LoggedIn", new Boolean("false"));
-            response.sendRedirect("index.jsp");
-        }
 
-        //************** EndAllaa **************/
-        //************* startAdel ************
-        //************** EndAdel **************/
-        //************* startSherif **************/
-        //************** EndSherif **************/
-        //************* startMoamen **************/
-        //************** EndMoamen **************/
-    }
+            //************** EndAllaa **************/
+            //************* startAdel ************
+            //************** EndAdel **************/
+            //************* startSherif **************/
+            //************** EndSherif **************/
+            //************* startMoamen **************/
+            //************** EndMoamen **************/
+        }
 
 }

@@ -12,8 +12,11 @@ import Facade.HomeService;
 import dto.CartProducts;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.LinkedList;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -49,6 +52,7 @@ public class HomeServlet extends HttpServlet {
         request.setAttribute("categories", categories);
         request.setAttribute("flowers", flowers);
         request.setAttribute("products", products);
+        request.getServletContext().setAttribute("productsOnContext", products);
         System.out.println("no");
 //end alaa
 //start sherif

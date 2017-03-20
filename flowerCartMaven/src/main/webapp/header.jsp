@@ -14,6 +14,7 @@
         <title>Flowers</title>
         <meta name="keywords" content="">
         <link href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,300,100' rel='stylesheet' type='text/css'>
+        <link href = "css/jquery-ui.css" rel = "stylesheet">
         <!-- styles -->
         <link href="css/font-awesome.css" rel="stylesheet"/>
         <link href="css/bootstrap.min.css" rel="stylesheet"/>
@@ -319,14 +320,24 @@
                 <div class="collapse clearfix" id="search">
 
                     <form class="navbar-form" role="search">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search">
+                        <div class="input-group ">
+                            <input type="text" class="form-control " placeholder="Search" id="searchAutoComplete">
                             <span class="input-group-btn">
 
-                                <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                                <button type="submit" class="btn btn-primary"  onclick="goToSearchPage()"><i class="fa fa-search"></i></button>
 
                             </span>
+
+                            <select hidden="true" id="allProducts">
+                                <c:forEach items="${productsOnContext}" var="product">
+                                    <option>${product.name}</option>
+                                </c:forEach>
+                            </select>
                         </div>
+                    </form>
+                    <h1>${productDetail.id}</h1>
+                    <form action="ShowDetails?b=${productDetail.id}" method="get" hidden="false">
+                        <input type="submit" id="submitSearch" />
                     </form>
 
                 </div>
