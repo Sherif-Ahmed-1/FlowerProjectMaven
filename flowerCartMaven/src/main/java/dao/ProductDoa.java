@@ -329,4 +329,40 @@ public class ProductDoa {
         return name;
     }
 
+    public ArrayList<Product> selectHighRatedProducts() {
+        
+         productList = new ArrayList<>();
+        Connection con = new ConnectionManager().getConnection();
+        try {
+            PreparedStatement ps = con.prepareStatement("select * from PRODUCT where RATING > 7");
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Product product = new Product();
+                product.setId(rs.getInt(1));
+                product.setName(rs.getString(2));
+                product.setPrice(rs.getFloat(3));
+                product.setQuantity(rs.getInt(4));
+                product.setDescription(rs.getString(5));
+                product.setRating(rs.getInt(6));
+                product.setFlowers(fDao.selectFlowerByProductId(product.getId()));
+                product.setImages(iDao.selectProductImagesByProductId(product.getId()));
+                productList.add(product);
+              //  System.out.println(product.toString());
+            }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(ProductDoa.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+        return productList;
+    }
+
 }

@@ -72,48 +72,57 @@ _________________________________________________________ -->
         <!-- /#advantages -->
 
         <!-- *** ADVANTAGES END *** -->
-
-        <!-- *** HOT PRODUCT SLIDESHOW ***
-_________________________________________________________ -->
+        
         <div id="hot">
 
             <div class="box">
                 <div class="container">
                     <div class="col-md-12">
-                        <h2><a href="AllBouquets.jsp" style="text-decoration: none;" title="show all bouquets"> Bouquets</a></h2>
+                        <h2><a href="HighRatedBouquets.jsp" style="text-decoration: none;" title="show all bouquets"> High Rated</a></h2>
                     </div>
                 </div>
             </div>
 
             <div class="container">
                 <div class="product-slider">
-                    <c:forEach items="${requestScope.products}" var="product" end="6">
+                    <c:forEach items="${requestScope.highRated}" var="highrated" end="6">
                         <div class="item">
                             <div class="product">
                                 <div class="flip-container">
                                     <div class="flipper">
                                         <div class="front">
-                                            <a href="ShowDetails?b=${product.id}">
-                                                <img src="${product.images.get(0).url}" alt="" class="img-responsive">
+                                            <a href="ShowDetails?b=${highrated.id}">
+                                                <img src="${highrated.images.get(0).url}" alt="" class="img-responsive">
                                             </a>
                                         </div>
                                         <div class="back">
-                                            <a href="ShowDetails?b=${product.id}">
-                                                <img src="${product.images.get(0).url}" alt="" class="img-responsive">
+                                            <a href="ShowDetails?b=${highrated.id}">
+                                                <img src="${highrated.images.get(0).url}" alt="" class="img-responsive">
                                             </a>
                                         </div>
                                     </div>
+
+                                    <div class="ribbon sale">
+                                        <div class="theribbon">BEST</div>
+                                        <div class="ribbon-background"></div>
+                                    </div>
+                                    <!-- /.ribbon -->
+
+                                    <div class="ribbon new">
+<!--                                        <div class="theribbon">NEW</div>
+                                        <div class="ribbon-background"></div>-->
+                                    </div>
                                 </div>
-                                <a href="ShowDetails?b=${product.id}" class="invisible">
+                                <a href="ShowDetails?b=${highrated.id}" class="invisible">
                                     <img src="assets/img/bouques/Alstroemeria-AnyThing For You.jpg" alt="" class="img-responsive">
                                 </a>
                                 <div class="text">
-                                    <h3><a href="ShowDetails?b=${product.id}">${product.name}</a></h3>
-                                    <p class="price"> $ ${product.price}</p>
-<!--                                    <strong><a class="item_add" href="cartServlet?id=${product.id}"  </p>-->
+                                    <h3><a href="ShowDetails?b=${highrated.id}">${highrated.name}</a></h3>
+                                    <p class="price"> $ ${highrated.price}</p>
+<!--                                    <strong><a class="item_add" href="cartServlet?id=${highrated.id}"  </p>-->
                                     <p class="buttons">
-                                        <a href="ShowDetails?b=${product.id}" class="btn btn-default">View detail</a>
-                                        <a class="btn btn-primary" onclick="addToCart(${product.id})" ><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                        <a href="ShowDetails?b=${highrated.id}" class="btn btn-default">View detail</a>
+                                        <a class="btn btn-primary" onclick="addToCart(${highrated.id})" ><i class="fa fa-shopping-cart"></i>Add to cart</a>
                                     </p>
                                 </div>
 
@@ -129,6 +138,10 @@ _________________________________________________________ -->
             <!-- /.container -->
 
         </div>
+
+        <!-- *** HOT PRODUCT SLIDESHOW ***
+_________________________________________________________ -->
+       
         <!-- /#hot -->
 
         <!-- ***Bouquets END *** -->
@@ -184,56 +197,60 @@ _________________________________________________________ -->
         <!-- *** BLOG HOMEPAGE ***
 _________________________________________________________ -->
 
-        <div class="box text-center" data-animate="fadeInUp">
+         <div id="hot">
+
+            <div class="box">
+                <div class="container">
+                    <div class="col-md-12">
+                        <h2><a href="AllBouquets.jsp" style="text-decoration: none;" title="show all bouquets"> Bouquets</a></h2>
+                    </div>
+                </div>
+            </div>
+
             <div class="container">
-                <div class="col-md-12">
-                    <h3 class="text-uppercase">From our blog</h3>
+                <div class="product-slider">
+                    <c:forEach items="${requestScope.products}" var="product" end="6">
+                        <div class="item">
+                            <div class="product">
+                                <div class="flip-container">
+                                    <div class="flipper">
+                                        <div class="front">
+                                            <a href="ShowDetails?b=${product.id}">
+                                                <img src="${product.images.get(0).url}" alt="" class="img-responsive">
+                                            </a>
+                                        </div>
+                                        <div class="back">
+                                            <a href="ShowDetails?b=${product.id}">
+                                                <img src="${product.images.get(0).url}" alt="" class="img-responsive">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a href="ShowDetails?b=${product.id}" class="invisible">
+                                    <img src="assets/img/bouques/Alstroemeria-AnyThing For You.jpg" alt="" class="img-responsive">
+                                </a>
+                                <div class="text">
+                                    <h3><a href="ShowDetails?b=${product.id}">${product.name}</a></h3>
+                                    <p class="price"> $ ${product.price}</p>
+<!--                                    <strong><a class="item_add" href="cartServlet?id=${product.id}"  </p>-->
+                                    <p class="buttons">
+                                        <a href="ShowDetails?b=${product.id}" class="btn btn-default">View detail</a>
+                                        <a class="btn btn-primary" onclick="addToCart(${product.id})" ><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                    </p>
+                                </div>
 
-                    <p class="lead">What's new in the world of fashion? <a href="blog.html">Check our blog!</a>
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <div class="container">
-
-            <div class="col-md-12" data-animate="fadeInUp">
-
-                <div id="blog-homepage" class="row">
-                    <div class="col-sm-6">
-                        <div class="post">
-                            <h4><a href="post.html">Fashion now</a></h4>
-                            <p class="author-category">By <a href="#">John Slim</a> in <a href="">Fashion and style</a>
-                            </p>
-                            <hr>
-                            <p class="intro">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean
-                                ultricies mi vitae est. Mauris placerat eleifend leo.</p>
-                            <p class="read-more"><a href="post.html" class="btn btn-primary">Continue reading</a>
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6">
-                        <div class="post">
-                            <h4><a href="post.html">Who is who - example blog post</a></h4>
-                            <p class="author-category">By <a href="#">John Slim</a> in <a href="">About Minimal</a>
-                            </p>
-                            <hr>
-                            <p class="intro">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean
-                                ultricies mi vitae est. Mauris placerat eleifend leo.</p>
-                            <p class="read-more"><a href="post.html" class="btn btn-primary">Continue reading</a>
-                            </p>
+                                <!-- /.text -->
+                            </div>
+                            <!-- /.product -->
                         </div>
 
-                    </div>
-
+                    </c:forEach>
                 </div>
-                <!-- /#blog-homepage -->
+                <!-- /.product-slider -->
             </div>
-        </div>
-        <!-- /.container -->
+            <!-- /.container -->
 
-        <!-- *** BLOG HOMEPAGE END *** -->
+        </div>
 
 
     </div>

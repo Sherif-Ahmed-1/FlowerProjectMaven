@@ -34,4 +34,9 @@ public class HomeService {
         return fDao.selectAllFlowers();
     }
 
+    public ArrayList<Product> getHighRated() {
+        ProductDoa pDao= new ProductDoa();
+        return pDao.selectHighRatedProducts();
+    }
+
 }
