@@ -330,8 +330,8 @@ public class ProductDoa {
     }
 
     public ArrayList<Product> selectHighRatedProducts() {
-        
-         productList = new ArrayList<>();
+
+        productList = new ArrayList<>();
         Connection con = new ConnectionManager().getConnection();
         try {
             PreparedStatement ps = con.prepareStatement("select * from PRODUCT where RATING > 7");
@@ -348,7 +348,7 @@ public class ProductDoa {
                 product.setFlowers(fDao.selectFlowerByProductId(product.getId()));
                 product.setImages(iDao.selectProductImagesByProductId(product.getId()));
                 productList.add(product);
-              //  System.out.println(product.toString());
+                //  System.out.println(product.toString());
             }
 
         } catch (SQLException ex) {

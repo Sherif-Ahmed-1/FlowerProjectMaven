@@ -53,7 +53,7 @@
                                 <input  disabled="true" type="number" class="form-control has-feedback-left no-spin" name="cridetlimit" id="credit" placeholder="credit limit" required="true" value="${client.cridetlimit}">
                                 <span class="fa fa-usd form-control-feedback left" aria-hidden="true"></span>
                             </div>
-                           <div class="col-md-7 col-sm-7 col-xs-7 form-group has-feedback">
+                            <div class="col-md-7 col-sm-7 col-xs-7 form-group has-feedback">
                                 <input  disabled="true" type="text" class="form-control has-feedback-left no-spin" name="cridetlimit" id="credit"  required="true" value="${client.address}">
                                 <span class="fa fa-home form-control-feedback left" aria-hidden="true"></span>
                             </div>
@@ -70,6 +70,7 @@
                         <br>
                         <br>
                         <br>
+                        <h2>Orders</h2>
                         <table id="datatable-buttons" class="table table-striped table-bordered">
                             <thead>
                                 <tr>
