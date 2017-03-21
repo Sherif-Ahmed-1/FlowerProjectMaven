@@ -1,6 +1,9 @@
 <%@taglib  prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<jsp:include  page="CartServlet" />
-<jsp:include page="header.jsp" ></jsp:include>
+<jsp:include  page="CartServlet" ></jsp:include>
+<jsp:include  page="HomeServlet" ></jsp:include>
+
+<%@include file="header.jsp" %>
+
     <body onload="basketOnLoad()">
     
 
@@ -11,12 +14,12 @@
 
                     <div class="col-md-12">
                         <ul class="breadcrumb">
-                            <li><a href="#">Home</a>
+                            <li><a href="index.jsp">Home</a>
                             </li>
                             <li>Shopping cart</li>
                         </ul>
                     </div>
-                <jsp:include page="sideBar.jsp"></jsp:include>
+                    <%@include  file="sideBar.jsp" %>
                     <div class="col-md-9" id="basket">
                         <div class="box">
 
@@ -83,103 +86,48 @@
                         <!-- /.box -->
 
 
-                        <div class="row same-height-row">
-                            <div class="col-md-3 col-sm-6">
-                                <div class="box same-height">
-                                    <h3>You may also like these products</h3>
-                                </div>
-                            </div>
-
-                            <div class="col-md-3 col-sm-6">
-                                <div class="product same-height">
-                                    <div class="flip-container">
-                                        <div class="flipper">
-                                            <div class="front">
-                                                <a href="detail.html">
-                                                    <img src="img/product2.jpg" alt="" class="img-responsive">
-                                                </a>
-                                            </div>
-                                            <div class="back">
-                                                <a href="detail.html">
-                                                    <img src="img/product2_2.jpg" alt="" class="img-responsive">
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <a href="detail.html" class="invisible">
-                                        <img src="img/product2.jpg" alt="" class="img-responsive">
-                                    </a>
-                                    <div class="text">
-                                        <h3>Fur coat</h3>
-                                        <p class="price">$143</p>
-                                    </div>
-                                </div>
-                                <!-- /.product -->
-                            </div>
-
-                            <div class="col-md-3 col-sm-6">
-                                <div class="product same-height">
-                                    <div class="flip-container">
-                                        <div class="flipper">
-                                            <div class="front">
-                                                <a href="detail.html">
-                                                    <img src="img/product1.jpg" alt="" class="img-responsive">
-                                                </a>
-                                            </div>
-                                            <div class="back">
-                                                <a href="detail.html">
-                                                    <img src="img/product1_2.jpg" alt="" class="img-responsive">
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <a href="detail.html" class="invisible">
-                                        <img src="img/product1.jpg" alt="" class="img-responsive">
-                                    </a>
-                                    <div class="text">
-                                        <h3>Fur coat</h3>
-                                        <p class="price">$143</p>
-                                    </div>
-                                </div>
-                                <!-- /.product -->
-                            </div>
-
-
-                            <div class="col-md-3 col-sm-6">
-                                <div class="product same-height">
-                                    <div class="flip-container">
-                                        <div class="flipper">
-                                            <div class="front">
-                                                <a href="detail.html">
-                                                    <img src="img/product3.jpg" alt="" class="img-responsive">
-                                                </a>
-                                            </div>
-                                            <div class="back">
-                                                <a href="detail.html">
-                                                    <img src="img/product3_2.jpg" alt="" class="img-responsive">
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <a href="detail.html" class="invisible">
-                                        <img src="img/product3.jpg" alt="" class="img-responsive">
-                                    </a>
-                                    <div class="text">
-                                        <h3>Fur coat</h3>
-                                        <p class="price">$143</p>
-
-                                    </div>
-                                </div>
-                                <!-- /.product -->
-                            </div>
-
+                       <div class="row same-height-row">
+                    <div class="col-md-3 col-sm-6">
+                        <div class="box same-height">
+                            <h3>Bouquets With the same type of  Flower</h3>
+                            <img src="assets/img/bouques/Alstroemeria-AnyThing For You.jpg" alt="" class="img-responsive invisible" >
                         </div>
-
+                    </div>
+                    <c:forEach items="${requestScope.products}" var="product" end="9" begin="7">
+                        <div class="col-md-3 col-sm-6">
+                            <div class="product">
+                                <div class="flip-container">
+                                    <div class="flipper">
+                                        <div class="front">
+                                            <a href="ShowDetails?b=${product.id}">
+                                                <img src="${product.images.get(0).url}" alt="" class="img-responsive">
+                                            </a>
+                                        </div>
+                                        <div class="back">
+                                            <a href="ShowDetails?b=${product.id}">
+                                                <img src="${product.images.get(0).url}" alt="" class="img-responsive">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a href="ShowDetails?b=${product.id}" class="invisible">
+                                    <img src="assets/img/bouques/Alstroemeria-AnyThing For You.jpg" alt="" class="img-responsive">
+                                </a>
+                                <div class="text">
+                                    <h3><a href="ShowDetails?b=${product.id}">${product.name}</a></h3>
+                                    <p class="price">$ ${product.price}</p>
+                                </div>
+                                <!-- /.text -->
+                            </div>
+                            <!-- /.product -->
+                        </div>
+                    </c:forEach>
+                </div>
 
                     </div>
                     <!-- /.col-md-9 -->
 
-                    <div class="col-md-3">
+<!--                    <div class="col-md-3">
                         <div class="box" id="order-summary">
                             <div class="box-header">
                                 <h3>Order summary</h3>
@@ -228,11 +176,11 @@
 
                                     </span>
                                 </div>
-                                <!-- /input-group -->
+                                 /input-group 
                             </form>
                         </div>
 
-                    </div>
+                    </div>-->
                     <!-- /.col-md-3 -->
 
                 </div>

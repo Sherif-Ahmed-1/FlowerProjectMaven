@@ -14,13 +14,18 @@
         <title>Flowers</title>
         <meta name="keywords" content="">
         <link href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,300,100' rel='stylesheet' type='text/css'>
+        <link href = "css/jquery-ui.css" rel = "stylesheet">
         <!-- styles -->
         <link href="css/font-awesome.css" rel="stylesheet"/>
+                <link href="assets/css/bootstrap/bootstrapCSS/bootstrap.min.css" rel="stylesheet"/>
         <link href="css/bootstrap.min.css" rel="stylesheet"/>
         <link href="css/animate.min.css" rel="stylesheet"/>
         <link href="css/owl.carousel.css" rel="stylesheet"/>
         <link href="css/owl.theme.css" rel="stylesheet"/>
         <link href="css/offers.css" rel="stylesheet"/>
+        <!-- PNotify -->
+        <link href="assets/css/pnotify.css" rel="stylesheet">
+        
         <!-- theme stylesheet -->
         <link href="css/style.default.css" rel="stylesheet" id="theme-stylesheet">
         <!-- your stylesheet with modifications -->
@@ -31,9 +36,12 @@
         <script src="js/jquery.min.js" type="text/javascript"></script>
         <script src="js/jquery.cookie.js" type="text/javascript"></script>
         <script src="js/Cart.js" type="text/javascript"></script>
+        <!-- PNotify -->
+        <script src="assets/js/pnotify.js"></script>
+        <script src="assets/js/pnotify.buttons.js"></script>
     </head>
 
-    <body >
+    <body>
 
         <jsp:include  page="HomeServlet" />
 
@@ -54,7 +62,7 @@
                             </li>
                             <li><a href="contactus.jsp">Contact</a>
                             </li>
-                            <li><a href="#">Recently viewed</a>
+                            <li><a href="HighRatedBouquets.jsp">High Rated</a>
                             </li>
 
                         </ul>
@@ -98,112 +106,7 @@
         <!-- *** NAVBAR ***
      _________________________________________________________ -->
 
-        <!--            <div class="navbar navbar-default yamm" role="navigation" id="navbar">
-                        <div class="container">
-                            <div class="navbar-header">
-        
-                                <a class="navbar-brand home" href="index.jsp" data-animate-hover="bounce">
-                                    <img src="img/logo.png" alt="Obaju logo" class="hidden-xs">
-                                    <img src="img/logo-small.png" alt="Obaju logo" class="visible-xs"><span class="sr-only">Obaju - go to homepage</span>
-                                </a>
-                                <div class="navbar-buttons">
-                                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation">
-                                        <span class="sr-only">Toggle navigation</span>
-                                        <i class="fa fa-align-justify"></i>
-                                    </button>
-                                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#search">
-                                        <span class="sr-only">Toggle search</span>
-                                        <i class="fa fa-search"></i>
-                                    </button>
-                                    <a class="btn btn-default navbar-toggle" href="basket.jsp">
-                                        <i class="fa fa-shopping-cart"></i>  <span class="hidden-xs" id="myCart">10 items in cart</span>
-                                    </a>
-                                </div>
-                            </div>
-                            /.navbar-header 
-        
-                            <div class="navbar-collapse collapse" id="navigation">
-        
-                                <ul class="nav navbar-nav navbar-left">
-        
-                                    <li><a href="index.jsp">Home</a>
-                                    </li>
-        
-                                    <li><a href="#">Flowers</a>
-                                    </li>
-        
-                                    <li><a href="#">Bouquets</a>
-                                    </li>
-        
-                                    <li class="dropdown yamm-fw">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">Categories <b class="caret"></b></a>
-                                        <ul class="dropdown-menu">
-                                            <li>
-                                                <div class="yamm-content">
-                                                    <div class="row">
-                                                        <div class="col-sm-3">
-                                                            <ul>
-        <c:forEach items="${requestScope.categories}" var="category">
-            <li><a href="category.html">${category.name}</a>
-            </li>
-        </c:forEach>
-    </ul>
-</div>
-</div>
-</div>
-/.yamm-content 
-</li>
-</ul>
-</li>
-
-
-
-
-</ul>
-
-</div>
-/.nav-collapse 
-
-<div class="navbar-buttons">
-
-<div class="navbar-collapse collapse right" id="basket-overview">
-<a href="basket.jsp" class="btn btn-primary navbar-btn"><i class="fa fa-shopping-cart"></i><span class="hidden-sm" id="myCart">7 items in cart</span></a>
-</div>
-/.nav-collapse 
-
-<div class="navbar-collapse collapse right" id="search-not-mobile">
-<button type="button" class="btn navbar-btn btn-primary" data-toggle="collapse" data-target="#search">
-<span class="sr-only">Toggle search</span>
-<i class="fa fa-search"></i>
-</button>
-</div>
-
-</div>
-
-<div class="collapse clearfix" id="search">
-
-<form class="navbar-form" role="search">
-<div class="input-group">
-<input type="text" class="form-control" placeholder="Search">
-<span class="input-group-btn">
-
-<button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
-
-</span>
-</div>
-</form>
-
-</div>
-/.nav-collapse 
-
-</div>
-/.container 
-</div>
-/#navbar 
-
-        -->
-
-
+ 
         <!--  Not Logged In Header -->
         <c:if test="${sessionScope.LoggedIn}" >    
             <!-- *** TOPBAR ***
@@ -220,7 +123,7 @@
                             </li>
                             <li><a href="contactus.jsp">Contact</a>
                             </li>
-                            <li><a href="#">Recently viewed</a>
+                            <li><a href="HighRatedBouquets.jsp">High Rated</a>
                             </li>
                             <li style="cursor: pointer;" onclick="clearCart()"><a >Log out</a>
                             </li>
@@ -319,14 +222,24 @@
                 <div class="collapse clearfix" id="search">
 
                     <form class="navbar-form" role="search">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search">
+                        <div class="input-group ">
+                            <input type="text" class="form-control " placeholder="Search" id="searchAutoComplete">
                             <span class="input-group-btn">
 
-                                <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                                <button type="submit" class="btn btn-primary"  onclick="goToSearchPage()"><i class="fa fa-search"></i></button>
 
                             </span>
+
+                            <select hidden="true" id="allProducts">
+                                <c:forEach items="${productsOnContext}" var="product">
+                                    <option>${product.name}</option>
+                                </c:forEach>
+                            </select>
                         </div>
+                    </form>
+
+                    <form action="ShowDetails?b=${productDetail.id}" method="get" hidden="false">
+                        <input type="submit" id="submitSearch" />
                     </form>
 
                 </div>
@@ -337,3 +250,4 @@
         </div>
         <!-- /#navbar -->
 
+        

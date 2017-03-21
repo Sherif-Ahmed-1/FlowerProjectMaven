@@ -216,6 +216,8 @@ function clearCart()
             location.reload();
         }});
     checkoutValidate();
+//    $.removeCookie("rememberEmail");
+//    $.removeCookie("rememberPassword");
 }
 function basketOnLoad()
 {
@@ -273,3 +275,29 @@ function rememberMe() {
         $("#remember").prop('checked', false);
     }
 }
+var options;
+var arr;
+
+$(document).ready(function () {
+    options = $('#allProducts option');
+    arr = $.map(options, function (option) {
+        return option.value;
+    });
+
+    $('#searchAutoComplete').autocomplete({
+        source: function (request, response) {
+            var results = $.ui.autocomplete.filter(arr, request.term);
+            response(results.slice(0, 4));
+        }
+    });
+
+});
+
+function goToSearchPage() {
+    var searchedProductName = $('#searchAutoComplete').val();
+    // location.href('ShowSearchedDetailsServlet?name='+searchedProductName);
+    $.get('ShowSearchedDetailsServlet?name=' + searchedProductName, function (data) {
+        $('#submitSearch').trigger('click');
+    });
+}
+

@@ -12,8 +12,11 @@ import Facade.HomeService;
 import dto.CartProducts;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.LinkedList;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -39,16 +42,20 @@ public class HomeServlet extends HttpServlet {
         ArrayList<Category> categories = new ArrayList<>();
         ArrayList<Flower> flowers = new ArrayList<>();
         ArrayList<Product> products = new ArrayList<>();
-
+        ArrayList<Product> highRated = new ArrayList<>();
+        
         PrintWriter out = response.getWriter();
         HttpSession session = request.getSession(true);
         Boolean userLogged = (Boolean) session.getAttribute("LoggedIn");
         categories = service.getCategories();
         flowers = service.getFlowers();
         products = service.getProducts();
+        highRated = service.getHighRated();
         request.setAttribute("categories", categories);
         request.setAttribute("flowers", flowers);
         request.setAttribute("products", products);
+        request.setAttribute("highRated", highRated);
+        request.getServletContext().setAttribute("productsOnContext", products);
         System.out.println("no");
 //end alaa
 //start sherif

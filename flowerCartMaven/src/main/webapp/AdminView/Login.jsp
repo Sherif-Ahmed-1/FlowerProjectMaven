@@ -21,13 +21,13 @@
             <div class="login_wrapper">
                 <div class="animate form login_form">
                     <section class="login_content">
-                        <form method="get" action="MainAdmin.jsp">
+                        <form  method="post" action="j_security_check">
                             <h1>Login Here</h1>
                             <div>
-                                <input type="text" class="form-control input-lg" placeholder="Admin User Name" required="true" />
+                                <input name="j_username" type="text" class="form-control input-lg" placeholder="Admin User Name" required="true" />
                             </div>
                             <div>
-                                <input type="password" class="form-control input-lg" placeholder="Admin Password" required="true" />
+                                <input  name="j_password" type="password" class="form-control input-lg" placeholder="Admin Password" required="true" />
                             </div>
                             <div>
                                 <button type="submit" class="btn btn-primary btn-lg" style="width: 100%">Log in</button>

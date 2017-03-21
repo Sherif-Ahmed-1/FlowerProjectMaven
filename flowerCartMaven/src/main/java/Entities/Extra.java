@@ -15,6 +15,24 @@ public class Extra {
     private String name;
     private float price;
     private int quantity;
+    private String eName;
+    private int orderId;
+
+    public int getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
+    }
+
+    public String geteName() {
+        return eName;
+    }
+
+    public void seteName(String eName) {
+        this.eName = eName;
+    }
 
     public int getId() {
         return id;
@@ -31,7 +49,7 @@ public class Extra {
     public void setImage(ImageEntity image) {
         this.image = image;
     }
-    
+
     private ImageEntity image;
 
     public String getName() {

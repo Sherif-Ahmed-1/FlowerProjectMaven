@@ -24,9 +24,12 @@
                     <br />
                     <form enctype="MULTIPART/FORM-DATA" class="form-horizontal form-label-left input_mask" method="post" action="${pageContext.request.contextPath}/AddProductServlet">
 
-                    <div class="col-md-10 col-sm-6 col-xs-12 form-group has-feedback">
-                        <input type="text" class="form-control has-feedback-left" name="name" placeholder="Bouquet Name" required="true" tabindex="1">
+                    <div class="col-md-9 col-sm-6 col-xs-12 form-group has-feedback">
+                        <input type="text" class="form-control has-feedback-left"  id="name" name="name" placeholder="Bouquet Name" required="true" tabindex="1" onblur="checkProductName()">
                         <span class="fa fa-gift form-control-feedback left" aria-hidden="true"></span>
+                    </div>
+                    <div  class="col-md-2 col-sm-6 col-xs-12 form-group has-feedback">
+                        <label id="state" style="font-size: 18px;"></label> 
                     </div>
                     <div class="col-md-2 col-sm-12 col-xs-12 form-group has-feedback" style="position: relative; float: right; cursor: pointer;">
 

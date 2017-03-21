@@ -26,10 +26,12 @@
                     <form class="form-horizontal form-label-left input_mask" method="post" action="${pageContext.request.contextPath}/AddCategoryServlet">
 
                     <div class="col-md-10 col-sm-6 col-xs-12 form-group has-feedback">
-                        <input type="text" class="form-control has-feedback-left" name="name" placeholder="Category Name" required="true" tabindex="1">
+                        <input type="text" class="form-control has-feedback-left" id="name" name="name" placeholder="Category Name" required="true" tabindex="1" onblur="checkCategoryName()">
                         <span class="fa fa-bars form-control-feedback left" aria-hidden="true"></span>
                     </div>
-
+                    <div  class="col-md-2 col-sm-6 col-xs-12 form-group has-feedback">
+                        <label id="state" style="font-size: 18px;"></label> 
+                    </div>
                     <div class="col-md-5 col-sm-9 col-xs-12 form-group has-feedback" >
                         <div class="ln_solid"></div>
                         <label>Bouquets:</label>
@@ -47,10 +49,10 @@
                         <div class="ln_solid"></div>
                         <label>Chosen Bouquets:</label>
                         <div id="chosenDiv" >
-                        
+
+                        </div>
                     </div>
-                    </div>
-                    
+
                     <br>
                     <br>
                     <br>

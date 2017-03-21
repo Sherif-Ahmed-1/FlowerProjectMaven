@@ -8,8 +8,10 @@ package Facade;
 import Entities.Category;
 import Entities.Product;
 import Entities.Flower;
+import Entities.Interests;
 import dao.CategoryDao;
 import dao.FlowerDao;
+import dao.InterestsDao;
 import dao.ProductDoa;
 import java.util.ArrayList;
 
@@ -34,4 +36,25 @@ public class HomeService {
         return fDao.selectAllFlowers();
     }
 
+    public ArrayList<Product> getHighRated() {
+        ProductDoa pDao= new ProductDoa();
+        return pDao.selectHighRatedProducts();
+    }
+
+    public ArrayList<Interests> getInterest() {
+        InterestsDao dao = new InterestsDao();
+       return  dao.selectAll();
+    }
+
+    public ArrayList<Interests> getInterestByName(String[] interestsNames) {
+        InterestsDao dao = new InterestsDao();
+        Interests interest = new Interests();
+        ArrayList<Interests> interets = new ArrayList<>();
+        for (int i = 0; i < interestsNames.length; i++) {
+            String interestsName = interestsNames[i];
+            interest = dao.selectInterestByName(interestsName);
+            interets.add(interest);
+        }
+       return  interets;
+    }
 }

@@ -8,6 +8,7 @@ package adminFacade;
 import Entities.Order;
 import Entities.OrderDetails;
 import Entities.Product;
+import dao.ExtraDao;
 import dao.OrderDao;
 import dao.OrderDetailsDao;
 import dao.ProductDoa;
@@ -29,7 +30,9 @@ public class OrderService {
         for (Order o : orders) {
 
             o.setOrderDetails(new OrderDetailsDao().selectOrdersByClientID(o.getID()));
+            o.setExtras(new ExtraDao().selectExtrasByClientID(o.getID()));
         }
+
         return orders;
     }
 
@@ -37,5 +40,10 @@ public class OrderService {
         ProductDoa pd = new ProductDoa();
         return pd.selectProductName(id);
 
+    }
+
+    public String returnExtraName(int id) {
+        ExtraDao ed = new ExtraDao();
+        return ed.selectExtraName(id);
     }
 }
