@@ -7,8 +7,10 @@ package Facade;
 
 import Entities.Cart;
 import Entities.Client;
+import Entities.Interests;
 import dao.CartDao;
 import dao.ClientDao;
+import dao.InterestsDao;
 import java.util.ArrayList;
 
 /**
@@ -38,15 +40,20 @@ public class ClientService {
         }
     }
 
-    public boolean Login(String email, String password) {
+    public int Login(String email, String password) {
         if (isloggedIn(email)) {
-            return false;
+            return 0; // false alredy logged in 
         }
         Client client = new Client();
         client.setMail(email);
         client.setPassword(password);
         ClientDao clientDao = new ClientDao();
-        return clientDao.validclient(client);
+        boolean flag = clientDao.validclient(client);
+        if (flag == true) {
+            return 1; // true
+        } else {
+            return 2; // false not found user 
+        }
     }
 
     public boolean CheckPassword(String email, String password) {
@@ -57,19 +64,22 @@ public class ClientService {
         return clientDao.validclient(client);
     }
 
-    public boolean signUp(Client client) {
+    public boolean signUp(Client client ) {
 
         ClientDao clientDao = new ClientDao();
-
+        InterestsDao iDao = new InterestsDao();
         Client clientInfo;
         if (!clientDao.existMail(client)) {
 
             clientDao.insertClient(client);
             clientInfo = clientDao.selectByEmail(client.getMail());
+            iDao.insert(client.getInterests(), clientInfo.getId());
             CartDao cartDao = new CartDao();
             Cart cart = new Cart();
             cart.setCustomerId(clientInfo.getId());
-            cartDao.insertCart(cart);
+            boolean flag = cartDao.insertCart(cart);
+            return flag;
+
         }
         return false;
     }

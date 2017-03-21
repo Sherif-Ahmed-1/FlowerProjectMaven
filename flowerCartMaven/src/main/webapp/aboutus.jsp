@@ -12,9 +12,9 @@
 
         <div class="col-md-12">
             <ul class="breadcrumb">
-                <li><a href="#">Home</a>
+                <li><a href="index.jsp">Home</a>
                 </li>
-                <li>FAQ</li>
+                <li>About us </li>
             </ul>
 
         </div>
@@ -58,7 +58,7 @@ _________________________________________________________ -->
                 <div id="post-content">
 
                     <p>
-                        <img src="img/blog.jpg" class="img-responsive" alt="Soretnaaaa :'D">
+                        <img src="assets/img/all.jpg" class="img-responsive img-rounded" alt="Soretnaaaa :'D">
                     </p>
 
                     <p>SMELL , ADMIRE AND MEDITATE! <br/>

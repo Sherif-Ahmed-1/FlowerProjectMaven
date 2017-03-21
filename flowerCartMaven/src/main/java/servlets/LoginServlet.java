@@ -41,7 +41,8 @@ public class LoginServlet extends HttpServlet {
         Cookie checked = new Cookie("checked", "");
         // check against database
         ClientService clientService = new ClientService();
-        if (clientService.Login(email, password)) {
+        int flag = clientService.Login(email, password);
+        if ( flag == 1) {
             Client user = clientService.getUser(email);
             HttpSession session = request.getSession(true);
             session.setAttribute("LoggedIn", new Boolean("true"));
@@ -71,10 +72,14 @@ public class LoginServlet extends HttpServlet {
                 rememberEmail.setMaxAge(0);
             }
             response.sendRedirect("index.jsp");
-        } else {
+        } else if(flag == 2) { // failed to log in
             HttpSession session = request.getSession(true);
             session.setAttribute("LoggedIn", new Boolean("false"));
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("index.jsp?fail=true");
+        } else if ( flag == 0){ // already logged in
+             HttpSession session = request.getSession(true);
+            session.setAttribute("LoggedIn", new Boolean("false"));
+            response.sendRedirect("index.jsp?loggedin=true");
         }
 
         //************** EndAllaa **************/

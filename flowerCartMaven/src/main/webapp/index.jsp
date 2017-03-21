@@ -257,3 +257,30 @@ _________________________________________________________ -->
     <!-- /#content -->
 
     <%@include file="footer.jsp" %>
+    
+    <c:choose>
+            <c:when test="${param.fail=='true'}">
+                <h3> <c:out value="${param.password}"/></h3>
+                <script>
+                    new PNotify({
+                        title: 'Sorry',
+                        text: 'Your email or password are wrong!',
+                        type: 'error',
+                        styling: 'bootstrap3'
+                    });
+                </script>
+            </c:when>
+
+            <c:when test="${param.loggedin=='true'}">
+                <h3> <c:out value="${param.loggedin}"/></h3>
+                <script>
+                    new PNotify({
+                        title: 'Sorry',
+                        text: 'You are already logged in somewhere else, please sign out first to login again! ',
+                        type: 'error',
+                        styling: 'bootstrap3'
+                    });
+                </script>
+            </c:when>
+
+        </c:choose>

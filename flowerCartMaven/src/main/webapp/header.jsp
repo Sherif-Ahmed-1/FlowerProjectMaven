@@ -16,11 +16,15 @@
         <link href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,300,100' rel='stylesheet' type='text/css'>
         <!-- styles -->
         <link href="css/font-awesome.css" rel="stylesheet"/>
+        <!--        <link href="assets/css/bootstrap/bootstrapCSS/bootstrap.min.css" rel="stylesheet"/>-->
         <link href="css/bootstrap.min.css" rel="stylesheet"/>
         <link href="css/animate.min.css" rel="stylesheet"/>
         <link href="css/owl.carousel.css" rel="stylesheet"/>
         <link href="css/owl.theme.css" rel="stylesheet"/>
         <link href="css/offers.css" rel="stylesheet"/>
+        <!-- PNotify -->
+        <link href="assets/css/pnotify.css" rel="stylesheet">
+        
         <!-- theme stylesheet -->
         <link href="css/style.default.css" rel="stylesheet" id="theme-stylesheet">
         <!-- your stylesheet with modifications -->
@@ -31,9 +35,12 @@
         <script src="js/jquery.min.js" type="text/javascript"></script>
         <script src="js/jquery.cookie.js" type="text/javascript"></script>
         <script src="js/Cart.js" type="text/javascript"></script>
+        <!-- PNotify -->
+        <script src="assets/js/pnotify.js"></script>
+        <script src="assets/js/pnotify.buttons.js"></script>
     </head>
 
-    <body >
+    <body>
 
         <jsp:include  page="HomeServlet" />
 
@@ -337,3 +344,4 @@
         </div>
         <!-- /#navbar -->
 
+        

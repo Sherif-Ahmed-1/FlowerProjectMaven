@@ -6,10 +6,13 @@
 package servlets;
 
 import Entities.Client;
+import Entities.Interests;
 import Facade.ClientService;
+import Facade.HomeService;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -28,6 +31,7 @@ import org.apache.commons.beanutils.BeanUtils;
 public class EditServlet extends HttpServlet {
 
     ClientService clientService;
+    HomeService homeService;
     String newpassword;
 
     @Override
@@ -52,12 +56,11 @@ public class EditServlet extends HttpServlet {
             request.getSession().setAttribute("PasswordDiv", false);
             RequestDispatcher dis = request.getRequestDispatcher("EditAccount.jsp");
             dis.include(request, response);
-           request.getSession().setAttribute("PasswordDiv", true);
+            request.getSession().setAttribute("PasswordDiv", true);
 
         } else {
             System.out.println("not found user");
-            request.setAttribute("PasswordWrong", true);
-            RequestDispatcher dis = request.getRequestDispatcher("EditAccount.jsp");
+            RequestDispatcher dis = request.getRequestDispatcher("EditAccount.jsp?password=wrong");
             dis.forward(request, response);
         }
 
@@ -68,32 +71,38 @@ public class EditServlet extends HttpServlet {
             throws ServletException, IOException {
         try {
             clientService = new ClientService();
+            homeService = new HomeService();
+
             Client clientUpdated = new Client();
             BeanUtils.populate(clientUpdated, request.getParameterMap());
-          // interests 
-           System.out.println("Client Edittt : "  + clientUpdated);
+
+            String[] interestsNames = request.getParameterValues("clientInterest");
+            System.out.println(interestsNames);
+            ArrayList<Interests> interests = homeService.getInterestByName(interestsNames);
+            clientUpdated.setInterests(interests);
+            System.out.println("Client Edittt : " + clientUpdated);
             Client clientToSave = clientService.getUser(clientUpdated.getMail());
             clientUpdated.setId(clientToSave.getId());
-            if(newpassword != null){
-                 clientUpdated.setPassword(newpassword);
+            if (newpassword != null) {
+                clientUpdated.setPassword(newpassword);
             } else {
                 clientUpdated.setPassword(clientToSave.getPassword());
             }
-            
-            if (clientService.updateUser(clientUpdated)){
-            response.sendRedirect("Account.jsp");
-            request.getSession().setAttribute("user", clientUpdated);
+
+            if (clientService.updateUser(clientUpdated)) {
+                response.sendRedirect("Account.jsp");
+                request.getSession().setAttribute("user", clientUpdated);
 
             } else {
-             response.sendRedirect("EditAccount.jsp");
+                response.sendRedirect("EditAccount.jsp?update=fail");
             }
-            
+
         } catch (IllegalAccessException ex) {
             Logger.getLogger(EditServlet.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InvocationTargetException ex) {
             Logger.getLogger(EditServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
 
 }

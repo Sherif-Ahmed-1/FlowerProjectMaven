@@ -115,6 +115,8 @@ public class ClientDao {
             ps.setDate(8, new java.sql.Date(date.getTime()));
             ps.setString(9, client.getPhone());
             ps.setInt(10, client.getId());
+            iDao.deleteClientInterests(client.getId());
+            iDao.insert(client.getInterests(), client.getId());
             int num = ps.executeUpdate();
             if (num != 0) {
                 flag = true;
