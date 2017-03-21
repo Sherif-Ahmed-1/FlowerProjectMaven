@@ -177,13 +177,11 @@ public class CartService {
         return mergedList;
     }
 
-    private List<CartProductDetails> getcartDetailFromDB() {
+    public List<CartProductDetails> getcartDetailFromDB() {
         Client client = (Client) session.getAttribute("user");
         if (client == null) {
             return null;
         }
-//        CartDao cartDao = new CartDao();
-//        Cart cart = cartDao.selectByCLientId(client.getId());
         CartDetailDao cartDetailDao = new CartDetailDao();
         return cartDetailDao.selectCartProductsDetailById(client.getId());
     }

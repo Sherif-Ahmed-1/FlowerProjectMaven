@@ -28,9 +28,11 @@ public class CheckAvailableQuantity extends HttpServlet {
         Gson gson = new Gson();
         LocalProducts localproduct = gson.fromJson(req.getParameter("localProduct"), LocalProducts.class);
         CartService cartService = new CartService(req.getSession());
-         int avalQuantity= cartService.getAvailableProductQuantity(localproduct.getId());
-         if(avalQuantity>=localproduct.getValue())
-             cartService.updateUserCart(localproduct);
+        int avalQuantity = cartService.getAvailableProductQuantity(localproduct.getId());
+        Boolean isLoggedIn = (Boolean) req.getSession().getAttribute("LoggedIn");
+        if (avalQuantity >= localproduct.getValue() && isLoggedIn != null && isLoggedIn) {
+            cartService.updateUserCart(localproduct);
+        }
         resp.getWriter().print(avalQuantity);
     }
 

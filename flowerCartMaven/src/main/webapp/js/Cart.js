@@ -10,13 +10,13 @@ function remove(row, productPrice, id)
 }
 function calcProductPrice(id, quantity)
 {
-//    if (parseInt(quantity.value) <= parseInt(quantity.max) && parseInt(quantity.value) > 0)
-//    {
     document.getElementById("ProducttotalPrice" + id).innerHTML = parseFloat(document.getElementById("price" + id).innerHTML) * quantity.value;
     calctotalprice();
     updateProductQuantity(id, quantity);
-//    }
-
+}
+function updateProductQuantity(id, quantity)
+{
+    localStorage.setItem(id.toString(), quantity.value.toString());
 }
 function calctotalprice()
 {
@@ -127,18 +127,29 @@ function getProductsDetails()
             //       console.log(data);
             for (i = 0; i < data.length; i++)
             {
-                var row = '<tr><td><a href="#">' + '<img src="' + data[i].imageUrl + '" alt="Black Blouse Armani"></a></td>\n\
+                if ($("#isLoggedIn").val() == "loggedin")
+                {
+                    var row = '<tr><td><a href="#">' + '<img src="' + data[i].imageUrl + '" alt="Black Blouse Armani"></a></td>\n\
                             <td><a href="#">' + data[i].productName + '</a></td><td> <input type="number" value="' + localStorage.getItem(data[i].id.toString()) + '" min="1" \n\onchange="checkAvaliableQuantity(' + data[i].id + ', this)"class="form-control"></td><td><div id="price'
-                        + data[i].id + '">' + data[i].unitPrice + '</td><td>$0.00</td><td><div id="ProducttotalPrice' +
-                        data[i].id + '" name="ProducttotalPrice">' + parseInt(localStorage.getItem(data[i].id.toString())) * parseInt(data[i].unitPrice) + '</td><td><a><div  id="test1" class="fa fa-trash-o"  onclick="remove(this,ProducttotalPrice' + data[i].id + ',' + data[i].id + ')"  style="cursor: pointer;" ></div></a></td></tr>';
-                $("#cartData").append(row);
+                            + data[i].id + '">' + data[i].unitPrice + '</td><td>$0.00</td><td><div id="ProducttotalPrice' +
+                            data[i].id + '" name="ProducttotalPrice">' + parseInt(localStorage.getItem(data[i].id.toString())) * parseInt(data[i].unitPrice) + '</td><td><a><div  id="test1" class="fa fa-trash-o"  onclick="remove(this,ProducttotalPrice' + data[i].id + ',' + data[i].id + ')"  style="cursor: pointer;" ></div></a></td></tr>';
+                    $("#cartData").append(row);
+                }
+                else
+                {
+                    var row = '<tr><td><a href="#">' + '<img src="' + data[i].imageUrl + '" alt="Black Blouse Armani"></a></td>\n\
+                            <td><a href="#">' + data[i].productName + '</a></td><td> <input type="number" value="' + localStorage.getItem(data[i].id.toString()) + '" min="1" \n\onchange="checkAvaliableQuantity(' + data[i].id + ', this)"class="form-control" disabled="true"></td><td><div id="price'
+                            + data[i].id + '">' + data[i].unitPrice + '</td><td>$0.00</td><td><div id="ProducttotalPrice' +
+                            data[i].id + '" name="ProducttotalPrice">' + parseInt(localStorage.getItem(data[i].id.toString())) * parseInt(data[i].unitPrice) + '</td><td><a><div  id="test1" class="fa fa-trash-o"  onclick="remove(this,ProducttotalPrice' + data[i].id + ',' + data[i].id + ')"  style="cursor: pointer;" ></div></a></td></tr>';
+                    $("#cartData").append(row);
+                    
+                }
+
             }
             calctotalprice();
+
         }
-
-    }
-    );
-
+    });
 }
 function syncCartWithServer()
 {
@@ -167,13 +178,23 @@ function syncCartWithServer()
                 {
                     ids.push(data[i].id);
                     localStorage.setItem(data[i].id.toString(), JSON.stringify(data[i].value));
-
                 }
                 localStorage.setItem("ProductsId", JSON.stringify(ids));
                 countProducts();
                 checkoutValidate();
             }});
-
+    }
+}
+function clearExtra() {
+    var extraIds=localStorage.getItem("extrasId");
+    if(extraIds!=null)
+    {
+            for(i=0;i<extraIds.length;i++)
+            {
+                    localStorage.removeItem(extraIds[i]);
+            }
+            localStorage.removeItem("extrasId");
+        
     }
 }
 function clearCart()
@@ -189,6 +210,7 @@ function clearCart()
         localStorage.removeItem("ProductsId");
     }
     countProducts();
+    clearExtra();
     $.ajax({url: "LogoutServlet?date=" + new Date().toString(), success: function (data, textStatus, jqXHR) {
             $.removeCookie("isloggedin");
             location.reload();
@@ -220,11 +242,16 @@ function checkAvaliableQuantity(pid, quantity) {
                 $("#invalidQuantity").html("");
             } else
             {
+                 new PNotify({
+                    title: 'Sorry',
+                    text: 'The MAX quantity is ' + data,
+                    type: 'error',
+                    styling: 'bootstrap3'
+                });
                 $("#invalidQuantity").html("sorry the max quantity is " + data);
                 quantity.value = parseInt(data);
             }
         }});
-
 }
 function  checkoutValidate()
 {

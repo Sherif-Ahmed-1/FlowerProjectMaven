@@ -131,7 +131,7 @@ public class CartDetailDao {
         }
         return flag;
     }
-    public boolean deleteByClientId(CartDetails cartDetails,int clientid) {
+    public boolean deleteByClientId(int clientid) {
         Connection con = new ConnectionManager().getConnection();
         boolean flag=false;
         try  {

@@ -84,4 +84,9 @@ public class ClientService {
         System.out.println("updateuser : " + clientDao.updateClient(client));
         return clientDao.updateClient(client);
     }
+
+    public boolean buy(int clientId,int price) {
+        ClientDao clientDao=new ClientDao();
+        return clientDao.updateCredit(clientId, price);
+    }
 }

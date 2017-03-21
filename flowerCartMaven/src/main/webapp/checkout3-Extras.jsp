@@ -60,11 +60,11 @@
                                                 <a><c:out value="${extra.name}"/></a>
                                             </td>
                                             <td>
-                                                <input type="number" value="0" min="0" max="${extra.quantity}" onchange="calcExtraPrice(${extra.ID}, this)"  class="form-control">
+                                                <input type="number" value="0" min="0" max="${extra.quantity}" onchange="calcExtraPrice(${extra.id}, this)"  class="form-control">
                                             </td>
-                                            <td><div id="price${extra.ID}"> <c:out value="${extra.price}"/></td>
+                                            <td><div id="price${extra.id}"> <c:out value="${extra.price}"/></td>
                                             <!--<td>$0.00</td>-->
-                                            <td><div id="ExtratotalPrice${extra.ID}" name="ExtratotalPrice">0.00</div></td>
+                                            <td><div id="ExtratotalPrice${extra.id}" name="ExtratotalPrice">0.00</div></td>
                                         </tr>
                                     </c:forEach>
                                 </tbody>

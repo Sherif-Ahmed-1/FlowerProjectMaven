@@ -47,11 +47,11 @@ public class ExtraDao {
 
     public boolean updateExtra(Extra extra)  {
         try (Connection con = new ConnectionManager().getConnection()) {
-            PreparedStatement ps = con.prepareStatement("UPDATE EXTRAS SET NAME = ? , price = ? , QUANTITY = ?  WHERE  id = ?");
+            PreparedStatement ps = con.prepareStatement("UPDATE EXTRAS SET NAME = ? , price = ? , QUANTITY = ?  WHERE  Id = ?");
             ps.setString(1, extra.getName());
             ps.setFloat(2, extra.getPrice());
             ps.setInt(3, extra.getQuantity());
-            ps.setInt(4, extra.getID());
+            ps.setInt(4, extra.getId());
            int count = ps.executeUpdate();
             if(count!=0)
                 return true;
@@ -75,11 +75,11 @@ public class ExtraDao {
 
             while (rs.next()) {
                 Extra extra = new Extra();
-                extra.setID(rs.getInt(1));
+                extra.setId(rs.getInt(1));
                 extra.setName(rs.getString(2));
                 extra.setPrice(rs.getFloat(3));
                 extra.setQuantity(rs.getInt(4));
-                extra.setImage(iDao.selectExtraImagesByExtraId(extra.getID()));
+                extra.setImage(iDao.selectExtraImagesByExtraId(extra.getId()));
                 extratList.add(extra);
                 System.out.println(extra.toString());
             }
@@ -94,15 +94,15 @@ public class ExtraDao {
     public Extra selectOneExtra(int f)  {
         Extra extra = new Extra();
         try (Connection con = new ConnectionManager().getConnection()) {
-            PreparedStatement ps = con.prepareStatement("select * from EXTRAS where id = ?");
+            PreparedStatement ps = con.prepareStatement("select * from EXTRAS where Id = ?");
             ps.setInt(1, f);
             ResultSet rs = ps.executeQuery();
             rs.next();
-            extra.setID(rs.getInt(1));
+            extra.setId(rs.getInt(1));
             extra.setName(rs.getString(2));
             extra.setPrice(rs.getFloat(3));
             extra.setQuantity(rs.getInt(4));
-            extra.setImage(iDao.selectExtraImagesByExtraId(extra.getID()));
+            extra.setImage(iDao.selectExtraImagesByExtraId(extra.getId()));
             System.out.println(extra.toString());
             con.close();
         } catch (SQLException ex) {
