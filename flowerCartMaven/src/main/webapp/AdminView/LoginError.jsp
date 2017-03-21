@@ -5,12 +5,12 @@
 <html>
     <head>
         <title>Admin Login</title>
-        
+
         <!-- Bootstrap -->
         <link href="../assets/css/bootstrap/bootstrapCSS/bootstrap.min.css" rel="stylesheet">
-
         <!-- Font Awesome -->
         <link href="../assets/css/fontawesome/css/font-awesome.min.css" rel="stylesheet">
+       
     </head>
     <body class="login">
         <!--Page Content-->
@@ -21,8 +21,13 @@
             <div class="login_wrapper">
                 <div class="animate form login_form">
                     <section class="login_content">
+                        <div id="myAlert" class="alert alert-error alert-dismissible fade in" role="alert">
+                            <a class="close" data-dismiss="alert" onclick="document.getElementById('myAlert').style.visibility = 'hidden'; ">x</a>
+                            <font style="font-family: sans-serif">Please, Enter valid authentication data.</font>
+                        </div>    
                         <form  method="post" action="j_security_check">
                             <h1>Login Here</h1>
+
                             <div>
                                 <input name="j_username" type="text" class="form-control input-lg" placeholder="Admin User Name" required="true" />
                             </div>
@@ -31,7 +36,7 @@
                             </div>
                             <div>
                                 <button type="submit" class="btn btn-primary btn-lg" style="width: 100%">Log in</button>
-                                
+
                             </div>
 
                             <div class="clearfix"></div>
@@ -53,5 +58,7 @@
             </div>
         </div>
         <!--Page Content-->
+ 
     </body>
+     <script src="../assets/js/bootstrap.min.js" type="text/javascript"></script>
 </html>

@@ -54,18 +54,18 @@
     <br />
     <div hidden="true">
         <select id="obtainedCats">
-         <c:forEach var="item" items="${categories}">
-             <option id="catName">${item.name}</option>
-        </c:forEach>
+            <c:forEach var="item" items="${categories}">
+                <option id="catName">${item.name}</option>
+            </c:forEach>
         </select>
-          <select id="obtainedCatsNo">
-         <c:forEach var="item" items="${categories}">
-             <option id="catName">${item.productList.size()}</option>
-        </c:forEach>
+        <select id="obtainedCatsNo">
+            <c:forEach var="item" items="${categories}">
+                <option id="catName">${item.productList.size()}</option>
+            </c:forEach>
         </select>
     </div>
-    
-       
+
+
 
     <div class="row">
 
