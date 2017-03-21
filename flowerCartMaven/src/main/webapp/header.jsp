@@ -225,8 +225,8 @@
 
 
                     <a class="navbar-brand home" href="index.jsp" data-animate-hover="bounce">
-                        <img src="img/logo.png" alt="Obaju logo" class="hidden-xs">
-                        <img src="img/logo-small.png" alt="Obaju logo" class="visible-xs"><span class="sr-only">Obaju - go to homepage</span>
+                        <img src="assets/img/logo.png" alt="Obaju logo" class="hidden-xs" style="position: relative; width: 80px; height: 70px; margin-top: -10px;">
+                        
                     </a>
                     <div class="navbar-buttons">
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation">
