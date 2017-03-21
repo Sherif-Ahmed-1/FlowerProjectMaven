@@ -33,7 +33,7 @@ public class CartServlet extends HttpServlet {
             cartProducts = new CartProducts();
             request.getSession(true).setAttribute("userCart", cartProducts);
         }
-        
+
         if (cartProducts.getProducts().isEmpty()) {
             Product product = new Product();
             product.setName("p1");

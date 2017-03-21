@@ -16,6 +16,15 @@ public class Order {
     private float price;  // can be calculated without saving in DB
     private Timestamp stamp;
     private List<OrderDetails> orderDetails;
+    private List<Extra> extras;
+
+    public List<Extra> getExtras() {
+        return extras;
+    }
+
+    public void setExtras(List<Extra> extras) {
+        this.extras = extras;
+    }
 
     public int getID() {
         return ID;

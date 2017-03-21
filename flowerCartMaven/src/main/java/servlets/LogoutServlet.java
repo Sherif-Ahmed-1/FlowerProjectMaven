@@ -37,13 +37,10 @@ public class LogoutServlet extends HttpServlet {
         clientService.logout(client.getMail());
         //************** EndAllaa **************/
         //************* startAdel ************
-        
         //************** EndAdel **************/
         //************* startSherif **************/
-        
         //************** EndSherif **************/
         //************* startMoamen **************/
-        
         //************** EndMoamen **************/
     }
 
@@ -54,13 +51,10 @@ public class LogoutServlet extends HttpServlet {
 
         //************** EndAllaa **************/
         //************* startAdel ************
-        
         //************** EndAdel **************/
         //************* startSherif **************/
-        
         //************** EndSherif **************/
         //************* startMoamen **************/
-        
         //************** EndMoamen **************/
     }
 

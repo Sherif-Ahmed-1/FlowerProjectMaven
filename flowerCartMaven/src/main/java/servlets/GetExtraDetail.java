@@ -5,10 +5,9 @@
  */
 package servlets;
 
-import Facade.CartService;
+import Entities.Extra;
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import dto.LocalProducts;
+import dao.ExtraDao;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -22,20 +21,27 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Sheko
  */
-@WebServlet(name = "SyncCartServlet", urlPatterns = {"/SyncCartServlet"})
-public class SyncCartServlet extends HttpServlet {
+@WebServlet(name = "GetExtraDetail", urlPatterns = {"/GetExtraDetail"})
+public class GetExtraDetail extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Gson gson = new Gson();
-        ArrayList<LocalProducts> productsId = gson.fromJson(req.getParameter("localProducts"), new TypeToken<ArrayList<LocalProducts>>() {
-        }.getType());
-        CartService cartService = new CartService(req.getSession());
+        Gson gson=new Gson();
+        Integer []ids=gson.fromJson(req.getParameter("extrasId"), Integer[].class);
         resp.setContentType("application/json");
-        ArrayList<LocalProducts> merged = cartService.syncCart(productsId);
-        System.out.println(gson.toJson(merged));
-        resp.getWriter().write(gson.toJson(merged));
-
+        resp.getWriter().write(gson.toJson(getExtras(ids)));
     }
+    private  static ArrayList<Extra> getExtras(Integer [] ids)
+    {
+        ArrayList<Extra>extras=new ArrayList<>();
+        ExtraDao dao=new ExtraDao();
+        for(int i=0;i<ids.length;i++)
+        {
+             extras.add( dao.selectOneExtra(ids[i]));
+        }
+        return extras;
+    }
+
+    
 
 }

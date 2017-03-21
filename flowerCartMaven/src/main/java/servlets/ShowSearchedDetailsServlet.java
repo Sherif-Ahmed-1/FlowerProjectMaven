@@ -21,26 +21,26 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author alaa
  */
-@WebServlet(name = "ShowDetailsServlet", urlPatterns = {"/ShowDetails"})
-public class ShowDetailsServlet extends HttpServlet {
+@WebServlet(name = "ShowSearchedDetailsServlet", urlPatterns = {"/ShowSearchedDetailsServlet"})
+public class ShowSearchedDetailsServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Product product = (Product) getServletContext().getAttribute("productDetail");
-        int id = product.getId();
-        System.out.println(id);
+
+        String name = request.getParameter("name");
+        System.out.println(name);
         BouquetsService bouquetsService = new BouquetsService();
-        Product productDetail = bouquetsService.getBouquetById(id);
+        Product productDetail = bouquetsService.getBouquetByName(name);
 
         ArrayList<Product> simaliarProducts = bouquetsService.getBouquetsByFlowers(productDetail.getFlowers());
 
-        request.setAttribute("productDetail", productDetail);
-        request.setAttribute("simaliarProducts", simaliarProducts);
+        request.getServletContext().setAttribute("productDetail", productDetail);
+        request.getServletContext().setAttribute("simaliarProducts", simaliarProducts);
 
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("detail.jsp");
-        requestDispatcher.forward(request, response);
-
+//        response.sendRedirect("detail.jsp");
+//        RequestDispatcher requestDispatcher = request.getRequestDispatcher("detail.jsp");
+//        requestDispatcher.forward(request, response);
     }
 
     @Override

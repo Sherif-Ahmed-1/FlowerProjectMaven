@@ -29,16 +29,16 @@
                             <img src="${image.url}" data-imagezoom="true"  alt="" class="img-responsive">
                         </div>
 
-                        <!--                        <div class="ribbon sale">
-                                                    <div class="theribbon">SALE</div>
-                                                    <div class="ribbon-background"></div>
-                                                </div>
-                                                 /.ribbon 
-                        
-                                                <div class="ribbon new">
-                                                    <div class="theribbon">NEW</div>
-                                                    <div class="ribbon-background"></div>
-                                                </div>-->
+                        <div class="ribbon sale">
+                            <div class="theribbon">SALE</div>
+                            <div class="ribbon-background"></div>
+                        </div>
+                        <!-- /.ribbon -->
+
+                        <div class="ribbon new">
+                            <div class="theribbon">NEW</div>
+                            <div class="ribbon-background"></div>
+                        </div>
                         <!-- /.ribbon -->
 
                     </div>
@@ -50,8 +50,8 @@
                             <p class="price">$${requestScope.productDetail.price}</p>
 
                             <p class="text-center buttons">
-                                <a class="btn btn-primary" onclick="addToCart(${requestScope.productDetail.id})" ><i class="fa fa-shopping-cart"></i>Add to cart</a>
-
+                                <a href="basket.html" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Add to cart</a> 
+                                <a href="basket.html" class="btn btn-default"><i class="fa fa-heart"></i> Add to wishlist</a>
                             </p>
                         </div>
 
@@ -143,6 +143,8 @@
                             <!-- /.product -->
                         </div>
                     </c:forEach>
+
+
                 </div>
 
 

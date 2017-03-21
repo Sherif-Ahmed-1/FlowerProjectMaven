@@ -14,6 +14,7 @@
         <title>Flowers</title>
         <meta name="keywords" content="">
         <link href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,300,100' rel='stylesheet' type='text/css'>
+        <link href = "css/jquery-ui.css" rel = "stylesheet">
         <!-- styles -->
         <link href="css/font-awesome.css" rel="stylesheet"/>
         <link href="css/bootstrap.min.css" rel="stylesheet"/>
@@ -26,7 +27,7 @@
         <!-- your stylesheet with modifications -->
         <link href="css/custom.css" rel="stylesheet">
         <script src="js/respond.min.js"></script>
-        <script src="js/bootstrap-rating-input.js" type="text/javascript"></script>
+        <!--<script src="js/bootstrap-rating-input.js" type="text/javascript"></script>-->
         <link rel="shortcut icon" href="favicon.png">
         <script src="js/jquery.min.js" type="text/javascript"></script>
         <script src="js/jquery.cookie.js" type="text/javascript"></script>
@@ -43,7 +44,7 @@
         _________________________________________________________ -->
             <div id="top">
                 <div class="container">
-                    <div class="col-md-6 offer" data-animate="fadeInDown">
+                    <div class="col-md-6 " data-animate="fadeInDown">
                         <a href="#" class="btn btn-success btn-sm" data-animate-hover="shake">Smell, Admire and Meditate</a>  
                     </div>
                     <div class="col-md-6" data-animate="fadeInDown">
@@ -52,9 +53,9 @@
                             </li>
                             <li><a href="register.jsp">Register</a>
                             </li>
-                            <li><a href="contact.html">Contact</a>
+                            <li><a href="contactus.jsp">Contact</a>
                             </li>
-                            <li><a href="#">Recently viewed</a>
+                            <li><a href="HighRatedBouquets.jsp">High Rated</a>
                             </li>
 
                         </ul>
@@ -155,52 +156,36 @@
 </li>
 </ul>
 </li>
-
-
-
-
 </ul>
-
 </div>
 /.nav-collapse 
-
 <div class="navbar-buttons">
-
 <div class="navbar-collapse collapse right" id="basket-overview">
 <a href="basket.jsp" class="btn btn-primary navbar-btn"><i class="fa fa-shopping-cart"></i><span class="hidden-sm" id="myCart">7 items in cart</span></a>
 </div>
 /.nav-collapse 
-
 <div class="navbar-collapse collapse right" id="search-not-mobile">
 <button type="button" class="btn navbar-btn btn-primary" data-toggle="collapse" data-target="#search">
 <span class="sr-only">Toggle search</span>
 <i class="fa fa-search"></i>
 </button>
 </div>
-
 </div>
-
 <div class="collapse clearfix" id="search">
-
 <form class="navbar-form" role="search">
 <div class="input-group">
 <input type="text" class="form-control" placeholder="Search">
 <span class="input-group-btn">
-
 <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
-
 </span>
 </div>
 </form>
-
 </div>
 /.nav-collapse 
-
 </div>
 /.container 
 </div>
 /#navbar 
-
         -->
 
 
@@ -210,7 +195,7 @@
         _________________________________________________________ -->
             <div id="top">
                 <div class="container">
-                    <div class="col-md-6 offer" data-animate="fadeInDown">
+                    <div class="col-md-6 " data-animate="fadeInDown">
                         <a href="#" class="btn btn-success btn-sm" data-animate-hover="shake">Smell ,  Admire and Meditate</a>
                     </div>
                     <input type="hidden" value="loggedin" id="isLoggedIn"/>
@@ -218,9 +203,9 @@
                         <ul class="menu">
                             <li><a href="Account.jsp"> ${sessionScope.user.fname} ${sessionScope.user.lname} </a>
                             </li>
-                            <li><a href="#">Contact</a>
+                            <li><a href="contactus.jsp">Contact</a>
                             </li>
-                            <li><a href="#">Recently viewed</a>
+                            <li><a href="HighRatedBouquets.jsp">High Rated</a>
                             </li>
                             <li style="cursor: pointer;" onclick="clearCart()"><a >Log out</a>
                             </li>
@@ -319,14 +304,24 @@
                 <div class="collapse clearfix" id="search">
 
                     <form class="navbar-form" role="search">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search">
+                        <div class="input-group ">
+                            <input type="text" class="form-control " placeholder="Search" id="searchAutoComplete">
                             <span class="input-group-btn">
 
-                                <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                                <button type="submit" class="btn btn-primary"  onclick="goToSearchPage()"><i class="fa fa-search"></i></button>
 
                             </span>
+
+                            <select hidden="true" id="allProducts">
+                                <c:forEach items="${productsOnContext}" var="product">
+                                    <option>${product.name}</option>
+                                </c:forEach>
+                            </select>
                         </div>
+                    </form>
+
+                    <form action="ShowDetails?b=${productDetail.id}" method="get" hidden="false">
+                        <input type="submit" id="submitSearch" />
                     </form>
 
                 </div>
