@@ -6,6 +6,7 @@
 package adminServlets;
 
 import Entities.Client;
+import Entities.Extra;
 import Entities.Order;
 import Entities.OrderDetails;
 import Entities.Product;
@@ -41,19 +42,22 @@ public class ViewOrderDetailsServlet extends HttpServlet {
         List<Order> orders = orderService.selectOrdersByCLientID(clientIDNumber);
 
         List<OrderDetails> orderDetailses = new ArrayList<>();
-
+        List<Extra> extras = new ArrayList<>();
         for (Order o : orders) {
             if (o.getID() == OrderId) {
                 for (OrderDetails ods : o.getOrderDetails()) {
                     ods.setPname(orderService.returnProductName(ods.getProductId()));
                     orderDetailses.add(ods);
-
+                }
+                for (Extra e : o.getExtras()) {
+                    e.seteName(orderService.returnExtraName(e.getID()));
+                    extras.add(e);
                 }
             }
         }
 
         request.getSession().setAttribute("ordersDetails", orderDetailses);
-
+        request.getSession().setAttribute("extras", extras);
     }
 
     @Override

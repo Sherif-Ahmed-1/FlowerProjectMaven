@@ -97,7 +97,7 @@ _________________________________________________________ -->
                         </span>
 
                     </div>
-                     <!--/input-group--> 
+                    <!--/input-group--> 
                 </form>
 
                 <hr>
@@ -114,7 +114,7 @@ _________________________________________________________ -->
 
 
             </div>
-             <!--/.col-md-3--> 
+            <!--/.col-md-3--> 
 
         </div>
         <!-- /.row -->
@@ -137,11 +137,36 @@ _________________________________________________________ -->
             <p class="pull-left">© 2017 SAAM TEAM.</p>
 
         </div>
-<!--        <div class="col-md-6">
+        <!--        <div class="col-md-6">
+                    <p class="pull-right">Template by <a href="https://bootstrapious.com/e-commerce-templates">Bootstrapious.com</a>
+                         Not removing these links is part of the license conditions of the template. Thanks for understanding :) If you want to use the template without the attribution links, you can do so after supporting further themes development at https://bootstrapious.com/donate  
+                    </p>
+                </div>-->
+    </div>
+</div>
+<!-- *** COPYRIGHT END *** -->
+
+
+
+</div>
+<!-- /#all -->
+
+
+
+
+<!-- *** COPYRIGHT ***
+_________________________________________________________ -->
+<div id="copyright">
+    <div class="container">
+        <div class="col-md-6">
+            <p class="pull-left">© 2017 SAAM Team.</p>
+
+        </div>
+        <div class="col-md-6">
             <p class="pull-right">Template by <a href="https://bootstrapious.com/e-commerce-templates">Bootstrapious.com</a>
-                 Not removing these links is part of the license conditions of the template. Thanks for understanding :) If you want to use the template without the attribution links, you can do so after supporting further themes development at https://bootstrapious.com/donate  
+                <!-- Not removing these links is part of the license conditions of the template. Thanks for understanding :) If you want to use the template without the attribution links, you can do so after supporting further themes development at https://bootstrapious.com/donate  -->
             </p>
-        </div>-->
+        </div>
     </div>
 </div>
 <!-- *** COPYRIGHT END *** -->
@@ -166,8 +191,9 @@ _________________________________________________________ -->
 <script src="js/front.js"></script>
 
 <!-- PNotify -->
-        <script src="assets/js/pnotify.js"></script>
-        <script src="assets/js/pnotify.buttons.js"></script>
+
+<script src="assets/js/pnotify.js"></script>
+<script src="assets/js/pnotify.buttons.js"></script>
 
 
 </body>

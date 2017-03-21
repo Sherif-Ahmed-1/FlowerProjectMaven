@@ -11,7 +11,6 @@ function  viewImage(input) {
 $("#cancel").click(function () {
     location.href = "MainAdmin.jsp";
 });
-
 var elemsid = 1;
 function removeFlowerOption(ele, selectedValue) {
     $("[name=flowerObtained]").append("<option>" + selectedValue + "</option>");
@@ -78,7 +77,6 @@ function setCname(name, id) {
     $('#cname').html(name);
     console.log(id);
     categoryId = id;
-
 }
 
 function productSetName(name, id) {
@@ -86,7 +84,6 @@ function productSetName(name, id) {
     $('#productName').html(name);
     console.log(id);
     productId = id;
-
 }
 
 // server
@@ -109,8 +106,6 @@ function deleteCategoryId() {
 
 
     var arr = {'id': categoryId};
-
-
     $.ajax({url: "../RemoveCategoryServlet?date=" + new Date().getTime(),
         type: 'GET',
         contentType: 'application/json',
@@ -120,7 +115,6 @@ function deleteCategoryId() {
         }
     });
     $('#no').click();
-
 }
 
 function deleteProductId() {
@@ -128,7 +122,6 @@ function deleteProductId() {
 
 
     var arr = {'id': productId};
-
     console.log(arr);
     $.ajax({url: "../RemoveProductServlet?date=" + new Date().getTime(),
         type: 'GET',
@@ -139,21 +132,68 @@ function deleteProductId() {
         }
     });
     $('#no').click();
-
 }
 
-var j = echarts.init(document.getElementById("echart_pie")); 
-var catArr=[];
-var catArrNo=[];
- $("#obtainedCats option").each(function () {
+var j = echarts.init(document.getElementById("echart_pie"));
+var catArr = [];
+var catArrNo = [];
+$("#obtainedCats option").each(function () {
     catArr.push($(this).html());
 });
- $("#obtainedCatsNo option").each(function () {
+$("#obtainedCatsNo option").each(function () {
     catArrNo.push($(this).html());
 });
+var jsonarray = new Array();
+for (i = 0; i < catArr.length; i++)
+{
+    jsonelem = {value: catArrNo[i], name: catArr[i]};
+    jsonarray.push(jsonelem);
+}
 j.setOption({
     tooltip: {trigger: "item", formatter: "{a} <br/>{b} : {c} ({d}%)"},
-    legend: {x: "center", y: "bottom", data: [catArr[0],catArr[1]]},
+    legend: {x: "center", y: "bottom", data: catArr},
     toolbox: {show: true, feature: {magicType: {show: !0, type: ["pie", "funnel"], option: {funnel: {x: "25%", width: "50%", funnelAlign: "left", max: 1548}}}, restore: {show: !0, title: "Restore"}, saveAsImage: {show: !0, title: "Save Image"}}},
-    calculable: !0, series: [{name: "No. of Bouquets", type: "pie", radius: "55%", center: ["50%", "48%"], data: [{value: catArrNo[0], name: catArr[0]}, {value: catArrNo[1], name: catArr[1]}]}]});
-                    
+    calculable: !0, series: [{name: "No. of Bouquets", type: "pie", radius: "55%", center: ["50%", "48%"], data: jsonarray}]});
+
+function checkProductName() {
+    var productName = $("#name").val();
+    var jsonData = {name: productName};
+    $.ajax({url: "../CheckProductServlet?date=" + new Date().toString(),
+        type: "GET",
+        contentType: 'application/json',
+        data: jsonData,
+        
+        success: function (data, textStatus, jqXHR) {
+          
+            $("#state").html(data);
+
+        }});
+}
+function checkCategoryName() {
+    var categoryName = $("#name").val();
+    var jsonData = {"name": categoryName};
+    $.ajax({url: "../CheckCategoryServlet?date=" + new Date().toString(),
+        type: "GET",
+        contentType: 'application/json',
+        data: jsonData,
+        
+        success: function (data, textStatus, jqXHR) {
+            console.log(data);
+            $("#state").html(data);
+
+        }});
+}
+function checkFlowerName() {
+    var categoryName = $("#name").val();
+    var jsonData = {"name": categoryName};
+    $.ajax({url: "../CheckFlowerServlet?date=" + new Date().toString(),
+        type: "GET",
+        contentType: 'application/json',
+        data: jsonData,
+        
+        success: function (data, textStatus, jqXHR) {
+            console.log(data);
+            $("#state").html(data);
+
+        }});
+}

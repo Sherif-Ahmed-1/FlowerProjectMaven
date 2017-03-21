@@ -70,7 +70,7 @@ public class ProductDoa {
                 product.setFlowers(fDao.selectFlowerByProductId(product.getId()));
                 product.setImages(iDao.selectProductImagesByProductId(product.getId()));
                 productList.add(product);
-              //  System.out.println(product.toString());
+                //  System.out.println(product.toString());
             }
 
         } catch (SQLException ex) {
@@ -106,7 +106,7 @@ public class ProductDoa {
                 product.setImages(iDao.selectProductImagesByProductId(product.getId()));
                 product.setFlowers(fDao.selectFlowerByProductId(product.getId()));
                 productList.add(product);
-             //   System.out.println(product.toString());
+                //   System.out.println(product.toString());
             }
 
         } catch (SQLException ex) {
@@ -140,7 +140,7 @@ public class ProductDoa {
                 product.setRating(rs.getInt(6));
                 product.setImages(iDao.selectProductImagesByProductId(product.getId()));
                 product.setFlowers(fDao.selectFlowerByProductId(product.getId()));
-             //   System.out.println("dao product " + product.getName());
+                //   System.out.println("dao product " + product.getName());
             }
 
         } catch (SQLException ex) {
@@ -153,6 +153,41 @@ public class ProductDoa {
                 Logger.getLogger(ProductDoa.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        return product;
+    }
+
+    public Product selectProductByName(String name) {
+
+        Connection con = new ConnectionManager().getConnection();
+        Product product = new Product();
+        try {
+
+            PreparedStatement ps = con.prepareStatement("select * from PRODUCT where NAME = ?");
+            ps.setString(1, name);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                product.setId(rs.getInt(1));
+                product.setName(rs.getString(2));
+                product.setPrice(rs.getFloat(3));
+                product.setQuantity(rs.getInt(4));
+                product.setDescription(rs.getString(5));
+                product.setRating(rs.getInt(6));
+                product.setImages(iDao.selectProductImagesByProductId(product.getId()));
+                product.setFlowers(fDao.selectFlowerByProductId(product.getId()));
+                //   System.out.println("dao product " + product.getName());
+            }
+            rs.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(ProductDoa.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
         return product;
     }
 
@@ -251,7 +286,7 @@ public class ProductDoa {
                 product.setImages(iDao.selectProductImagesByProductId(product.getId()));
                 product.setFlowers(fDao.selectFlowerByProductId(product.getId()));
                 productList.add(product);
-            //    System.out.println(product.toString());
+                //    System.out.println(product.toString());
             }
 
         } catch (SQLException ex) {
@@ -295,8 +330,8 @@ public class ProductDoa {
     }
 
     public ArrayList<Product> selectHighRatedProducts() {
-        
-         productList = new ArrayList<>();
+
+        productList = new ArrayList<>();
         Connection con = new ConnectionManager().getConnection();
         try {
             PreparedStatement ps = con.prepareStatement("select * from PRODUCT where RATING > 7");
@@ -313,7 +348,7 @@ public class ProductDoa {
                 product.setFlowers(fDao.selectFlowerByProductId(product.getId()));
                 product.setImages(iDao.selectProductImagesByProductId(product.getId()));
                 productList.add(product);
-              //  System.out.println(product.toString());
+                //  System.out.println(product.toString());
             }
 
         } catch (SQLException ex) {

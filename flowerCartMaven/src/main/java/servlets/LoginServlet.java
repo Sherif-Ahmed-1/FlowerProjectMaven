@@ -48,6 +48,7 @@ public class LoginServlet extends HttpServlet {
             session.setAttribute("LoggedIn", new Boolean("true"));
             session.setAttribute("PasswordDiv", true);
             session.setAttribute("user", user);
+            response.sendRedirect("index.jsp");
             if (remember != null) {
                 rememberEmail = new Cookie("rememberEmail", email);
                 rememberEmail.setMaxAge(24 * 60 * 60 * 30);
@@ -60,24 +61,20 @@ public class LoginServlet extends HttpServlet {
                 response.addCookie(checked);
             } else {
                 rememberEmail = new Cookie("rememberEmail", "");
-
                 response.addCookie(rememberEmail);
                 rememberPassword = new Cookie("rememberPassword", "");
-
                 response.addCookie(rememberPassword);
                 checked = new Cookie("checked", "");
-
                 response.addCookie(checked);
                 rememberPassword.setMaxAge(0);
                 rememberEmail.setMaxAge(0);
             }
-            response.sendRedirect("index.jsp");
-        } else if(flag == 2) { // failed to log in
+        } else if (flag == 2) { // failed to log in
             HttpSession session = request.getSession(true);
             session.setAttribute("LoggedIn", new Boolean("false"));
             response.sendRedirect("index.jsp?fail=true");
-        } else if ( flag == 0){ // already logged in
-             HttpSession session = request.getSession(true);
+        } else if (flag == 0) { // already logged in
+            HttpSession session = request.getSession(true);
             session.setAttribute("LoggedIn", new Boolean("false"));
             response.sendRedirect("index.jsp?loggedin=true");
         }

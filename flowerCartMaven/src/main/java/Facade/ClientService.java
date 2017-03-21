@@ -22,6 +22,7 @@ public class ClientService {
     static ArrayList<String> loginEmails = new ArrayList<>();
 
     synchronized private boolean isloggedIn(String email) {
+        
         for (String userMail : loginEmails) {
             if (userMail.equalsIgnoreCase(email)) {
                 return true;
@@ -41,7 +42,7 @@ public class ClientService {
     }
 
     public int Login(String email, String password) {
-        if (isloggedIn(email)) {
+        if (email == null || isloggedIn(email)) {
             return 0; // false alredy logged in 
         }
         Client client = new Client();
@@ -54,6 +55,13 @@ public class ClientService {
         } else {
             return 2; // false not found user 
         }
+    }
+    public boolean loginForCookie(String email,String password){
+          Client client = new Client();
+        client.setMail(email);
+        client.setPassword(password);
+        ClientDao clientDao = new ClientDao();
+        return clientDao.validclient(client);
     }
 
     public boolean CheckPassword(String email, String password) {

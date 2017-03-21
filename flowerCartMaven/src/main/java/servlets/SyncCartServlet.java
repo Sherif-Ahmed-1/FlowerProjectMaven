@@ -30,12 +30,12 @@ public class SyncCartServlet extends HttpServlet {
         Gson gson = new Gson();
         ArrayList<LocalProducts> productsId = gson.fromJson(req.getParameter("localProducts"), new TypeToken<ArrayList<LocalProducts>>() {
         }.getType());
-        CartService cartService=new CartService(req.getSession());
+        CartService cartService = new CartService(req.getSession());
         resp.setContentType("application/json");
-         ArrayList<LocalProducts> merged= cartService.syncCart(productsId);
-        System.out.println(gson.toJson( merged));
-        resp.getWriter().write(gson.toJson( merged));
-         
+        ArrayList<LocalProducts> merged = cartService.syncCart(productsId);
+        System.out.println(gson.toJson(merged));
+        resp.getWriter().write(gson.toJson(merged));
+
     }
 
 }

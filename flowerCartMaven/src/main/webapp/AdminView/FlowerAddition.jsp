@@ -24,11 +24,13 @@
                     <form  class="form-horizontal form-label-left input_mask" method="post" action="${pageContext.request.contextPath}/AddFlowerServlet">
 
                     <div class="col-md-10 col-sm-6 col-xs-12 form-group has-feedback">
-                        <input type="text" class="form-control has-feedback-left" name="name" placeholder="Flower Name" required="true">
+                        <input type="text" class="form-control has-feedback-left" id="name" name="name" placeholder="Flower Name" required="true" onblur="checkFlowerName()">
                         <span class="fa fa-gift form-control-feedback left" aria-hidden="true"></span>
                     </div>
 
-
+                    <div  class="col-md-2 col-sm-6 col-xs-12 form-group has-feedback">
+                        <label id="state" style="font-size: 18px;"></label> 
+                    </div>
                     <div class="col-md-10 col-sm-9 col-xs-12 form-group has-feedback" >
 
                         <label>Country:</label>
