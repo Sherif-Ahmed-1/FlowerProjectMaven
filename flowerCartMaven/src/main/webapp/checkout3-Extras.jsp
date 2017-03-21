@@ -29,9 +29,9 @@
                             </li>
                             <li class="active"><a href="checkout3-Extras.jsp"><i class="fa fa-envelope"></i><br>Extras</a>
                             </li>
-                            <li class="disabled"><a href="checkout4-Offers.jsp"><i class="fa fa-money"></i><br>Payment Offers!</a>
+                            <li class="disabled"><a ><i class="fa fa-money"></i><br>Payment Offers!</a>
                             </li>
-                            <li class="disabled"><a href="checkout5-review.jsp"><i class="fa fa-eye"></i><br>Order Review</a>
+                            <li class="disabled"><a><i class="fa fa-eye"></i><br>Order Review</a>
                             </li>
                         </ul>
 

@@ -85,9 +85,9 @@
                         </div>
                     </div>
 
-                    <!--<div class="well" style="background-color: white;">-->
+                    <div class="well" style="background-color: white;">
                         <h3 >Your Interests</h3>
-                        <div class="col-md-5 col-sm-9 col-xs-12 form-group has-feedback" >
+                        <!--<div class="col-md-5 col-sm-9 col-xs-12 form-group has-feedback" >-->
                             <div class="ln_solid"></div>
                             <select class="select2_group form-control" name="interestsObtained" tabindex="6" onchange="populateInterets()">
                                 <option value="first" disabled="disabled" selected="selected">Select Interest</option>
@@ -95,15 +95,16 @@
                                     <option><c:out value="${inte.name}"></c:out></option>
                                 </c:forEach>
                             </select>
-                        </div>
-                        <div class="col-md-5 col-sm-9 col-xs-12 form-group" >
+                        <!--</div>-->
+                        <!--<div class="col-md-5 col-sm-9 col-xs-12 form-group" >-->
+                        <br/><br/>
                             <div class="ln_solid"></div>
                             <label>Chosen Interests: </label>
                             <div id="chosenDiv">
 
                             </div>
-                        </div>
-                    <!--</div>-->
+                        <!--</div>-->
+                    </div>
 
                     <div class="well" style="background-color: white;">
                         <div class="text-center">
