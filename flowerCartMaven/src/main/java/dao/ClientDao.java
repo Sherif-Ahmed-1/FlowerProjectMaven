@@ -115,6 +115,8 @@ public class ClientDao {
             ps.setDate(8, new java.sql.Date(date.getTime()));
             ps.setString(9, client.getPhone());
             ps.setInt(10, client.getId());
+            iDao.deleteClientInterests(client.getId());
+            iDao.insert(client.getInterests(), client.getId());
             int num = ps.executeUpdate();
             if (num != 0) {
                 flag = true;
@@ -360,6 +362,30 @@ public class ClientDao {
         }
         return clientById;
     }
-
-
+    public boolean updateCredit(int clientId,int Credit)
+    {
+        Client client=selectById(clientId);
+        if(client.getCridetlimit()<Credit)
+            return false;
+        Connection connection=new ConnectionManager().getConnection();
+        try {
+           
+            PreparedStatement ps=connection.prepareStatement("update client set CRIDETLIMIT=? where id=?");
+            int creditafter=(client.getCridetlimit()-Credit);
+            ps.setInt(1, creditafter);
+            ps.setInt(2, clientId);
+            ps.executeUpdate();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(ClientDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally{
+            try {
+                connection.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(ClientDao.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return true;
+    }
 }

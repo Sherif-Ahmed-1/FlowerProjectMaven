@@ -50,7 +50,7 @@ public class OrderDao {
         return OrderList;
     }
 
-    public boolean insertOrder(Order order) {
+    public int insertOrder(Order order) {
         Connection con = new ConnectionManager().getConnection();
         boolean flag = false;
         try {
@@ -70,6 +70,32 @@ public class OrderDao {
                 Logger.getLogger(OrderDao.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        return flag;
+        return getOrderId(order);
     }
+
+    public int getOrderId(Order order) {
+        Connection con = new ConnectionManager().getConnection();
+        int orderId = -1;
+        try {
+            PreparedStatement ps = con.prepareStatement("select id from ORDERS where client_id=? and dateordered=? ");
+            ps.setInt(1, order.getClientId());
+            ps.setTimestamp(2, order.getStamp());
+//            ps.setFloat(3, order.getPrice());
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                orderId = rs.getInt("id");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(OrderDao.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                con.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(OrderDao.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return orderId;
+
+    }
+
 }

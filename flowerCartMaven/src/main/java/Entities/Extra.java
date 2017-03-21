@@ -11,7 +11,7 @@ package Entities;
  */
 public class Extra {
 
-    private int ID;
+    private int id;
     private String name;
     private float price;
     private int quantity;
@@ -34,6 +34,14 @@ public class Extra {
         this.eName = eName;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
     public ImageEntity getImage() {
         return image;
     }
@@ -43,14 +51,6 @@ public class Extra {
     }
 
     private ImageEntity image;
-
-    public int getID() {
-        return ID;
-    }
-
-    public void setID(int ID) {
-        this.ID = ID;
-    }
 
     public String getName() {
         return name;
@@ -76,9 +76,5 @@ public class Extra {
         this.quantity = quantity;
     }
 
-    @Override
-    public String toString() {
-        return "Extra{" + "ID=" + ID + ", name=" + name + ", price=" + price + ", quantity=" + quantity + '}';
-    }
-
+    
 }

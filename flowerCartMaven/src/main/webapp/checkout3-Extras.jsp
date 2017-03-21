@@ -16,9 +16,9 @@
                     </li>
                     <li>Checkout - Extras </li>
                 </ul>
-            </div>
+                <div class="col-md-1" ></div>
 
-            <div class="col-md-9" id="checkout">
+            <div class="col-md-10" id="checkout">
                 <div class="box">
                     <form method="post" action="checkout4-Offers.jsp">
                         <h1>Checkout</h1>
@@ -29,9 +29,9 @@
                             </li>
                             <li class="active"><a href="checkout3-Extras.jsp"><i class="fa fa-envelope"></i><br>Extras</a>
                             </li>
-                            <li class="disabled"><a href="checkout4-Offers.jsp"><i class="fa fa-money"></i><br>Payment Offers!</a>
+                            <li class="disabled"><a ><i class="fa fa-money"></i><br>Payment Offers!</a>
                             </li>
-                            <li class="disabled"><a href="checkout5-review.jsp"><i class="fa fa-eye"></i><br>Order Review</a>
+                            <li class="disabled"><a><i class="fa fa-eye"></i><br>Order Review</a>
                             </li>
                         </ul>
 
@@ -60,11 +60,11 @@
                                                 <a><c:out value="${extra.name}"/></a>
                                             </td>
                                             <td>
-                                                <input type="number" value="0" min="0" max="${extra.quantity}" onchange="calcExtraPrice(${extra.ID}, this)"  class="form-control">
+                                                <input type="number" value="0" min="0" max="${extra.quantity}" onchange="calcExtraPrice(${extra.id}, this)"  class="form-control">
                                             </td>
-                                            <td><div id="price${extra.ID}"> <c:out value="${extra.price}"/></td>
+                                            <td><div id="price${extra.id}"> <c:out value="${extra.price}"/></td>
                                             <!--<td>$0.00</td>-->
-                                            <td><div id="ExtratotalPrice${extra.ID}" name="ExtratotalPrice">0.00</div></td>
+                                            <td><div id="ExtratotalPrice${extra.id}" name="ExtratotalPrice">0.00</div></td>
                                         </tr>
                                     </c:forEach>
                                 </tbody>
@@ -97,42 +97,9 @@
         </div>
         <!-- /.col-md-9 -->
 
-        <div class="col-md-3">
-
-            <div class="box" id="order-summary">
-                <div class="box-header">
-                    <h3>Order summary</h3>
-                </div>
-                <p class="text-muted">Shipping and additional costs are calculated based on the values you have entered.</p>
-
-                <div class="table-responsive">
-                    <table class="table">
-                        <tbody>
-                            <tr>
-                                <td>Order subtotal</td>
-                                <th>$446.00</th>
-                            </tr>
-                            <tr>
-                                <td>Shipping and handling</td>
-                                <th>$10.00</th>
-                            </tr>
-                            <tr>
-                                <td>Tax</td>
-                                <th>$0.00</th>
-                            </tr>
-                            <tr class="total">
-                                <td>Total</td>
-                                <th>$456.00</th>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-            </div>
-
-        </div>
+     
         <!-- /.col-md-3 -->
-
+            </div>
     </div>
     <!-- /.container -->
 </div>

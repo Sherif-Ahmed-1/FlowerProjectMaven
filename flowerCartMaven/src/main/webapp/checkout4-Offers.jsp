@@ -16,9 +16,9 @@
                 </li>
                 <li>Checkout - Offers </li>
             </ul>
-        </div>
+            <div class="col-md-1"></div>
 
-        <div class="col-md-9" id="checkout">
+        <div class="col-md-10" id="checkout">
 
             <div class="box">
                 <form method="post" action="checkout5-review.jsp">
@@ -32,14 +32,15 @@
                         </li>
                         <li class="active"><a href="checkout4-Offers.jsp"><i class="fa fa-money"></i><br>Payment Offers!</a>
                         </li>
-                        <li class="disabled"><a href="checkout5-review.jsp"><i class="fa fa-eye"></i><br>Order Review</a>
+                        <li class="disabled"><a ><i class="fa fa-eye"></i><br>Order Review</a>
                         </li>
                     </ul>
 
                     <div class="content">
                         <br/>
                         <br/>
-
+                        
+                        <c:if test="${requestScope.isBirthday}" >
                         <div class="row">
                             <div class="col-md-1"></div>
                             <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10">
@@ -54,6 +55,7 @@
                                 </div>
                             </div>
                         </div>
+                        </c:if>
                         
                         <div class="row">
                             <div class="col-md-1"></div>
@@ -69,7 +71,7 @@
                                 </div>
                             </div>
                         </div>
-
+                        
                     </div>
 
                     <div class="box-footer">
@@ -88,43 +90,7 @@
 
         </div>
         <!-- /.col-md-9 -->
-
-        <div class="col-md-3">
-
-            <div class="box" id="order-summary">
-                <div class="box-header">
-                    <h3>Order summary</h3>
-                </div>
-                <p class="text-muted">Shipping and additional costs are calculated based on the values you have entered.</p>
-
-                <div class="table-responsive">
-                    <table class="table">
-                        <tbody>
-                            <tr>
-                                <td>Order subtotal</td>
-                                <th>$446.00</th>
-                            </tr>
-                            <tr>
-                                <td>Shipping and handling</td>
-                                <th>$10.00</th>
-                            </tr>
-                            <tr>
-                                <td>Tax</td>
-                                <th>$0.00</th>
-                            </tr>
-                            <tr class="total">
-                                <td>Total</td>
-                                <th>$456.00</th>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-            </div>
-
         </div>
-        <!-- /.col-md-3 -->
-
     </div>
     <!-- /.container -->
 </div>

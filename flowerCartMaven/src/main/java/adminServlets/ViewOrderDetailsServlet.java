@@ -50,7 +50,7 @@ public class ViewOrderDetailsServlet extends HttpServlet {
                     orderDetailses.add(ods);
                 }
                 for (Extra e : o.getExtras()) {
-                    e.seteName(orderService.returnExtraName(e.getID()));
+                    e.seteName(orderService.returnExtraName(e.getId()));
                     extras.add(e);
                 }
             }

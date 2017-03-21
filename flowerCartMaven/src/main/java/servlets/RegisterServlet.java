@@ -25,6 +25,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import Entities.Client;
 import Entities.Interests;
+import Facade.HomeService;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpSession;
 import org.apache.commons.beanutils.BeanUtils;
@@ -39,15 +40,6 @@ public class RegisterServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //************* startAllaa **************/
-
-        //************** EndAllaa **************/
-        //************* startAdel ************
-        //************** EndAdel **************/
-        //************* startSherif **************/
-        //************** EndSherif **************/
-        //************* startMoamen **************/
-        //************** EndMoamen **************/
     }
 
     @Override
@@ -55,40 +47,35 @@ public class RegisterServlet extends HttpServlet {
             throws ServletException, IOException {
 
         //************* startAllaa **************/
-//        // id for user
+        HomeService homeService = new HomeService();
+        ClientService clientService = new ClientService();
         Client client = new Client();
         try {
-
             BeanUtils.populate(client, request.getParameterMap());
-            Enumeration<String> param = request.getParameterNames();
-            System.out.println("Post : Register servlet : " + client.getBirthday());
-            System.out.println(request.getParameter("interestsList"));
+            System.out.println("Post : Register servlet : " + client);
+            String[] interestsNames = request.getParameterValues("clientInterest");
+            System.out.println(interestsNames);
+            ArrayList<Interests> interests = homeService.getInterestByName(interestsNames);
+            System.out.println(interests.toArray());
+            client.setInterests(interests);
+
+//************** EndAllaa **************/
+//************* startSherif **************/
+            if (!clientService.signUp(client)) {
+                response.sendRedirect("register.jsp?fail=true");
+            } else {
+                HttpSession session = request.getSession(true);
+                session.setAttribute("LoggedIn", new Boolean("false"));
+                response.sendRedirect("index.jsp");
+            }
+//************** EndSherif **************/
+
         } catch (IllegalAccessException ex) {
             Logger.getLogger(RegisterServlet.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InvocationTargetException ex) {
             Logger.getLogger(RegisterServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-//************** EndAllaa **************/
-//************* startAdel ************
-//************** EndAdel **************/
-//************* startSherif **************/
-        ClientService clientService = new ClientService();
-        if (!clientService.signUp(client)) {
-            response.sendRedirect("register.jsp");
-        } else {
-//        RequestDispatcher dispatcher=request.getRequestDispatcher("LoginServlet");
-//        request.setAttribute("inputEmail", client.getMail() );
-//        request.setAttribute("inputPassword", client.getPassword());
-//        dispatcher.include(request, response);
-            HttpSession session = request.getSession(true);
-            session.setAttribute("LoggedIn", new Boolean("false"));
-            response.sendRedirect("index.jsp");
-           /// response.sendRedirect("index.jsp");
-        }
-//************** EndSherif **************/
-//************* startMoamen **************/
-//************** EndMoamen **************/
     }
 
 }

@@ -103,13 +103,13 @@ public class CartDao {
     }
 
     
-    public boolean deleteCartByClientId(Cart cart) {
+    public boolean deleteCartByClientId(int clientId) {
         Connection con = new ConnectionManager().getConnection();
         boolean flag = false;
         try {
 
             PreparedStatement ps = con.prepareStatement("delete from cart where client_id=?");
-            ps.setInt(1, cart.getCustomerId());
+            ps.setInt(1, clientId);
             int num = ps.executeUpdate();
             if (num != 0) {
                 flag = true;

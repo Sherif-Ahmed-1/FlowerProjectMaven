@@ -41,6 +41,7 @@
                             <br/>
                             <br/>
                             <div class="table-responsive" >
+                                <div id="checkouterror"></div>
                                 <table class="table">
                                     <thead>
                                         <tr>
@@ -68,7 +69,7 @@
                                                         <a href="checkout3.html" class="btn btn-default"><i class="fa fa-chevron-left"></i>Back to Payment method</a>
                                                     </div>-->
                             <div class="pull-right">
-                                <button type="submit" class="btn btn-primary">Place an order<i class="fa fa-chevron-right"></i>
+                                <button type="button" onclick="checkoutQuantity()" id="buyButton" class="btn btn-primary">Place an order<i class="fa fa-chevron-right"></i>
                                 </button>
                             </div>
                         </div>
@@ -78,11 +79,7 @@
             </div>
             <!-- /.box -->
 
-
-        </div>
-        <!-- /.col-md-9 -->
-
-        <div class="col-md-3">
+<div class="col-md-3">
 
             <div class="box" id="order-summary">
                 <div class="box-header">
@@ -94,20 +91,25 @@
                     <table class="table">
                         <tbody>
                             <tr>
-                                <td>Order subtotal</td>
-                                <th>$446.00</th>
+                                <td>Bouquets total</td>
+                                <th id="bouquetsTotal"></th>
                             </tr>
                             <tr>
-                                <td>Shipping and handling</td>
-                                <th>$10.00</th>
+                                <td>Extras Total</td>
+                                <th id="ExtrasTotal"></th>
                             </tr>
                             <tr>
-                                <td>Tax</td>
-                                <th>$0.00</th>
+                                <td >Total</td>
+                                <th id="totalBefore"></th>
                             </tr>
-                            <tr class="total">
-                                <td>Total</td>
-                                <th>$456.00</th>
+                            <tr>
+                                <td>Discount</td>
+                                <th id="DiscountTotal"></th>
+                            </tr>
+                            
+                            <tr class="total" >
+                                <td>Total after discount</td>
+                                <th id="TotalReceipt"></th>
                             </tr>
                         </tbody>
                     </table>
@@ -116,6 +118,11 @@
             </div>
 
         </div>
+        </div>
+        <!-- /.col-md-9 -->
+
+        
+        
         <!-- /.col-md-3 -->
 
     </div>
