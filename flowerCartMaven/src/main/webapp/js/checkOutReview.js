@@ -125,7 +125,8 @@ function buy()
                     }
                     localStorage.removeItem("extrasId");
                 }
-                location.reload();
+                $("#goToIndexPage").trigger('click');
+//                location.reload();
             } else
             {
                 console.log("invalid credit");
@@ -181,6 +182,7 @@ function  checkoutQuantity() {
             if ($("#buyButton").prop("disabled") == false)
             {
                 buy();
+
             }
         } else
         {

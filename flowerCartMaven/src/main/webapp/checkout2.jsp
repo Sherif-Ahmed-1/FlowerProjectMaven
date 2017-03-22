@@ -28,7 +28,7 @@
             <div class="col-md-10" id="checkout">
 
                 <div class="box">
-                    <form method="post" action="checkout3-Extras.jsp">
+                    <form method="get" action="checkout3-Extras.jsp">
                         <h1>Checkout</h1>
                         <ul class="nav nav-pills nav-justified">
                             <li ><a href="checkout.jsp"><i class="fa fa-map-marker"></i><br>Address</a>

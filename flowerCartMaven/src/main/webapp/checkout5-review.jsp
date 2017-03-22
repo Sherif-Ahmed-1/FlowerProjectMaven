@@ -20,6 +20,7 @@
             </div>
 
             <div class="col-md-9" id="checkout">
+                <a href="checkout5-review.jsp"></a>
 
                 <div class="box">
                     <form method="post" action="checkout5-review.jsp">
@@ -124,7 +125,9 @@
         
         
         <!-- /.col-md-3 -->
-
+        <form hidden="true"  action="index.jsp" method="GET">
+            <input type="submit" id="goToIndexPage"/>
+        </form>
     </div>
     <!-- /.container -->
 </div>

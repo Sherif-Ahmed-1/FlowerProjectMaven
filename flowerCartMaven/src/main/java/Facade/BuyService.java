@@ -44,6 +44,12 @@ public class BuyService {
         return clientService.buy(getClientId(), price);
     }
 
+    private void updateCreditForUserSession(int price) {
+        Client client = (Client) session.getAttribute("user");
+        client.setCridetlimit(client.getCridetlimit() - price);
+        session.setAttribute("user", client);
+    }
+
     public boolean buy(BuyOrder buyOrder) {
         if (!clientCredit((int) buyOrder.getPrice())) {
             return false;
@@ -57,7 +63,7 @@ public class BuyService {
         int orderId = orderDao.insertOrder(order);
         buyExtra(orderId, buyOrder);
         buyProduct(orderId);
-
+        updateCreditForUserSession((int) buyOrder.getPrice());
         return true;
     }
 
@@ -68,16 +74,15 @@ public class BuyService {
 
     private void buyProduct(int orderId) {
         CartService cartService = new CartService(session);
-        
+
         List<CartProductDetails> cartProducts = cartService.getcartDetailFromDB();
         ProductDoa productDoa = new ProductDoa();
         Product product;
-         for(CartProductDetails cpd:cartProducts)
-         {
-               product = productDoa.selectOneProduct(cpd.getProductId());
-               product.setQuantity(product.getQuantity()-cpd.getQuntity());
-               productDoa.updateProduct(product);
-         }
+        for (CartProductDetails cpd : cartProducts) {
+            product = productDoa.selectOneProduct(cpd.getProductId());
+            product.setQuantity(product.getQuantity() - cpd.getQuntity());
+            productDoa.updateProduct(product);
+        }
         CartDetailDao cartDetailDao = new CartDetailDao();
         cartDetailDao.deleteByClientId(getClientId());
         OrderDetailsDao detailsDao = new OrderDetailsDao();
