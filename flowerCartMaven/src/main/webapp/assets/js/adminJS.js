@@ -151,9 +151,9 @@ for (i = 0; i < catArr.length; i++)
 }
 j.setOption({
     tooltip: {trigger: "item", formatter: "{a} <br/>{b} : {c} ({d}%)"},
-    legend: {x: "center", y: "bottom", data: catArr},
-    toolbox: {show: true, feature: {magicType: {show: !0, type: ["pie", "funnel"], option: {funnel: {x: "25%", width: "50%", funnelAlign: "left", max: 1548}}}, restore: {show: !0, title: "Restore"}, saveAsImage: {show: !0, title: "Save Image"}}},
-    calculable: !0, series: [{name: "No. of Bouquets", type: "pie", radius: "55%", center: ["50%", "48%"], data: jsonarray}]});
+    legend: {x: "center", y: "430px", data: catArr},
+    toolbox: {show: true, feature: {magicType: {show: !0, type: ["pie", "funnel"], option: {funnel: {x: "50%", width: "50%", funnelAlign: "left", max: 1548}}}, restore: {show: !0, title: "Restore"}, saveAsImage: {show: !0, title: "Save Image"}}},
+    calculable: !0, series: [{name: "No. of Bouquets", type: "pie", radius: "90%", center: ["50%", "48%"], data: jsonarray}]});
 
 function checkProductName() {
     var productName = $("#name").val();
