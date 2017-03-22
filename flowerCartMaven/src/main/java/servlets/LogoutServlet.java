@@ -32,9 +32,10 @@ public class LogoutServlet extends HttpServlet {
         Client client=(Client) session.getAttribute("user");
         session.setAttribute("LoggedIn", new Boolean("false"));
         session.invalidate();
-        response.sendRedirect("index.jsp");
+//        response.sendRedirect("index.jsp");
         ClientService clientService=new ClientService();
         clientService.logout(client.getMail());
+        response.sendRedirect("index.jsp");
         //************** EndAllaa **************/
         //************* startAdel ************
         //************** EndAdel **************/

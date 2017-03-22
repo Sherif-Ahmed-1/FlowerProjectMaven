@@ -10,7 +10,7 @@ function remove(row, productPrice, id)
 }
 function calcProductPrice(id, quantity)
 {
-    document.getElementById("ProducttotalPrice" + id).innerHTML = parseFloat(document.getElementById("price" + id).innerHTML) * quantity.value;
+    document.getElementById("ProducttotalPrice" + id).innerHTML = parseInt(document.getElementById("price" + id).innerHTML) * quantity.value + ".00";
     calctotalprice();
     updateProductQuantity(id, quantity);
 }
@@ -213,7 +213,7 @@ function clearCart()
     clearExtra();
     $.ajax({url: "LogoutServlet?date=" + new Date().toString(), success: function (data, textStatus, jqXHR) {
             $.removeCookie("isloggedin");
-            location.reload();
+            location.href="index.jsp";
         }});
     checkoutValidate();
 //    $.removeCookie("rememberEmail");
