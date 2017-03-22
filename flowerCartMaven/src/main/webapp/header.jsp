@@ -94,7 +94,7 @@
                                 </form>
 
                                 <p class="text-center text-muted">Not registered yet?</p>
-                                <p class="text-center text-muted"><a href="register.html"><strong>Register now</strong></a>! It is easy and done in 1&nbsp;minute and gives you access to special discounts and much more!</p>
+                                <p class="text-center text-muted"><a href="register.jsp"><strong>Register now</strong></a>! It is easy and done in 1&nbsp;minute and gives you access to special discounts and much more!</p>
 
                             </div>
                         </div>
