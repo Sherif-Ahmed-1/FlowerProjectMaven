@@ -50,7 +50,12 @@
                             <p class="price">$${requestScope.productDetail.price}</p>
 
                             <p class="text-center buttons">
-                                <a class="btn btn-primary" onclick="addToCart(${requestScope.productDetail.id})" ><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                <c:if test="${requestScope.productDetail.quantity > 0}">
+                                    <a class="btn btn-primary" onclick="addToCart(${requestScope.productDetail.id})" ><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                </c:if>
+                                <c:if test="${requestScope.productDetail.quantity == 0}">
+                                    <a class="btn btn-warning disabled" ><i class="fa fa-outdent"></i>Out of stock</a>
+                                </c:if>
 
                             </p>
                         </div>
@@ -90,21 +95,7 @@
                         </c:forEach>
                     </p>
 
-                    <!--                    <blockquote>
-                                            <p><em>Define style this season with Armani's new range of trendy tops, crafted with intricate details. Create a chic statement look by teaming this lace number with skinny jeans and pumps.</em>
-                                            </p>
-                                        </blockquote>-->
-
-                    <hr>
-                    <!--                    <div class="social">
-                                            <h4>Show it to your friends</h4>
-                                            <p>
-                                                <a href="#" class="external facebook" data-animate-hover="pulse"><i class="fa fa-facebook"></i></a>
-                                                <a href="#" class="external gplus" data-animate-hover="pulse"><i class="fa fa-google-plus"></i></a>
-                                                <a href="#" class="external twitter" data-animate-hover="pulse"><i class="fa fa-twitter"></i></a>
-                                                <a href="#" class="email" data-animate-hover="pulse"><i class="fa fa-envelope"></i></a>
-                                            </p>
-                                        </div>-->
+                 <hr/>                  
                 </div>
 
                 <div class="row same-height-row">

@@ -64,6 +64,8 @@
                             </li>
                             <li><a href="HighRatedBouquets.jsp">High Rated</a>
                             </li>
+                            <li><a href="AdminView/MainAdmin.jsp">ADMIN VIEW</a>
+                            </li>
 
                         </ul>
                     </div>

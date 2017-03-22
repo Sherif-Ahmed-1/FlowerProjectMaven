@@ -33,7 +33,7 @@
               
 
                 <div class="row products">
-                    <c:forEach items="${requestScope.flowers}" var="flower" end="6">
+                    <c:forEach items="${requestScope.flowers}" var="flower" >
                         <div class="col-md-3 col-sm-6">
                             <div class="product" >
                                 <div class="flip-container">
@@ -51,7 +51,7 @@
                                     </div>
                                 </div>
                                 <a href="flowerBouquests?f=${flower.id}&n=${flower.name}" class="invisible">
-                                    <img src="${flower.image.url}" alt="" class="img-responsive">
+                                    <img src="assets/img/flowers/Rose.jpg" alt="" class="img-responsive">
                                 </a>
                                 <div class="text">
                                     <h3><a href="flowerBouquests?f=${flower.id}&n=${flower.name}">${flower.name}</a></h3>

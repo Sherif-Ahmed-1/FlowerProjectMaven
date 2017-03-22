@@ -57,8 +57,11 @@
                                     <p class="price">$ ${product.price}</p>
                                     <p class="buttons">
                                         <a href="ShowDetails?b=${product.id}" class="btn btn-default">View detail</a>
-                                        <c:if test="${product.quantity >= 0}">
+                                        <c:if test="${product.quantity > 0}">
                                             <a class="btn btn-primary" onclick="addToCart(${product.id})" ><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                        </c:if>
+                                        <c:if test="${product.quantity == 0}">
+                                            <a class="btn btn-warning disabled" ><i class="fa fa-outdent"></i>Out of stock</a>
                                         </c:if>
                                     </p>
                                 </div>

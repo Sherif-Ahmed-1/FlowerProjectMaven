@@ -72,7 +72,7 @@ _________________________________________________________ -->
         <!-- /#advantages -->
 
         <!-- *** ADVANTAGES END *** -->
-        
+
         <div id="hot">
 
             <div class="box">
@@ -109,8 +109,8 @@ _________________________________________________________ -->
                                     <!-- /.ribbon -->
 
                                     <div class="ribbon new">
-<!--                                        <div class="theribbon">NEW</div>
-                                        <div class="ribbon-background"></div>-->
+                                        <!--                                        <div class="theribbon">NEW</div>
+                                                                                <div class="ribbon-background"></div>-->
                                     </div>
                                 </div>
                                 <a href="ShowDetails?b=${highrated.id}" class="invisible">
@@ -122,7 +122,13 @@ _________________________________________________________ -->
 <!--                                    <strong><a class="item_add" href="cartServlet?id=${highrated.id}"  </p>-->
                                     <p class="buttons">
                                         <a href="ShowDetails?b=${highrated.id}" class="btn btn-default">View detail</a>
-                                        <a class="btn btn-primary" onclick="addToCart(${highrated.id})" ><i class="fa fa-shopping-cart"></i>Add to cart</a>
+
+                                        <c:if test="${highrated.quantity > 0}">
+                                            <a class="btn btn-primary" onclick="addToCart(${highrated.id})" ><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                        </c:if>
+                                        <c:if test="${highrated.quantity == 0}">
+                                            <a class="btn btn-warning disabled" ><i class="fa fa-outdent"></i>Out of stock</a>
+                                        </c:if>
                                     </p>
                                 </div>
 
@@ -141,7 +147,7 @@ _________________________________________________________ -->
 
         <!-- *** HOT PRODUCT SLIDESHOW ***
 _________________________________________________________ -->
-       
+
         <!-- /#hot -->
 
         <!-- ***Bouquets END *** -->
@@ -197,7 +203,7 @@ _________________________________________________________ -->
         <!-- *** BLOG HOMEPAGE ***
 _________________________________________________________ -->
 
-         <div id="hot">
+        <div id="hot">
 
             <div class="box">
                 <div class="container">
@@ -235,7 +241,13 @@ _________________________________________________________ -->
 <!--                                    <strong><a class="item_add" href="cartServlet?id=${product.id}"  </p>-->
                                     <p class="buttons">
                                         <a href="ShowDetails?b=${product.id}" class="btn btn-default">View detail</a>
-                                        <a class="btn btn-primary" onclick="addToCart(${product.id})" ><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                       <c:if test="${product.quantity > 0}">
+                                            <a class="btn btn-primary" onclick="addToCart(${product.id})" ><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                        </c:if>
+                                        <c:if test="${product.quantity == 0}">
+                                            <a class="btn btn-warning disabled" ><i class="fa fa-outdent"></i>Out of stock</a>
+                                        </c:if>
+                                        
                                     </p>
                                 </div>
 
@@ -257,30 +269,30 @@ _________________________________________________________ -->
     <!-- /#content -->
 
     <%@include file="footer.jsp" %>
-    
+
     <c:choose>
-            <c:when test="${param.fail=='true'}">
-                <h3> <c:out value="${param.password}"/></h3>
-                <script>
-                    new PNotify({
-                        title: 'Sorry',
-                        text: 'Your email or password are wrong!',
-                        type: 'error',
-                        styling: 'bootstrap3'
-                    });
-                </script>
-            </c:when>
+        <c:when test="${param.fail=='true'}">
+            <h3> <c:out value="${param.password}"/></h3>
+            <script>
+                new PNotify({
+                    title: 'Sorry',
+                    text: 'Your email or password are wrong!',
+                    type: 'error',
+                    styling: 'bootstrap3'
+                });
+            </script>
+        </c:when>
 
-            <c:when test="${param.loggedin=='true'}">
-                <h3> <c:out value="${param.loggedin}"/></h3>
-                <script>
-                    new PNotify({
-                        title: 'Sorry',
-                        text: 'You are already logged in somewhere else, please sign out first to login again! ',
-                        type: 'error',
-                        styling: 'bootstrap3'
-                    });
-                </script>
-            </c:when>
+        <c:when test="${param.loggedin=='true'}">
+            <h3> <c:out value="${param.loggedin}"/></h3>
+            <script>
+                new PNotify({
+                    title: 'Sorry',
+                    text: 'You are already logged in somewhere else, please sign out first to login again! ',
+                    type: 'error',
+                    styling: 'bootstrap3'
+                });
+            </script>
+        </c:when>
 
-        </c:choose>
+    </c:choose>

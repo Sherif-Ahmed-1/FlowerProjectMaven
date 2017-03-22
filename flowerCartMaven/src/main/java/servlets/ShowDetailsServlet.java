@@ -27,9 +27,13 @@ public class ShowDetailsServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Product product = (Product) getServletContext().getAttribute("productDetail");
-        int id = product.getId();
+
+        //********************************************
+        // Product product = (Product) getServletContext().getAttribute("productDetail");
+        // int id = product.getId();
+        int id = Integer.parseInt(request.getParameter("b"));
         System.out.println(id);
+        //***********************************
         BouquetsService bouquetsService = new BouquetsService();
         Product productDetail = bouquetsService.getBouquetById(id);
 
