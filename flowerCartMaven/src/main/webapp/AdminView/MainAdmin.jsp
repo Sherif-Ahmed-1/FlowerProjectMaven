@@ -69,7 +69,7 @@
 
     <div class="row">
 
-        <div id="echart_pie" style="height:350px;"></div>
+        <div id="echart_pie" style="height:450px;"></div>
 
     </div>
 
